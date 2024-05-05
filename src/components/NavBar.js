@@ -1,9 +1,11 @@
 import React from 'react'
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
+import styles from "../styles/NavBar.module.css"
+
 const NavBar = () => {
   return (
     <div>
-      <Navbar bg="light" expand="lg">
+      <Navbar className={styles.NavBar} bg="light" expand="lg">
         <Container>
   <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
