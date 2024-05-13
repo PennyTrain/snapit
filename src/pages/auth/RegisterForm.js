@@ -8,34 +8,34 @@ const RegisterForm = () => {
         username: "",
         password1: "",
         password2: "",
-    })
+    });
     const { username, password1, password2 } = registerData;
-    const history = useHistory()
+    const history = useHistory();
     const [errors, setErrors] = useState({});
 
-
     const handleChange = (event) => {
-        setRegisterData({
-            ...registerData,
-            // This line creates a key value pair
-            [event.target.name]: event.target.value
-        })
-    }
+        const { name, value } = event.target;
+        setRegisterData(prevData => ({ ...prevData, [name]: value }));
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            await axios.post("/dj-rest-auth/registration/", registerData)
-            history.push('/login')
+            await axios.post("/dj-rest-auth/registration/", registerData);
+            history.push('/login');
         } catch (err) {
-            // Check if the error response contains a 'username' property
-            if (err.response?.data?.username) {
-                setErrors(err.response.data)
-            } else {
-                // Handle other types of errors
-            }
+            handleErrors(err);
         }
     };
+
+    const handleErrors = (err) => {
+        if (err.response?.data?.username) {
+            setErrors(err.response.data);
+        } else {
+            // Handle other types of errors
+        }
+    };
+
     return (
         <div>
             <Form onSubmit={handleSubmit}>
