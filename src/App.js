@@ -1,8 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import NavBar from './components/NavBar';
 import { Container } from 'react-bootstrap';
 import { Route, Switch } from "react-router-dom";
+import './snapit_api/axiosDefaults';
+import RegisterForm from './pages/auth/RegisterForm';
+import LogInForm from './pages/auth/LogInForm';
 
 // The Switch holds all our Routes,  and renders a given component when  
 // a Route path matches the current URL. The render prop on our Route component  
@@ -20,10 +22,10 @@ function App() {
           <Route exact path="/" render={() => <h1>Home</h1>} />
         </Switch>
         <Switch>
-          <Route exact path="/login" render={() => <h1>Log in</h1>} />
+          <Route exact path="/login" render={() => <LogInForm/>} />
         </Switch>
         <Switch>
-          <Route exact path="/register" render={() => <h1>Register</h1>} />
+          <Route exact path="/register" render={() => <RegisterForm />} />
         </Switch>
       </Container>
     </div>
