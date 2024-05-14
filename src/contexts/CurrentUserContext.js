@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
-import { axiosReq, axiosRes } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useHistory } from "react-router";
 
 export const CurrentUserContext = createContext();
