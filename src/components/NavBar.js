@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
 import ProfilePic from './ProfilePic';
 import LogoutButton from './LogoutButton'; 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
+import useCloseBurgerToggle from '../hooks/useCloseBurgerToggle';
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
+
+  const { openBurger, setOpenBurger, ref } = useCloseBurgerToggle();
 
   const createSnap = currentUser && (
     <NavLink className="" activeClassName="" to="/snaps/create">
@@ -17,17 +20,16 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar className={styles.NavBar} bg="light" expand="lg">
+      <Navbar expanded={openBurger} className={styles.NavBar} bg="light" expand="lg">
         <Container>
           <NavLink to="/">
             <Navbar.Brand>
-              {/* add back src={logo} */}
               <img alt="logo" height="45" />
             </Navbar.Brand>
           </NavLink>
           <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
           {createSnap}
-          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle onClick={() => setOpenBurger(!openBurger)} ref={ref} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
