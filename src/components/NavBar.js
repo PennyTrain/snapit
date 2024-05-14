@@ -1,9 +1,18 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css"
 import { NavLink } from "react-router-dom"
+import axios from 'axios'
+import { CurrentUserContext } from '../App';
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 const NavBar = () => {
+  const currentUser = useCurrentUser();
+  const notLoggedIn = <>
+              <NavLink to="/login" activeClassName={styles.Active} className={styles.NavLink}>Log in</NavLink>
+              <NavLink to="/register" activeClassName={styles.Active} className={styles.NavLink}>Register</NavLink>
+  </>
+  const loggedIn = <>{currentUser?.username}</>
   return (
     <div>
       <Navbar className={styles.NavBar} bg="light" expand="lg">
@@ -19,8 +28,7 @@ const NavBar = () => {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
-              <NavLink to="/login" activeClassName={styles.Active} className={styles.NavLink}>Log in</NavLink>
-              <NavLink to="/register" activeClassName={styles.Active} className={styles.NavLink}>Register</NavLink>
+              {currentUser ? loggedIn : notLoggedIn}
             </Nav>
           </Navbar.Collapse>
         </Container>
