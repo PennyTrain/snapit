@@ -5,6 +5,7 @@ import { Route, Switch } from "react-router-dom";
 import './snapit_api/axiosDefaults';
 import RegisterForm from './pages/auth/RegisterForm';
 import LogInForm from './pages/auth/LogInForm';
+import SnapCreate from './pages/snaps/SnapCreate';
 
 
 // The Switch holds all our Routes,  and renders a given component when  
@@ -23,13 +24,9 @@ function App() {
       <Container className="Down">
         <Switch>
           <Route exact path="/" render={() => <h1>Home</h1>} />
-        </Switch>
-  
-      <Switch>
           <Route exact path="/login" render={() => <LogInForm />} />
-        </Switch>
-        <Switch>
           <Route exact path="/register" render={() => <RegisterForm />} />
+          <Route exact path="/snap/create" render={() => <SnapCreate />}/>
         </Switch>
       </Container>
     </div>
