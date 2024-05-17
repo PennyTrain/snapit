@@ -1,6 +1,5 @@
 import React, { useState, useRef } from 'react';
 
-
 const useImageUpload = () => {
   const [image, setImage] = useState(null);
   const imageInputRef = useRef(null);
@@ -26,10 +25,12 @@ const useImageUpload = () => {
 
   return {
     image,
+    setImage,
     imageInputRef,
     handleChangeImage,
     handleOpenFileDialog,
     resetImage,
   };
 };
-export default useImageUpload
+
+export default useImageUpload;

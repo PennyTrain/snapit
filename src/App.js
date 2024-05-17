@@ -8,6 +8,7 @@ import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
 
 
+
 // The Switch holds all our Routes,  and renders a given component when  
 // a Route path matches the current URL. The render prop on our Route component  
 // accepts a function that returns a component to  be rendered when the Route path is matched.

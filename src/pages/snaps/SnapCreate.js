@@ -41,11 +41,10 @@ const SnapCreate = () => {
         }
     };
 
-    return (
+
+    const snapFields = (
         <div>
-            <h1>Create a New Snap</h1>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formTitle">
+             <Form.Group controlId="formTitle">
                     <Form.Control
                         name="title"
                         value={title}
@@ -77,12 +76,26 @@ const SnapCreate = () => {
                         </Alert>
                     ))}
                 </Form.Group>
+                <Button
+                    onClick={() => history.goBack()}
+                >
+                    Nevermind!
+                </Button>
 
+                <Button variant="primary" type="submit">
+                    Create Snap
+                </Button>
+        </div>
+    )
+    return (
+        <div>
+            <h1>Create a New Snap</h1>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formImage">
                     {image ? (
                         <>
                             <figure>
-                                <Image src={image} rounded />
+                                <Image src={image} />
                             </figure>
                             <Form.Label onClick={handleOpenFileDialog} style={{ cursor: 'pointer' }}>
                                 Change the image
@@ -106,15 +119,6 @@ const SnapCreate = () => {
                         </Alert>
                     ))}
                 </Form.Group>
-                <Button
-                    onClick={() => history.goBack()}
-                >
-                    Nevermind!
-                </Button>
-
-                <Button variant="primary" type="submit">
-                    Create Snap
-                </Button>
             </Form>
         </div>
     );
