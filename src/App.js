@@ -26,7 +26,7 @@ function App() {
           <Route exact path="/" render={() => <h1>Home</h1>} />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
-          <Route exact path="/snap/create" render={() => <SnapCreate />}/>
+          <Route exact path="/snaps/create" render={() => <SnapCreate />}/>
         </Switch>
       </Container>
     </div>
