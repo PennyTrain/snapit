@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Form, Button, Alert, Image } from 'react-bootstrap';
+import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useHistory } from 'react-router';
 import { axiosReq } from '../../snapit_api/axiosDefaults';
@@ -118,7 +118,9 @@ const SnapCreate = () => {
                             {message}
                         </Alert>
                     ))}
+    
                 </Form.Group>
+                <Container>{snapFields}</Container>
             </Form>
         </div>
     );

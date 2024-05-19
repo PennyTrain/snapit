@@ -6,6 +6,8 @@ import './snapit_api/axiosDefaults';
 import RegisterForm from './pages/auth/RegisterForm';
 import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
+import Snap from './pages/snaps/Snaps';
+import SnapFeed from './pages/snaps/SnapFeed';
 
 
 
@@ -28,6 +30,8 @@ function App() {
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/snaps/create" render={() => <SnapCreate />}/>
+          <Route exact path="/snaps" render={()=> <Snap />} />
+          <Route exact path="/snaps/:id" render={() => <SnapFeed />}/>
         </Switch>
       </Container>
     </div>
