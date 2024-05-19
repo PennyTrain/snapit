@@ -30,6 +30,7 @@ function SnapFeed() {
           <Col>
             <Snap {...snap.results[0]} setSnaps={setSnap} postSnap />
             <Container>Comments</Container>
+            
           </Col>
         </Row>
       );

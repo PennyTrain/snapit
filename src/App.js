@@ -8,6 +8,8 @@ import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
 import Snap from './pages/snaps/Snaps';
 import SnapFeed from './pages/snaps/SnapFeed';
+import SnapsFeed from './pages/snaps/SnapsFeed'
+
 
 
 
@@ -26,7 +28,7 @@ function App() {
       <NavBar />
       <Container className="Down">
         <Switch>
-          <Route exact path="/" render={() => <h1>Home</h1>} />
+          <Route exact path="/" render={() => <SnapsFeed />} />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/snaps/create" render={() => <SnapCreate />}/>
