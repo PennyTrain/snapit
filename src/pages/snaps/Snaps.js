@@ -1,6 +1,6 @@
 import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Button, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { Card, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 
@@ -29,8 +29,16 @@ function Snap(props) {
 
   const handleSnapLike = async () => {
     try {
+      if (snapdislike_id) {
+        await axiosRes.delete(`/snapdislikes/${snapdislike_id}/`);
+      }
       const { data } = await axiosRes.post("/snaplikes/", { snap: id });
-      updateSnaps(id, { snaplikes_count: snaplikes_count + 1, snaplike_id: data.id });
+      updateSnaps(id, {
+        snaplikes_count: snaplikes_count + 1,
+        snaplike_id: data.id,
+        snapdislikes_count: snapdislike_id ? snapdislikes_count - 1 : snapdislikes_count,
+        snapdislike_id: null,
+      });
     } catch (err) {
       console.error(err);
     }
@@ -47,8 +55,16 @@ function Snap(props) {
 
   const handleSnapDislike = async () => {
     try {
+      if (snaplike_id) {
+        await axiosRes.delete(`/snaplikes/${snaplike_id}/`);
+      }
       const { data } = await axiosRes.post("/snapdislikes/", { snap: id });
-      updateSnaps(id, { snapdislikes_count: snapdislikes_count + 1, snapdislike_id: data.id });
+      updateSnaps(id, {
+        snapdislikes_count: snapdislikes_count + 1,
+        snapdislike_id: data.id,
+        snaplikes_count: snaplike_id ? snaplikes_count - 1 : snaplikes_count,
+        snaplike_id: null,
+      });
     } catch (err) {
       console.error(err);
     }

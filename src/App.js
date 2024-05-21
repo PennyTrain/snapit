@@ -9,6 +9,7 @@ import SnapCreate from './pages/snaps/SnapCreate';
 import Snap from './pages/snaps/Snaps';
 import SnapFeed from './pages/snaps/SnapFeed';
 import SnapsFeed from './pages/snaps/SnapsFeed'
+import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
 
@@ -21,19 +22,37 @@ import SnapsFeed from './pages/snaps/SnapsFeed'
 // only render its component when the  url entered is exactly the same.
 
 function App() {
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || "";
 
   return (
-  
+
     <div className="App">
       <NavBar />
       <Container className="Down">
         <Switch>
+
+
           <Route exact path="/" render={() => <SnapsFeed />} />
+
+          <Route exact path="/friended/feed" render={() => (<SnapsFeed
+            message="No results found. Adjust the search keyword or follow a user."
+            filter={`owner__friended__owner__profile=${profile_id}&`}
+          />)} />
+          <Route exact path="/liked/feed" render={() => (<SnapsFeed
+            message="No results found. Adjust the search keyword or follow a user."
+            filter={`snaplikes__owner__profile=${profile_id}&ordering=-snaplikes__created&`}
+          />)} />
+          <Route exact path="/disliked/feed" render={() => (<SnapsFeed
+            message="No results found. Adjust the search keyword or follow a user."
+            filter={`snapdislikes__owner__profile=${profile_id}&ordering=-snapdislikes__created&`}
+          />)} />
+
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
-          <Route exact path="/snaps/create" render={() => <SnapCreate />}/>
-          <Route exact path="/snaps" render={()=> <Snap />} />
-          <Route exact path="/snaps/:id" render={() => <SnapFeed />}/>
+          <Route exact path="/snaps/create" render={() => <SnapCreate />} />
+          <Route exact path="/snaps" render={() => <Snap />} />
+          <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
         </Switch>
       </Container>
     </div>

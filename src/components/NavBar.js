@@ -27,7 +27,7 @@ const NavBar = () => {
               <img alt="logo" height="45" />
             </Navbar.Brand>
           </NavLink>
-          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Brand href="#home">SNAP IT</Navbar.Brand>
           {createSnap}
           <Navbar.Toggle onClick={() => setOpenBurger(!openBurger)} ref={ref} aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -35,16 +35,19 @@ const NavBar = () => {
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
               {currentUser ? (
                 <>
-                  <NavLink className="" activeClassName="" to="/newsfeed">
-                    <i className="far fa-plus-square"></i>feed
+                  <NavLink className={styles.NavLink} activeClassName="" to="/friended/feed">
+                    Feed
                   </NavLink>
-                  <NavLink className="" activeClassName="" to="/liked">
-                    <i className="far fa-plus-square"></i>liked
+                  <NavLink className={styles.NavLink} activeClassName="" to="/liked/feed">
+                    Liked
                   </NavLink>
-                  <LogoutButton />
+                  <NavLink className={styles.NavLink} activeClassName="" to="/disliked/feed">
+                    Disliked
+                  </NavLink>
                   <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
                     <ProfilePic src={currentUser?.profile_image} text="Profile" height={40} />
                   </NavLink>
+                  <LogoutButton />
                 </>
               ) : (
                 <>

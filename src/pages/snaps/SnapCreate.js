@@ -12,8 +12,14 @@ const SnapCreate = () => {
         title: "",
         body: "",
         featured_image: "",
+        pet_name: "",
+        pet_age: "",
+        pet_breed: "",
+        pet_type: "",
+        location: "",
+
     });
-    const { title, body } = snapData;
+    const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
 
     const handleChange = (event) => {
         setSnapData({
@@ -28,6 +34,11 @@ const SnapCreate = () => {
 
         formData.append('title', title);
         formData.append('body', body);
+        formData.append('pet_name', pet_name);
+        formData.append('pet_age', pet_age);
+        formData.append('pet_breed', pet_breed);
+        formData.append('pet_type', pet_type);
+        formData.append('location', location);
         formData.append('featured_image', imageInputRef.current.files[0]);
 
         try {
@@ -44,47 +55,129 @@ const SnapCreate = () => {
 
     const snapFields = (
         <div>
-             <Form.Group controlId="formTitle">
-                    <Form.Control
-                        name="title"
-                        value={title}
-                        onChange={handleChange}
-                        size="lg"
-                        type="text"
-                        placeholder="Enter title"
-                    />
-                    {errors?.title?.map((message, idx) => (
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
-                    ))}
-                </Form.Group>
+            <Form.Group controlId="formTitle">
+                <Form.Control
+                    name="title"
+                    value={title}
+                    onChange={handleChange}
+                    size="lg"
+                    type="text"
+                    placeholder="Enter title"
+                />
+                {errors?.title?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
 
-                <Form.Group controlId="formBody">
-                    <Form.Label>Body</Form.Label>
-                    <Form.Control
-                        name="body"
-                        value={body}
-                        onChange={handleChange}
-                        as="textarea"
-                        rows={3}
-                        placeholder="Enter body"
-                    />
-                    {errors?.body?.map((message, idx) => (
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
-                    ))}
-                </Form.Group>
-                <Button
-                    onClick={() => history.goBack()}
-                >
-                    Nevermind!
-                </Button>
+            <Form.Group controlId="formBody">
+                <Form.Label>Body</Form.Label>
+                <Form.Control
+                    name="body"
+                    value={body}
+                    onChange={handleChange}
+                    as="textarea"
+                    rows={3}
+                    placeholder="Enter body"
+                />
+                {errors?.body?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
 
-                <Button variant="primary" type="submit">
-                    Create Snap
-                </Button>
+            <Form.Group controlId="form_pet_name">
+                <Form.Label>Pet Name</Form.Label>
+                <Form.Control
+                    name="pet_name"
+                    value={pet_name}
+                    onChange={handleChange}
+                    as="textarea"
+                    placeholder="Enter your pets name!"
+                />
+                {errors?.pet_name?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
+
+
+            <Form.Group controlId="form_pet_breed">
+                <Form.Label>Pet Breed</Form.Label>
+                <Form.Control
+                    name="pet_breed"
+                    value={pet_breed}
+                    onChange={handleChange}
+                    as="textarea"
+                    placeholder="Enter your pets Breed!"
+                />
+                {errors?.pet_breed?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
+            <Form.Group controlId="form_pet_age">
+                <Form.Label>Pet Age</Form.Label>
+                <Form.Control
+                    name="pet_age"
+                    value={pet_age}
+                    onChange={handleChange}
+                    as="textarea"
+                    placeholder="Enter your pets age!"
+                />
+                {errors?.pet_age?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
+
+
+            <Form.Group controlId="form_pet_type">
+                <Form.Label>Pet Type</Form.Label>
+                <Form.Control as="select" name="pet_type" value={pet_type} onChange={handleChange}>
+                    <option>Cat</option>
+                    <option>Dog</option>
+                    <option>Bunny</option>
+                    <option>Hamster</option>
+                    <option>Bird</option>
+                    <option>Fish</option>
+                    <option>Horse</option>
+                    <option>Reptiles</option>
+                    <option>Other</option>
+                </Form.Control>
+            </Form.Group>
+            <Form.Group controlId="form_location">
+                <Form.Label>Location</Form.Label>
+                <Form.Control
+                    name="location"
+                    value={location}
+                    onChange={handleChange}
+                    as="textarea"
+                    placeholder="Enter your pets age!"
+                />
+                {errors?.location?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
+            </Form.Group>
+
+
+
+            <Button
+                onClick={() => history.goBack()}
+            >
+                Nevermind!
+            </Button>
+
+            <Button variant="primary" type="submit">
+                Create Snap
+            </Button>
         </div>
     )
     return (
@@ -118,7 +211,7 @@ const SnapCreate = () => {
                             {message}
                         </Alert>
                     ))}
-    
+
                 </Form.Group>
                 <Container>{snapFields}</Container>
             </Form>
