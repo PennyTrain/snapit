@@ -25,7 +25,7 @@ const useImageUpload = () => {
 
   return {
     image,
-    setImage,
+    setImage, // Add setImage here
     imageInputRef,
     handleChangeImage,
     handleOpenFileDialog,

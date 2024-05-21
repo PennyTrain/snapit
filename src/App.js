@@ -8,7 +8,8 @@ import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
 import Snap from './pages/snaps/Snaps';
 import SnapFeed from './pages/snaps/SnapFeed';
-import SnapsFeed from './pages/snaps/SnapsFeed'
+import SnapsFeed from './pages/snaps/SnapsFeed';
+import SnapEdit from './pages/snaps/SnapEdit';
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
@@ -52,6 +53,7 @@ function App() {
           <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/snaps/create" render={() => <SnapCreate />} />
           <Route exact path="/snaps" render={() => <Snap />} />
+          <Route exact path="/snaps/:id/edit" render={() => <SnapEdit />} />
           <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
         </Switch>
       </Container>
