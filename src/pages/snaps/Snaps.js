@@ -1,16 +1,17 @@
 import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Tooltip, OverlayTrigger } from "react-bootstrap";
+import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
+import { MoreDropDown } from "../../components/MoreDropDown";
 
 function Snap(props) {
   const {
-    id, owner, profile_id, profile_image, 
-    created, updated, title, body, 
-    snaplikes_count, featured_image, 
-    status, snaplike_id, snapcomments_count, 
-    snapdislike_id, snapdislikes_count, 
+    id, owner, profile_id, profile_image,
+    created, updated, title, body,
+    snaplikes_count, featured_image,
+    status, snaplike_id, snapcomments_count,
+    snapdislike_id, snapdislikes_count,
     setSnaps
   } = props;
 
@@ -25,6 +26,20 @@ function Snap(props) {
         snap.id === snapId ? { ...snap, ...changes } : snap
       ))
     }));
+  };
+
+  const handleEdit = () => {
+    history.push(`/snaps/${id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/snaps/${id}/`);
+      history.goBack();
+      console.log("deleted")
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleSnapLike = async () => {
@@ -137,6 +152,14 @@ function Snap(props) {
     );
   };
 
+  const renderOwnerTools = () => {
+    if (is_owner) {
+      return (
+        <MoreDropDown handleEdit={handleEdit} handleDelete={handleDelete} />
+      )
+    }
+  }
+
   return (
     <Card style={{ width: '18rem' }}>
       <Card.Img variant="top" src={featured_image} />
@@ -144,8 +167,10 @@ function Snap(props) {
         <Link to={`/profiles/${profile_id}`}>{owner}</Link>
         <Card.Title>{title}</Card.Title>
         <Card.Text>{body}</Card.Text>
+        {renderOwnerTools()}
         {renderLikeButton()} {snaplikes_count}
         {renderDislikeButton()} {snapdislikes_count}
+
       </Card.Body>
     </Card>
   );
