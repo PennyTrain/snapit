@@ -6,10 +6,12 @@ import './snapit_api/axiosDefaults';
 import RegisterForm from './pages/auth/RegisterForm';
 import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
-import Snap from './pages/snaps/Snaps';
+import Snap from './pages/snaps/Snap';
 import SnapFeed from './pages/snaps/SnapFeed';
 import SnapsFeed from './pages/snaps/SnapsFeed';
 import SnapEdit from './pages/snaps/SnapEdit';
+import Comment from './pages/comments/Comment';
+import CreateComment from './pages/comments/CreateComment';
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 
 
@@ -55,6 +57,7 @@ function App() {
           <Route exact path="/snaps" render={() => <Snap />} />
           <Route exact path="/snaps/:id/edit" render={() => <SnapEdit />} />
           <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
+          <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>
     </div>

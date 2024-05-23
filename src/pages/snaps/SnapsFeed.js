@@ -4,7 +4,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../snapit_api/axiosDefaults"; // Assuming axiosReq is imported from the correct path
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchAdditionalDetails } from "../../utils/utils";
-import Snap from "./Snaps";
+import Snap from "./Snap";
 
 function SnapsFeed({ message, filter = "" }) {
   const [snaps, setSnaps] = useState({ results: [] });

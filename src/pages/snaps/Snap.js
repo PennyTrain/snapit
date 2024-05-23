@@ -162,7 +162,9 @@ function Snap(props) {
 
   return (
     <Card style={{ width: '18rem' }}>
+      <Link to={`/snaps/${id}`}>
       <Card.Img variant="top" src={featured_image} />
+      </Link>
       <Card.Body>
         <Link to={`/profiles/${profile_id}`}>{owner}</Link>
         <Card.Title>{title}</Card.Title>
@@ -170,7 +172,10 @@ function Snap(props) {
         {renderOwnerTools()}
         {renderLikeButton()} {snaplikes_count}
         {renderDislikeButton()} {snapdislikes_count}
-
+        <Link to={`/snaps/${id}`}>
+            <i className="far fa-comments" />
+          </Link>
+          {snapcomments_count}
       </Card.Body>
     </Card>
   );
