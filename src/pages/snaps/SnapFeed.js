@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { axiosReq } from '../../snapit_api/axiosDefaults';
 import Snap from '../snaps/Snap';
 import { Col, Row, Container } from "react-bootstrap";
-import CommentCreateForm from '../comments/CreateComment'; 
+import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
 
@@ -14,7 +14,7 @@ function SnapFeed() {
     });
     const currentUser = useCurrentUser();
     const [comments, setComments] = useState({
-         results: [] 
+        results: []
     });
 
     useEffect(() => {
@@ -40,13 +40,20 @@ function SnapFeed() {
                         <Snap {...snap.results[0]} setSnaps={setSnap} />
                         <Container>Comments</Container>
                         <CommentCreateForm
-                            snapId={id} // Pass snapId here
+                            snapId={id}
                             setSnaps={setSnap}
                             setComments={setComments}
                             profileImage={currentUser?.profile_image}
                             profile_id={currentUser?.profile_id}
                         />
-                        <Comment />
+                         {comments.results.map((comment) => (
+                            <Comment
+                                key={comment.id}
+                                {...comment}
+                                setSnaps={setSnap}
+                                setComments={setComments}
+                            />
+                        ))}
                     </>
                 )}
             </Col>
