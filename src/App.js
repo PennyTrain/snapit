@@ -13,6 +13,7 @@ import SnapEdit from './pages/snaps/SnapEdit';
 import Comment from './pages/comments/Comment';
 import CreateComment from './pages/comments/CreateComment';
 import { useCurrentUser } from "./contexts/CurrentUserContext";
+import ProfileEdit from './pages/profiles/ProfileEdit';
 
 
 
@@ -50,7 +51,11 @@ function App() {
             message="No results found. Adjust the search keyword or follow a user."
             filter={`snapdislikes__owner__profile=${profile_id}&ordering=-snapdislikes__created&`}
           />)} />
-
+          <Route
+            exact
+            path="/profiles/:id/edit"
+            render={() => <ProfileEdit />}
+          />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/snaps/create" render={() => <SnapCreate />} />

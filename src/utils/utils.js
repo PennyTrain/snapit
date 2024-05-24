@@ -15,3 +15,38 @@ export const fetchAdditionalDetails = async (assets, setAssets) => {
     console.log(err);
   }
 };
+
+
+export const friendHelper = (profile, clickedProfile, friendship_id) => {
+  if (profile.id === clickedProfile.id) {
+    return {
+      ...profile,
+      friended_count: profile.friended_count + 1,
+      friendship_id,
+    };
+  } else if (profile.is_owner) {
+    return {
+      ...profile,
+      friendship_count: profile.friendship_count + 1,
+    };
+  } else {
+    return profile;
+  }
+};
+
+export const unfriendHelper = (profile, clickedProfile) => {
+  if (profile.id === clickedProfile.id) {
+    return {
+      ...profile,
+      friended_count: profile.friended_count - 1,
+      friendship_id: null,
+    };
+  } else if (profile.is_owner) {
+    return {
+      ...profile,
+      friendship_count: profile.friendship_count - 1,
+    };
+  } else {
+    return profile;
+  }
+};
