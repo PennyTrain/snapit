@@ -86,7 +86,6 @@ export const ProfileDetailProvider = ({ children }) => {
         fetchData();
     }, [currentUser]);
 
-    
     return (
         <ProfileDetailContext.Provider value={profileData}>
             <SetProfileDetailContext.Provider

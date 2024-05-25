@@ -1,104 +1,117 @@
-import React, { useEffect, useState } from "react";
-import PopularProfiles from "./PopularProfiles";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../snapit_api/axiosDefaults";
-import {
-  useProfileDetail,
-  useSetProfileDetail
-} from "../../contexts/ProfileDetailContext";
-import { Button, Image } from "react-bootstrap";
-import InfiniteScroll from "react-infinite-scroll-component";
+    import React, { useEffect, useState } from "react";
+    import PopularProfiles from "./PopularProfiles";
+    import { useCurrentUser } from "../../contexts/CurrentUserContext";
+    import { useParams } from "react-router";
+    import { axiosReq } from "../../snapit_api/axiosDefaults";
+    import {
 
-import { fetchAdditionalDetails } from "../../utils/utils";
-import Snap from "../snaps/Snap";
-import ProfileEditDropDown from "../../components/ProfileEditDropDown";
+    useProfileDetail,
+    useSetProfileDetail
+    } from "../../contexts/ProfileDetailContext";
+    import { Button, Image } from "react-bootstrap";
+    import InfiniteScroll from "react-infinite-scroll-component";
 
-function ProfilePage() {
-    const [isReady, setIsReady] = useState(false);
-    const [profileSnaps, setProfileSnaps] = useState({ results: [] });
-    const currentUser = useCurrentUser();
-    const { id } = useParams();
-    const profile = useProfileDetail();
-    const { setProfileDetail, handleFriend, handleUnfriend } = useSetProfileDetail();
+    import { fetchAdditionalDetails } from "../../utils/utils";
+    import Snap from "../snaps/Snap";
+    import ProfileEditDropDown from "../../components/ProfileEditDropDown";
 
-    const is_owner = currentUser?.username === profile?.owner;
+    function ProfilePage() {
+        const [isReady, setIsReady] = useState(false);
+        const [profileSnaps, setProfileSnaps] = useState({ results: [] });
+        const currentUser = useCurrentUser();
+        const { id } = useParams();
+        const profile = useProfileDetail();
+        const { setProfileDetail, handleFriend, handleUnfriend } = useSetProfileDetail();
 
-    useEffect(() => {
-        const fetchProfileDetails = async () => {
-            try {
-                const [{ data: pageProfile }, { data: profileSnaps }] = 
-                await Promise.all([
-                    axiosReq.get(`/profiles/${id}/`),
-                    axiosReq.get(`/snaps/?owner__profile=${id}`),
-                ]);
-                setProfileDetail(pageProfile);
-                setProfileSnaps(profileSnaps);
-                setIsReady(true);
-            } catch (err) {
-                console.log(err);
-            }
-        };
-        fetchProfileDetails();
-    }, [id, setProfileDetail]);
+        const is_owner = currentUser?.username === profile?.owner;
 
-    const profilePage = (
-        <>
-            {is_owner && <ProfileEditDropDown id={profile?.id} />}
-            <Image src={profile?.image} />
-            <h3>{profile?.owner}</h3>
-            <div>{profile?.snaps_count}</div>
-            <div>{profile?.friended_count}</div>
-            <div>{profile?.friendship_count}</div>
-            {currentUser &&
-            !is_owner &&
-            (profile?.friendship_id ? (
-                <Button onClick={() => handleUnfriend(profile)}>
-                    Unfollow
-                </Button>
-            ) : (
-                <Button onClick={() => handleFriend(profile)}>
-                    Follow
-                </Button>
-            ))}
-            {profile?.content && <div>{profile.content}</div>}
-        </>
-    );
+        useEffect(() => {
+            const fetchProfileDetails = async () => {
+                try {
+                    const [{ data: pageProfile }, { data: profileSnaps }] = 
+                    await Promise.all([
+                        axiosReq.get(`/profiles/${id}/`),
+                        axiosReq.get(`/snaps/?owner__profile=${id}`),
+                    ]);
+                    console.log(profile.owner)
+                    setProfileDetail(pageProfile);
+                    setProfileSnaps(profileSnaps);
+                    setIsReady(true);
+                } catch (err) {
+                    console.log(err);
+                }
+            };
+            fetchProfileDetails();
+        }, [id, setProfileDetail]);
 
-    const profilePageSnaps = (
-        <>
-            <p>{profile?.owner}'s snaps</p>
-            {profileSnaps.results.length ? (
-                <InfiniteScroll
-                    dataLength={profileSnaps.results.length}
-                    next={() => fetchAdditionalDetails(profileSnaps, setProfileSnaps)}
-                    hasMore={!!profileSnaps.next}
-                    loader={<p>Loading...</p>}
-                >
-                    {profileSnaps.results.map((snap) => (
-                        <Snap key={snap.id} {...snap} setSnaps={setProfileSnaps} />
-                    ))}
-                </InfiniteScroll>
-            ) : (
-                <p>No results found</p>
-            )}
-        </>
-    );
+        const profilePage = (
+            <>
+                {is_owner && <ProfileEditDropDown id={profile?.id} />}
+                <Image src={profile?.image} />
+                <h3>{profile?.owner}</h3>
+                <div>{profile?.snaps_count}</div>
+                <div>{profile?.friended_count}</div>
+                <div>{profile?.friendship_count}</div>
+                {currentUser &&
+                !is_owner &&
+                (profile?.friendship_id ? (
+                    <Button onClick={() => handleUnfriend(profile)}>
+                        Unfollow
+                    </Button>
+                ) : (
+                    <Button onClick={() => handleFriend(profile)}>
+                        Follow
+                    </Button>
+                ))}
+                {profile?.content && <div>{profile.content}</div>}
+            </>
+        );
 
-    return (
-        <>
-            <PopularProfiles mobile />
-            {isReady ? (
-                <>
-                    {profilePage}
-                    {profilePageSnaps}
-                </>
-            ) : (
-                <p>Loading...</p>
-            )}
-            <PopularProfiles />
-        </>
-    );
-}
+        const profilePageSnaps = (
+            <>
+                <p>{profile?.owner}'s snaps</p>
+                {profileSnaps.results.length ? (
+                    <InfiniteScroll
+                        dataLength={profileSnaps.results.length}
+                        next={() => fetchAdditionalDetails(profileSnaps, setProfileSnaps)}
+                        hasMore={!!profileSnaps.next}
+                        loader={<p>Loading...</p>}
+                    >
+                        {profileSnaps.results.map((snap) => (
+                            <Snap key={snap.id} {...snap} setSnaps={setProfileSnaps} />
+                        ))}
+                    </InfiniteScroll>
+                ) : (
+                    <p>No results found</p>
+                )}
+            </>
+        );
 
-export default ProfilePage;
+        // return (
+        //     <>
+        //         <PopularProfiles mobile />
+        //         {isReady ? (
+        //             <>
+        //                 {profilePage}
+        //                 {profilePageSnaps}
+        //             </>
+        //         ) : (
+        //             <p>Loading...</p>
+        //         )}
+        //         <PopularProfiles />
+        //     </>
+        // );
+
+        return (
+            <>
+            <div>
+                {profilePage}
+            </div>
+            <div>
+                {profilePageSnaps}
+            </div>
+            </>
+        )
+    }
+
+    export default ProfilePage;

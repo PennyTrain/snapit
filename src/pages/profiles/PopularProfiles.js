@@ -1,6 +1,6 @@
 import React from "react";
 import { Container } from "react-bootstrap";
-import { useProfileDetail } from "../../contexts/ProfileDetailContext"
+import { useProfileDetail, useSetProfileDetail } from "../../contexts/ProfileDetailContext";
 import Profile from "./Profile";
 
 const PopularProfiles = ({ mobile }) => {
@@ -12,7 +12,7 @@ const PopularProfiles = ({ mobile }) => {
                     <p>Followed profiles</p>
                     {mobile ? (
                         <div>
-                            {popularProfiles.result.slice(0, 4).map((profile) => (
+                            {popularProfiles.results.slice(0, 4).map((profile) => (
                                 <Profile key={profile.id} profile={profile} />
                             ))}
                         </div>
@@ -23,11 +23,10 @@ const PopularProfiles = ({ mobile }) => {
                     )}
                 </>
             ) : (
-                <p> needs a spinner</p>
-            )
-            }
+                <p>Needs a spinner</p>
+            )}
         </Container>
     );
 };
 
-export default PopularProfiles
+export default PopularProfiles;
