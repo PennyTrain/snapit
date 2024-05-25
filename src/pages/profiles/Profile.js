@@ -2,7 +2,7 @@ import React from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { useSetProfileDetail } from "../../contexts/ProfileDataContext";
+import { useSetProfileDetail } from "../../contexts/ProfileDetailContext";
 
 const Profile = (props) => {
     const { profile, mobile, imageSize = 55 } = props;
@@ -19,7 +19,7 @@ const Profile = (props) => {
                 <Link to={`/profiles/${id}`}>
                 <p>avatar?</p>
                 </Link>
-            </div>
+            </div>  
             <div>
                 <p>{owner}</p>
             </div>
@@ -42,4 +42,4 @@ const Profile = (props) => {
     );
 };
 
-export default Profile
+export default Profile;

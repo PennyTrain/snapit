@@ -18,7 +18,6 @@ export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) 
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
-
       <Dropdown.Menu className="text-center" popperConfig={{ strategy: "fixed" }}>
         <Dropdown.Item onClick={handleEdit} aria-label="edit">
           <i className="fas fa-edit" /> Edit
@@ -30,3 +29,5 @@ export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) 
     </Dropdown>
   );
 };
+
+export default MoreDropDown;

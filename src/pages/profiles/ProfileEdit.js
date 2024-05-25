@@ -17,7 +17,7 @@ const ProfileEdit = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
-  const history = useHistory(); // Correct usage of useHistory
+  const history = useHistory(); 
   const imageFile = useRef();
   const [profileData, setProfileData] = useState({
     name: "",

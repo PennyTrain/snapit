@@ -160,10 +160,31 @@ function Snap(props) {
     }
   }
 
+  const renderCommentsButton = () => {
+    if (currentUser) {
+      return (
+        <Link to={`/snaps/${id}`}>
+          <Button variant="primary">
+            <i className="far fa-comments" /> {snapcomments_count}
+          </Button>
+        </Link>
+      );
+    } else {
+      return (
+        <OverlayTrigger placement="top" overlay={<Tooltip>Log in to view comments!</Tooltip>}>
+          <Link to={`/snaps/${id}`}>
+            <Button variant="primary" disabled>
+              <i className="far fa-comments" /> {snapcomments_count}
+            </Button>
+          </Link>
+        </OverlayTrigger>
+      );
+    }
+  };
   return (
     <Card style={{ width: '18rem' }}>
       <Link to={`/snaps/${id}`}>
-      <Card.Img variant="top" src={featured_image} />
+        <Card.Img variant="top" src={featured_image} />
       </Link>
       <Card.Body>
         <Link to={`/profiles/${profile_id}`}>{owner}</Link>
@@ -172,10 +193,7 @@ function Snap(props) {
         {renderOwnerTools()}
         {renderLikeButton()} {snaplikes_count}
         {renderDislikeButton()} {snapdislikes_count}
-        <Link to={`/snaps/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {snapcomments_count}
+        {renderCommentsButton()}
       </Card.Body>
     </Card>
   );
