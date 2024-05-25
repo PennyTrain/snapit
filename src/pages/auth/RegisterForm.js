@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert } from "react-bootstrap";
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import axios from "axios";
 
 const RegisterForm = () => {
@@ -29,10 +29,10 @@ const RegisterForm = () => {
     };
 
     const handleErrors = (err) => {
-        if (err.response?.data?.username) {
+        if (err.response && err.response.data) {
             setErrors(err.response.data);
         } else {
-            // Handle other types of errors
+            console.log(err);
         }
     };
 
@@ -66,12 +66,17 @@ const RegisterForm = () => {
                         {errors.password2}
                     </Alert>
                 )}
+                {errors.non_field_errors && (
+                    <Alert variant="warning">
+                        {errors.non_field_errors}
+                    </Alert>
+                )}
                 <Button variant="primary" type="submit">
                     Sign Up
                 </Button>
             </Form>
         </div>
-    )
-}
+    );
+};
 
-export default RegisterForm
+export default RegisterForm;

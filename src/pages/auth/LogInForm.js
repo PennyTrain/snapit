@@ -18,11 +18,15 @@ const LogInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const {data} = await axios.post("/dj-rest-auth/login/", logInData);
-            setCurrentUser(data.user)
+            const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+            setCurrentUser(data.user);
             history.push('/');
-        } catch(err) {
-            // Handle errors
+        } catch (err) {
+            if (err.response && err.response.data) {
+                setErrors(err.response.data);
+            } else {
+                setErrors({ non_field_errors: "Something went wrong. Please try again." });
+            }
         }
     };
 
@@ -31,7 +35,7 @@ const LogInForm = () => {
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="username">
                     <Form.Label>Username</Form.Label>
-                    <Form.Control onChange={handleChange} name="username" value={logInData.username} type="text" placeholder="username" />
+                    <Form.Control onChange={handleChange} name="username" value={logInData.username} type="text" placeholder="Username" />
                 </Form.Group>
                 {errors.username && (
                     <Alert variant="warning">
@@ -45,6 +49,11 @@ const LogInForm = () => {
                 {errors.password && (
                     <Alert variant="warning">
                         {errors.password}
+                    </Alert>
+                )}
+                {errors.non_field_errors && (
+                    <Alert variant="warning">
+                        {errors.non_field_errors}
                     </Alert>
                 )}
                 <Button variant="primary" type="submit">
