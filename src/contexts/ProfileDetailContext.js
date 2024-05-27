@@ -3,11 +3,10 @@ import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useCurrentUser } from "./CurrentUserContext";
 import { friendHelper, unfriendHelper } from "../utils/utils";
 
-// Create contexts
+
 const ProfileDetailContext = createContext();
 const SetProfileDetailContext = createContext();
 
-// Custom hooks for using the contexts
 const useProfileDetail = () => useContext(ProfileDetailContext);
 const useSetProfileDetail = () => useContext(SetProfileDetailContext);
 
@@ -89,7 +88,7 @@ export const ProfileDetailProvider = ({ children }) => {
     return (
         <ProfileDetailContext.Provider value={profileData}>
             <SetProfileDetailContext.Provider
-                value={{ setProfileData, handleFriend, handleUnfriend }}
+                value={{ setProfileDetail: setProfileData, handleFriend, handleUnfriend }}
             >
                 {children}
             </SetProfileDetailContext.Provider>

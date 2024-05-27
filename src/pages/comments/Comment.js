@@ -22,8 +22,8 @@ const Comment = (props) => {
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
 
-    console.log("currentUser:", currentUser); // Add this line
-    console.log("profile_id:", profile_id); // Add this line
+    console.log("currentUser:", currentUser); 
+    console.log("profile_id:", profile_id); 
 
     const handleDelete = async () => {
         try {

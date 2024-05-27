@@ -1,19 +1,58 @@
 .NavBar {
-    background-color: #002366;;
-    border: 1px solid #ffffff;
-}
-
-.Active{
-    text-decoration: underline, black, 1px;
-    color: black;
-}
-
-.Left {
-    float: left;
-}
-
-.NavLink {
-    padding: 7px;
-    color: black;
+    background-color: #4F6C50; 
+    border-bottom: 2px solid black; 
+  }
+  
+  .Active {
+    text-decoration: underline;
+    color: #FFFFFF; 
+  }
+  
+  .NavLink {
+    padding: 10px 15px;
+    color: #FFFFFF; 
     text-decoration: none;
-}
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    border-radius: 10px; 
+    border: 1px solid black; 
+  }
+  
+  .NavLink:hover {
+    color: #FFFFFF; 
+    background-color: #5F805D; 
+  }
+  
+  .NavbarBrand img {
+    border-radius: 50%;
+    transition: transform 0.3s ease;
+    color: white;
+  }
+  
+  .NavbarBrand img:hover {
+    transform: rotate(20deg);
+  }
+  
+  .NavbarBrand {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    color: #FFFFFF; 
+  }
+  
+  .ProfilePic img {
+    border-radius: 50%;
+    border: 2px solid black; 
+  }
+  
+  .LogoutButton {
+    background-color: #6E9971; 
+    color: #002366; 
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .LogoutButton:hover {
+    background-color: #5E8A63; 
+  }

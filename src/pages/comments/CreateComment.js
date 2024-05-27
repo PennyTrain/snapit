@@ -6,16 +6,17 @@ import Button from "react-bootstrap/Button";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useImageUpload from "../../hooks/useImageUpload";
+import styles from "../../styles/CommentForm.module.css";
 
 function CommentCreateForm(props) {
   const { snapId, setSnaps, setComments, profileImage, profile_id } = props;
   const currentUser = useContext(CurrentUserContext);
   const [body, setBody] = useState("");
-  const [petName, setPetName] = useState(""); // Add state for pet name
-  const [petAge, setPetAge] = useState(""); // Add state for pet age
-  const [petBreed, setPetBreed] = useState(""); // Add state for pet breed
-  const [petType, setPetType] = useState("Other"); // Add state for pet type
-  const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload(); // Use the useImageUpload hook
+  const [petName, setPetName] = useState("");
+  const [petAge, setPetAge] = useState("");
+  const [petBreed, setPetBreed] = useState("");
+  const [petType, setPetType] = useState("Other");
+  const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -23,12 +24,12 @@ function CommentCreateForm(props) {
       const formData = new FormData();
       formData.append("body", body);
       formData.append("snap", snapId);
-      formData.append("pet_name", petName); // Add pet_name to the form data
-      formData.append("pet_age", petAge); // Add pet_age to the form data
-      formData.append("pet_breed", petBreed); // Add pet_breed to the form data
-      formData.append("pet_type", petType); // Add pet_type to the form data
+      formData.append("pet_name", petName);
+      formData.append("pet_age", petAge);
+      formData.append("pet_breed", petBreed);
+      formData.append("pet_type", petType);
       if (image) {
-        formData.append("attachment", imageInputRef.current.files[0]); // Add attachment to the form data if an image is uploaded
+        formData.append("attachment", imageInputRef.current.files[0]);
       }
       const { data } = await axiosRes.post("/snapcomments/", formData);
       setComments((prevComments) => ({
@@ -48,7 +49,7 @@ function CommentCreateForm(props) {
       setPetAge("");
       setPetBreed("");
       setPetType("Other");
-      resetImage(); // Reset the image state after successful submission
+      resetImage();
     } catch (err) {
       console.log(err);
     }
@@ -56,8 +57,8 @@ function CommentCreateForm(props) {
 
   return (
     <>
-      {currentUser ? ( 
-        <Form className="mt-2" onSubmit={handleSubmit}>
+      {currentUser ? (
+        <Form className={`mt-2 ${styles.formContainer}`} onSubmit={handleSubmit}>
           <Form.Group>
             <InputGroup>
               <Link to={`/profiles/${profile_id}`}>
@@ -69,29 +70,51 @@ function CommentCreateForm(props) {
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
                 rows={2}
+                className={styles.formControl}
               />
             </InputGroup>
           </Form.Group>
-          {/* Add fields for pet details */}
           <Form.Group>
-            <Form.Control placeholder="Pet Name" value={petName} onChange={(e) => setPetName(e.target.value)} />
+            <Form.Control
+              placeholder="Pet Name"
+              value={petName}
+              onChange={(e) => setPetName(e.target.value)}
+              className={styles.formControl}
+            />
           </Form.Group>
           <Form.Group>
-            <Form.Control placeholder="Pet Age" type="number" value={petAge} onChange={(e) => setPetAge(e.target.value)} />
+            <Form.Control
+              placeholder="Pet Age"
+              type="number"
+              value={petAge}
+              onChange={(e) => setPetAge(e.target.value)}
+              className={styles.formControl}
+            />
           </Form.Group>
           <Form.Group>
-            <Form.Control placeholder="Pet Breed" value={petBreed} onChange={(e) => setPetBreed(e.target.value)} />
+            <Form.Control
+              placeholder="Pet Breed"
+              value={petBreed}
+              onChange={(e) => setPetBreed(e.target.value)}
+              className={styles.formControl}
+            />
           </Form.Group>
           <Form.Group>
-            <Form.Control placeholder="Pet Type" value={petType} onChange={(e) => setPetType(e.target.value)} />
+            <Form.Control
+              placeholder="Pet Type"
+              value={petType}
+              onChange={(e) => setPetType(e.target.value)}
+              className={styles.formControl}
+            />
           </Form.Group>
-          {/* Add image upload */}
-          <Form.Group>
+          <Form.Group className={styles.imageUpload}>
             <Form.Control type="file" ref={imageInputRef} style={{ display: "none" }} onChange={handleChangeImage} />
             <Button onClick={handleOpenFileDialog}>Choose Image</Button>
-            {image && <img src={image} alt="Preview" style={{ maxWidth: "100px", marginTop: "10px" }} />}
+            {image && <img src={image} alt="Preview" className={styles.imagePreview} />}
           </Form.Group>
-          <Button disabled={!body.trim()} type="submit">Post</Button>
+          <Button disabled={!body.trim()} type="submit" className={styles.btn}>
+            Post
+          </Button>
         </Form>
       ) : (
         <p>Please log in to comment.</p>

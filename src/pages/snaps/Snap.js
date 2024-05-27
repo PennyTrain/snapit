@@ -4,6 +4,7 @@ import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
+import styles from '../../styles/Snap.module.css';
 
 function Snap(props) {
   const {
@@ -36,7 +37,7 @@ function Snap(props) {
     try {
       await axiosRes.delete(`/snaps/${id}/`);
       history.goBack();
-      console.log("deleted")
+      console.log("deleted");
     } catch (err) {
       console.log(err);
     }
@@ -98,27 +99,27 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
-          <span><i className="fas fa-heart" style={{ color: "gray" }} /></span>
+          <span><i style={{ color: "gray" }} className={`${styles.iconButton} far fa-heart`} /></span>
         </OverlayTrigger>
       );
     }
     if (snaplike_id) {
       return (
         <span onClick={handleSnapUnlike}>
-          <i className="fas fa-heart" style={{ color: "red" }} />
+          <i style={{ color: "red" }} className={`${styles.iconButton} far fa-heart`}/>
         </span>
       );
     }
     if (currentUser) {
       return (
         <span onClick={handleSnapLike}>
-          <i className="far fa-heart" />
+          <i className={`${styles.iconButton} far fa-heart`} />
         </span>
       );
     }
     return (
       <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts!</Tooltip>}>
-        <span><i className="far fa-heart" /></span>
+        <span><i className={`${styles.iconButton} far fa-heart`} /></span>
       </OverlayTrigger>
     );
   };
@@ -127,27 +128,27 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can't dislike your own snaps!</Tooltip>}>
-          <span><i className="far fa-thumbs-down" style={{ color: "gray" }} /></span>
+          <span> <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "gray" }} /></span>
         </OverlayTrigger>
       );
     }
     if (snapdislike_id) {
       return (
         <span onClick={handleSnapUndislike}>
-          <i className="far fa-thumbs-down" style={{ color: "red" }} />
+          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "red" }} onClick={handleSnapUndislike} /> 
         </span>
       );
     }
     if (currentUser) {
       return (
         <span onClick={handleSnapDislike}>
-          <i className="far fa-thumbs-down" />
+          <i className={`${styles.iconButton} far fa-thumbs-down`} />
         </span>
       );
     }
     return (
       <OverlayTrigger placement="top" overlay={<Tooltip>Log in to dislike snaps!</Tooltip>}>
-        <span><i className="far fa-thumbs-down" /></span>
+        <span> <i className={`${styles.iconButton} far fa-thumbs-down`} /></span>
       </OverlayTrigger>
     );
   };
@@ -156,14 +157,14 @@ function Snap(props) {
     if (is_owner) {
       return (
         <MoreDropDown handleEdit={handleEdit} handleDelete={handleDelete} />
-      )
+      );
     }
-  }
+  };
 
   const renderCommentsButton = () => {
     if (currentUser) {
       return (
-        <Link to={`/snaps/${id}`}>
+        <Link to={`/snaps/${id}`} className={styles.commentButton}>
           <Button variant="primary">
             <i className="far fa-comments" /> {snapcomments_count}
           </Button>
@@ -172,7 +173,7 @@ function Snap(props) {
     } else {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>Log in to view comments!</Tooltip>}>
-          <Link to={`/snaps/${id}`}>
+          <Link to={`/snaps/${id}`} className={`${styles.commentButton} ${styles.disabled}`}>
             <Button variant="primary" disabled>
               <i className="far fa-comments" /> {snapcomments_count}
             </Button>
@@ -181,19 +182,22 @@ function Snap(props) {
       );
     }
   };
+
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className={styles.cardContainer}>
       <Link to={`/snaps/${id}`}>
-        <Card.Img variant="top" src={featured_image} />
+        <Card.Img variant="top" src={featured_image} className={styles.cardImage} />
       </Link>
-      <Card.Body>
+      <Card.Body className={styles.cardBody}>
         <Link to={`/profiles/${profile_id}`}>{owner}</Link>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{body}</Card.Text>
+        <Card.Title className={styles.cardTitle}>{title}</Card.Title>
+        <Card.Text className={styles.cardText}>{body}</Card.Text>
         {renderOwnerTools()}
-        {renderLikeButton()} {snaplikes_count}
-        {renderDislikeButton()} {snapdislikes_count}
-        {renderCommentsButton()}
+        <div className={styles.buttonGroup}>
+          {renderLikeButton()} {snaplikes_count}
+          {renderDislikeButton()} {snapdislikes_count}
+          {renderCommentsButton()}
+        </div>
       </Card.Body>
     </Card>
   );

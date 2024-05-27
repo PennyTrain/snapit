@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Form, Button, Row, Col, Container, Alert, Image } from "react-bootstrap";
+import { Form, Button, Container, Alert, Image } from "react-bootstrap";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosReq } from "../../snapit_api/axiosDefaults";
 import useImageUpload from "../../hooks/useImageUpload";
+import styles from "../../styles/SnapForm.module.css";
 
 function SnapEdit() {
   const [errors, setErrors] = useState({});
@@ -85,8 +86,8 @@ function SnapEdit() {
   };
 
   const snapFields = (
-    <div className="text-center">
-      <Form.Group controlId="formTitle">
+    <div>
+      <Form.Group controlId="formTitle" className={styles.formControl}>
         <Form.Label>Title</Form.Label>
         <Form.Control
           name="title"
@@ -103,7 +104,7 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Form.Group controlId="formBody">
+      <Form.Group controlId="formBody" className={styles.formControl}>
         <Form.Label>Body</Form.Label>
         <Form.Control
           name="body"
@@ -120,7 +121,7 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Form.Group controlId="form_pet_name">
+      <Form.Group controlId="form_pet_name" className={styles.formControl}>
         <Form.Label>Pet Name</Form.Label>
         <Form.Control
           name="pet_name"
@@ -135,7 +136,7 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Form.Group controlId="form_pet_breed">
+      <Form.Group controlId="form_pet_breed" className={styles.formControl}>
         <Form.Label>Pet Breed</Form.Label>
         <Form.Control
           name="pet_breed"
@@ -150,7 +151,7 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Form.Group controlId="form_pet_age">
+      <Form.Group controlId="form_pet_age" className={styles.formControl}>
         <Form.Label>Pet Age</Form.Label>
         <Form.Control
           name="pet_age"
@@ -165,7 +166,7 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Form.Group controlId="form_pet_type">
+      <Form.Group controlId="form_pet_type" className={styles.formControl}>
         <Form.Label>Pet Type</Form.Label>
         <Form.Control as="select" name="pet_type" value={pet_type} onChange={handleChange}>
           <option>Cat</option>
@@ -180,7 +181,7 @@ function SnapEdit() {
         </Form.Control>
       </Form.Group>
       
-      <Form.Group controlId="form_location">
+      <Form.Group controlId="form_location" className={styles.formControl}>
         <Form.Label>Location</Form.Label>
         <Form.Control
           name="location"
@@ -195,62 +196,58 @@ function SnapEdit() {
         ))}
       </Form.Group>
 
-      <Button onClick={() => history.goBack()}>
-        Nevermind!
-      </Button>
-      <Button type="submit">
-        Save Snap
-      </Button>
+      <div className={styles.buttonGroup}>
+        <Button onClick={() => history.goBack()} className={styles.cancelBtn}>
+          Nevermind!
+        </Button>
+        <Button type="submit" className={styles.submitBtn}>
+          Save Snap
+        </Button>
+      </div>
     </div>
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Row>
-        <Col>
-          <Container>
-            <Form.Group className="text-center">
-              {image ? (
-                <>
-                  <figure>
-                    <Image src={image} rounded />
-                  </figure>
-                  <Form.Label
-                    onClick={handleOpenFileDialog}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Change the image
-                  </Form.Label>
-                </>
-              ) : (
-                <Form.Label
-                  onClick={handleOpenFileDialog}
-                  style={{ cursor: 'pointer' }}
-                >
-                  Click or tap to upload an image
-                </Form.Label>
-              )}
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInputRef}
-                style={{ display: 'none' }}
-              />
-              {errors?.featured_image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
-                  {message}
-                </Alert>
-              ))}
-            </Form.Group>
-            <div className="d-md-none">{snapFields}</div>
-          </Container>x
-        </Col>
-        <Col>
-          <Container>{snapFields}</Container>
-        </Col>
-      </Row>
-    </Form>
+    <Container className={styles.formContainer}>
+      <h1>Edit Snap</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group controlId="formImage" className={styles.imageUpload}>
+          {image ? (
+            <>
+              <figure>
+                <Image src={image} rounded className={styles.imagePreview} />
+              </figure>
+              <Form.Label
+                onClick={handleOpenFileDialog}
+                style={{ cursor: 'pointer' }}
+              >
+                Change the image
+              </Form.Label>
+            </>
+          ) : (
+            <Form.Label
+              onClick={handleOpenFileDialog}
+              style={{ cursor: 'pointer' }}
+            >
+              Click or tap to upload an image
+            </Form.Label>
+          )}
+          <Form.File
+            id="image-upload"
+            accept="image/*"
+            onChange={handleChangeImage}
+            ref={imageInputRef}
+            style={{ display: 'none' }}
+          />
+          {errors?.featured_image?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
+        <Container>{snapFields}</Container>
+      </Form>
+    </Container>
   );
 }
 

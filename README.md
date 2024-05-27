@@ -1,102 +1,171 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Snap It!
 
-Welcome,
+## Introduction
+This project provides a Django Reszt Framework API for [Snap It app livelink](#) 
+Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 
-This is the Code Institute student template for React apps on the Codeanywhere IDE. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.  
-DO NOT use this template if you are using the Gitpod IDE. Use the following command instead:  
-`npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm`
+Pet Profiles:
+Users can create dedicated profiles for their pets, complete with photos, biographies. Each pet profile serves as a hub where followers can keep up with the latest updates and adventures of their favorite furry, feathered, or scaly friends.
 
-You can safely delete this README.md file, or change it for your own project. Please do read it at least once, though! It contains some important information about Codeanywhere and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **31st August, 2023**
+Photo and Video Sharing:
+Much like Facebook, users can post photos, but with a twist: all content revolves around pets. Whether it's a cute kitten playing, a dog learning new tricks, or a parrot showing off its colorful feathers, Snap It is the place to share these moments.
 
-## Codeanywhere Reminders
+Why Snap It?
+Dedicated Space for Pets:
+Unlike other social media platforms, Snap It is solely dedicated to pets, ensuring that users’ feeds are filled with delightful and relevant content without any unrelated posts.
 
-In Codeanywhere you have superuser security privileges by default. Therefore you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+Strong Community Focus:
+The platform emphasizes building a supportive and engaged community of pet lovers who can share their experiences and advice.
 
-To log into the Heroku toolbelt CLI:
+Enhanced Engagement:
+Features like pet profiles, and pet-centric filters enhance user engagement and make the platform more enjoyable and useful for pet owners.
 
-1. Log in to your Heroku account and go to _Account Settings_ in the menu under your avatar.
-2. Scroll down to the _API Key_ and click _Reveal_
-3. Copy the key
-4. In Codeanywhere, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+Vision and Mission
+Snap It aims to be the go-to social media platform for pet lovers around the world. Its mission is to create a space where pet enthusiasts can connect, share, and celebrate their pets, fostering a global community that supports and uplifts each other through the love of animals.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you so do not share it. If you accidentally make it public then you can create a new one with _Regenerate API Key_.
+By focusing on the specific needs and interests of pet owners, Snap It not only offers a fun and engaging user experience but also contributes to the well-being of pets everywhere through education, community support, and partnerships with animal welfare organizations.
 
+
+### CRUD Functionality
+
+SnapIt offers complete Create, Read, Update, and Delete (CRUD) functionality through its user-friendly interface implemented in React and its robust backend powered by Django Rest Framework API.
+
+#### Create
+Users can register a new account, allowing them to join the SnapIt community. Once registered, users can create various types of content:
+- Comments: Authenticated users can create comments on snaps with additional details such as pet name, age, breed, and type.
+- Snaps: Users can create new snaps featuring their pets, including images and detailed descriptions.
+#### Read
+SnapIt ensures that authenticated users can easily access and view content:
+- Snaps: Users can browse and view snaps posted by the community, enjoying a feed filled with pet photos and stories.
+- Comments: Users can view comments on each snap, providing a space for interaction and engagement.
+- User Profiles: Users can view their profile image and display name, along with those of other community members.
+#### Update
+SnapIt allows users to update and manage their content seamlessly:
+- Profile Updates: Authenticated users can update their profile image, display name, and password to keep their account information current.
+- Comment Edits: Users can edit and save comments they have created, ensuring their interactions remain accurate and relevant.
+- Snap Edits: Users can edit snaps they have posted, including updating images and descriptions to reflect any changes.
+#### Delete
+SnapIt provides users with control over their content by enabling them to delete various elements:
+- Comments: Users can delete comments they have created, managing their interactions on the platform.
+- Snaps: Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
+- User Accounts: Users can delete their accounts, removing all their data from the platform.
+By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
+
+### Future Improvements and Features
+
+In the future, I would love to add:
+
+Pet-Friendly Marketplace:
+A marketplace section allows users to buy and sell pet-related products, from handmade pet toys to grooming supplies. Users can also find services such as pet sitting, walking, and training.
+
+Pet Care Resources:
+The app includes a library of articles and videos on pet care, training, nutrition, and health. Users can also find recommendations for vets, groomers, and pet-friendly places in their area.
+
+Adoption and Rescue:
+Snap It partners with animal shelters and rescue organizations to feature pets in need of adoption. Users can browse adoptable pets, share their profiles, and even apply for adoption through the app.
+
+Community and Groups:
+Users can join or create groups based on their interests, such as specific breeds, pet care tips, or animal rescue efforts. This fosters a sense of community and allows for the exchange of advice, stories, and support among like-minded individuals.
+
+### Custom Hooks
+
+#### UseImageUpload
+
+The useImageUpload custom hook in React provides a set of functionalities for handling image upload processes within a component. It manages the image state using the useState hook, allowing for storing the uploaded image's data. The hook also utilizes the useRef hook to keep a reference to the file input element, which is necessary for programmatically triggering the file selection dialog and accessing the selected files.
+
+Specifically, useImageUpload offers several functions: handleChangeImage reads the selected image file and sets its data as the image state using a FileReader; handleOpenFileDialog programmatically opens the file selection dialog; and resetImage clears the image state, resetting it to null. This hook returns these functions and states, along with the image data and file input reference, enabling easy integration of image upload capabilities into any component.
+
+### Frameworks, Libraries and Dependencys
+
+React-Router-DOM
+react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in TribeHub, i.e. to implement the links on the bottom navbar, and register, sign-in and sign-out links. Using React-Router-DOM also enabled implementation of 'single page mode'to enhance the experience for users on larger screens. The useSinglePage custom hook is referenced in App.js, with different Route components conditionally rendered for the various paths depending on whether the app is running in single page mode. The useLocation hook from React-Router-DOM is used in some components to determine the current URL and respond accordingly, for example by ensuring the correct nav button is highlighted in the bottom navbar for mobile users.
+ReactDOM
+react-dom - react-dom is used to manipulate the DOM outside of a specific component, and supports the user experience by enabling modal dialogs to be appended to the top level of the DOM (important for accessability) and alerts to be appended to specific components. For example, notifications are fetched by the NotificationsMenu component, but this takes the form of a dropdown menu, so using ReactDOM allows the component to 'reach out' into the DOM and display error alerts in a more obvious location than inside the dropdown.
+Axios
+Axios - the axios library was chosen to simplify making HTTP requests to the REST API (e.g. not having to manually configure HTTP headers), and because it enables simple implementation of 'interceptors' which are used to request a refresh token in the event of a HTTP 401 error. This enhances the user experience beacuse an authenticated user remains signed in for up to 24 hours, rather than having to sign in again after five minutes.
+
+### Project Deployment
+
+The site was deployed via Heroku, and the live link can be found here - [
+To deploy the project through Heroku I followed these steps:
+* Sign up / Log in to [Heroku](https://www.heroku.com/)
+* From the main Heroku Dashboard page select 'New' and then 'Create New App'
+* Give the project a name - I entered The-Pantry and select a suitable region, then select create app. The name for the app must be unique.
+* This will create the app within Heroku and bring you to the deploy tab. From the submenu at the top, navigate to the resources tab.
+* Add the database to the app, in the add-ons section search for 'Heroku Postgres', select the package that appears and add 'Heroku Postgres' as the database
+* Navigate to the setting tab, within the config vars section copy the DATABASE_URL to the clipboard for use in the Django configuration.
+* Within the django app repository create a new file called env.py - within this file import the os library and set the environment variable for the DATABASE_URL pasting in the address copied from Heroku. The line should appear as os.environ["DATABASE_URL"]= "Paste the link in here"
+* Add a secret key to the app using os.environ["SECRET_KEY"] = "your secret key goes here"
+* Add the secret key just created to the Heroku Config Vars as SECRET_KEY for the KEY value and the secret key value you created as the VALUE
+* In the settings.py file within the django app, `import Path from pathlib, import os and import dj_database_url`
+* insert the line `if os.path.isfile("env.py"): import env`
+* remove the insecure secret key that django has in the settings file by default and replace it with `SECRET_KEY = os.environ.get('SECRET_KEY')`
+* replace the databases section with `DATABASES = { 'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))}` ensure the correct indentation for python is used.
+* In the terminal migrate the models over to the new database connection
+* Navigate in a browser to cloudinary, log in, or create an account and log in. 
+* From the dashboard - copy the CLOUDINARY_URL to the clipboard
+* in the env.py file created earlier - add os.environ["CLOUDINARY_URL"] = "paste in the Url copied to the clipboard here"
+* In Heroku, add the CLOUDINARY_URL and value copied to the clipboard to the config vars
+* Also add the KEY - DISABLE_COLLECTSTATIC with the Value - 1 to the config vars
+* this key value pair must be removed prior to final deployment
+* Add the cloudinary libraries to the list of installed apps, the order they are inserted is important, `cloudinary_storage` goes above `django.contrib.staticfiles` and `cloudinary` goes below it.
+* in the Settings.py file - add the STATIC files settings - the url, storage path, directory path, root path, media url and default file storage path.
+* Link the file to the templates directory in Heroku `TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')`
+* Change the templates directory to TEMPLATES_DIR - 'DIRS': [TEMPLATES_DIR]
+* Add Heroku to the ALLOWED_HOSTS list the format will be the app name given in Heroku when creating the app followed by .herokuapp.com
+* In your code editor, create three new top level folders, media, static, templates
+* Create a new file on the top level directory - Procfile
+* Within the Procfile add the code - web: guincorn PROJECT_NAME.wsgi
+* In the terminal, add the changed files, commit and push to GitHub
+* In Heroku, navigate to the deployment tab and deploy the branch manually - watch the build logs for any errors.
+* Heroku will now build the app for you. Once it has completed the build process you will see a 'Your App Was Successfully Deployed' message and a link to the app to visit the live site.
+
+#### Create a clone of this repository
+Creating a clone enables you to make a copy of the repository at that point in time - this lets you run a copy of the project locally:
+This can be done by:
+* Navigate to https://github.com/PennyTrain/Aquarium/
+* click on the arrow on the green code button at the top of the list of files
+* select the clone by https option and copy the URL it provides to the clipboard
+* Navigate to your code editor of choice and within the terminal change the directory to the location you want to clone the repository to.
+* type 'git clone' and paste the https link you copied from github
+* press enter and git will clone the repository to your local machine
+
+#### Installing requirements.txt
+Due to certian packages being required the system nneds to know which ones in order to runt his project as successfully as possible.
+* Everytime I installed a new package to use on the development I ran the command `pip freeze --local > requirements.txt`
+* This saves the current packages that are required to the requirements.txt file itself. 
+
+* However when Cloning or starting in a new workspaces the content(packages) within the requirements.txt will need to be installed this is done by the following command `pip install -r requirements.txt`
+
+#### Packages Used
+
+* VS Code was used to develop the site
+* Git was utilized for version control and transferring files between the code editor and the repository
+* GitHub was utilized for storing the files for this project
+
+## Credits
+--- 
+### Content
 ---
+* The text for all pages was created by myself.
+* Icons used for the various links on the site were taken from [Font Awesome](https://fontawesome.com/)
+* The reference material on HTML and CSS provided by [w3schools.com](https://www.w3schools.com/)
 
-Happy coding!
+### Media
+---
+* The css reset was provided by [css reset](http://meyerweb.com/eric/tools/css/reset/)
+* The Favicon, links and meta code were generated by [Realfavicongenerator.net](https://realfavicongenerator.net).
 
-# Getting Started with Create React App
+### Resources Used
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+* The Django documentation was used extensively during development of this project
+* The Cloudinary documentation was used extensively during development to setup the configuration between django and the cloudinary apis
+* The Code Institute reference material was used as a general reference for things that I had previously done during the course.
+* W3 Schools was used as a reference point for HTML, CSS and Python.
 
-## Available Scripts
+### Acknowledgements
 
-In the project directory, you can run:
-
-### `npm install`
-
-Installs the required npm packages.
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open port 3000 to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* I'd like to thank the following:
+- Matt Bodden, for the significant ideas for my project - your guidance truly made a difference!
+- Oliver Train, for all his help regarding his patience and pointing me in the right direction.
+- Jubril, for all his help during this project as my mentor.

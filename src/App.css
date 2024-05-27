@@ -1,9 +1,75 @@
-.App {
-  text-align: center;
-  background-color: #535999;
-  min-height: 100vh;
+body {
+  background-color: #A8D5BA; 
+  color: #377D49; 
+  font-family: 'Comic Sans MS', cursive, sans-serif; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.Down {
-  padding: 1px;
+.container {
+  padding: 20px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #377D49; 
+}
+
+a {
+  color: #77B66B; 
+  text-decoration: none;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+a:hover {
+  color: #9ACD97; 
+  background-color: #D0EAC3; 
+}
+
+button {
+  background-color: #6BAF5E; 
+  color: #377D49; 
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #77B66B; 
+}
+
+/* Inputs */
+input, textarea {
+  background-color: #FFF; 
+  color: #377D49; 
+  border: 1px solid #77B66B; 
+  padding: 10px;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+input:focus, textarea:focus {
+  border-color: #6BAF5E; 
+  outline: none;
+}
+
+.card {
+  background-color: #6BAF5E; 
+  color: #d3d3d3; 
+  border: 1px solid #d3d3d3; 
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background: #77B66B; 
+  margin: 20px 0;
 }

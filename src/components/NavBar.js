@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
@@ -13,41 +13,42 @@ const NavBar = () => {
   const { openBurger, setOpenBurger, ref } = useCloseBurgerToggle();
 
   const createSnap = currentUser && (
-    <NavLink className="" activeClassName="" to="/snaps/create">
-      <i className="far fa-plus-square"></i>Snap
+    <NavLink className={styles.NavLink} to="/snaps/create">
+      <i className="far fa-plus-square"></i> Snap
     </NavLink>
   );
 
   return (
     <div>
-      <Navbar expanded={openBurger} className={styles.NavBar} bg="light" expand="lg">
+      <Navbar expanded={openBurger} className={styles.NavBar} expand="lg">
         <Container>
           <NavLink to="/">
-            <Navbar.Brand>
-              <img alt="logo" height="45" />
+            <Navbar.Brand className={styles.NavbarBrand}>
+              <img alt="logo" src="/path/to/logo.png" height="45" />
             </Navbar.Brand>
           </NavLink>
-          <Navbar.Brand href="#home">SNAP IT</Navbar.Brand>
+          <Navbar.Brand className={styles.NavbarBrand}>
+          <span style={{ color: '#fff' }}>SNAP IT</span>
+          </Navbar.Brand>
           {createSnap}
-          <Navbar.Toggle onClick={() => setOpenBurger(!openBurger)} ref={ref} aria-controls="basic-navbar-nav" />
+          <Navbar.Toggle 
+          onClick={() => setOpenBurger(!openBurger)} 
+          ref={ref} 
+          aria-controls="basic-navbar-nav"
+          style={{ color: '#fff' }}
+           />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
               {currentUser ? (
                 <>
-                  <NavLink className={styles.NavLink} activeClassName="" to="/friended/feed">
-                    Feed
-                  </NavLink>
-                  <NavLink className={styles.NavLink} activeClassName="" to="/liked/feed">
-                    Liked
-                  </NavLink>
-                  <NavLink className={styles.NavLink} activeClassName="" to="/disliked/feed">
-                    Disliked
-                  </NavLink>
+                  <NavLink className={styles.NavLink} to="/friended/feed">Feed</NavLink>
+                  <NavLink className={styles.NavLink} to="/liked/feed">Liked</NavLink>
+                  <NavLink className={styles.NavLink} to="/disliked/feed">Disliked</NavLink>
                   <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
                     <ProfilePic src={currentUser?.profile_image} text="Profile" height={40} />
                   </NavLink>
-                  <LogoutButton />
+                  <LogoutButton className={styles.LogoutButton} />
                 </>
               ) : (
                 <>

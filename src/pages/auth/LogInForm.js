@@ -1,8 +1,9 @@
 import React, { useContext, useState } from 'react';
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button, Alert, Container } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
+import styles from '../../styles/AuthForm.module.css';
 
 const LogInForm = () => {
     const setCurrentUser = useSetCurrentUser();
@@ -18,49 +19,58 @@ const LogInForm = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const { data } = await axios.post("/dj-rest-auth/login/", logInData);
+            const {data} = await axios.post("/dj-rest-auth/login/", logInData);
             setCurrentUser(data.user);
             history.push('/');
-        } catch (err) {
-            if (err.response && err.response.data) {
+        } catch(err) {
+            if (err.response?.data) {
                 setErrors(err.response.data);
-            } else {
-                setErrors({ non_field_errors: "Something went wrong. Please try again." });
             }
         }
     };
 
     return (
-        <div>
+        <Container className={styles.formContainer}>
+            <h1>Log In</h1>
             <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="username">
+                <Form.Group controlId="username" className={styles.formControl}>
                     <Form.Label>Username</Form.Label>
-                    <Form.Control onChange={handleChange} name="username" value={logInData.username} type="text" placeholder="Username" />
+                    <Form.Control
+                        onChange={handleChange}
+                        name="username"
+                        value={logInData.username}
+                        type="text"
+                        placeholder="Username"
+                    />
                 </Form.Group>
                 {errors.username && (
-                    <Alert variant="warning">
+                    <Alert variant="warning" className={styles.alert}>
                         {errors.username}
                     </Alert>
                 )}
-                <Form.Group controlId="password">
+                <Form.Group controlId="password" className={styles.formControl}>
                     <Form.Label>Password</Form.Label>
-                    <Form.Control onChange={handleChange} value={logInData.password} name="password" type="password" placeholder="Password" />
+                    <Form.Control
+                        onChange={handleChange}
+                        value={logInData.password}
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                    />
                 </Form.Group>
                 {errors.password && (
-                    <Alert variant="warning">
+                    <Alert variant="warning" className={styles.alert}>
                         {errors.password}
                     </Alert>
                 )}
-                {errors.non_field_errors && (
-                    <Alert variant="warning">
-                        {errors.non_field_errors}
-                    </Alert>
-                )}
-                <Button variant="primary" type="submit">
-                    Log in
-                </Button>
+                <div className={styles.buttonGroup}>
+                    <Button variant="primary" type="submit" className={styles.submitBtn}>
+                        Log in
+                    </Button>
+                    <Link to="/register">Don't have an account? Sign Up</Link>
+                </div>
             </Form>
-        </div>
+        </Container>
     );
 };
 
