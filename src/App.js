@@ -15,6 +15,8 @@ import CreateComment from './pages/comments/CreateComment';
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ProfileEdit from './pages/profiles/ProfileEdit';
 import ProfilePage from './pages/profiles/ProfilePage';
+import UserPassword from './pages/profiles/UserPassword';
+import UserUsername from './pages/profiles/UserUsername';
 
 
 
@@ -64,6 +66,17 @@ function App() {
           <Route exact path="/snaps/:id/edit" render={() => <SnapEdit />} />
           <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
+
+          <Route
+            exact
+            path="/profiles/:id/edit/username"
+            render={() => <UserUsername />}
+          />
+          <Route
+            exact
+            path="/profiles/:id/edit/password"
+            render={() => <UserPassword />}
+          />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

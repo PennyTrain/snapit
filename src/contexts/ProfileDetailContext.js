@@ -3,18 +3,15 @@ import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useCurrentUser } from "./CurrentUserContext";
 import { friendHelper, unfriendHelper } from "../utils/utils";
 
-
 const ProfileDetailContext = createContext();
 const SetProfileDetailContext = createContext();
 
 const useProfileDetail = () => useContext(ProfileDetailContext);
 const useSetProfileDetail = () => useContext(SetProfileDetailContext);
 
-export { useProfileDetail, useSetProfileDetail };
-
-export const ProfileDetailProvider = ({ children }) => {
+const ProfileDetailProvider = ({ children }) => {
     const [profileData, setProfileData] = useState({
-        pageProfile: { results: [] },
+        pageProfile: {},
         popularProfiles: { results: [] },
     });
 
@@ -28,11 +25,7 @@ export const ProfileDetailProvider = ({ children }) => {
 
             setProfileData((prevState) => ({
                 ...prevState,
-                pageProfile: {
-                    results: prevState.pageProfile.results.map((profile) =>
-                        friendHelper(profile, clickedProfile, data.id)
-                    ),
-                },
+                pageProfile: friendHelper(prevState.pageProfile, clickedProfile, data.id),
                 popularProfiles: {
                     ...prevState.popularProfiles,
                     results: prevState.popularProfiles.results.map((profile) =>
@@ -51,11 +44,7 @@ export const ProfileDetailProvider = ({ children }) => {
 
             setProfileData((prevState) => ({
                 ...prevState,
-                pageProfile: {
-                    results: prevState.pageProfile.results.map((profile) =>
-                        unfriendHelper(profile, clickedProfile)
-                    ),
-                },
+                pageProfile: unfriendHelper(prevState.pageProfile, clickedProfile),
                 popularProfiles: {
                     ...prevState.popularProfiles,
                     results: prevState.popularProfiles.results.map((profile) =>
@@ -71,9 +60,7 @@ export const ProfileDetailProvider = ({ children }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const { data } = await axiosReq.get(
-                    "/profiles/?ordering=-friended_count"
-                );
+                const { data } = await axiosReq.get("/profiles/?ordering=-friended_count");
                 setProfileData((prevState) => ({
                     ...prevState,
                     popularProfiles: data,
@@ -87,11 +74,11 @@ export const ProfileDetailProvider = ({ children }) => {
 
     return (
         <ProfileDetailContext.Provider value={profileData}>
-            <SetProfileDetailContext.Provider
-                value={{ setProfileDetail: setProfileData, handleFriend, handleUnfriend }}
-            >
+            <SetProfileDetailContext.Provider value={{ setProfileDetail: setProfileData, handleFriend, handleUnfriend }}>
                 {children}
             </SetProfileDetailContext.Provider>
         </ProfileDetailContext.Provider>
     );
 };
+
+export { useProfileDetail, useSetProfileDetail, ProfileDetailProvider };

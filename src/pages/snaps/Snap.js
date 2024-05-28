@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
+import Comment from "../comments/Comment";
+import CreateComment from "../comments/CreateComment";
 import styles from '../../styles/Snap.module.css';
 
 function Snap(props) {
@@ -16,9 +18,23 @@ function Snap(props) {
     setSnaps
   } = props;
 
+  const [comments, setComments] = useState({ results: [] });
   const history = useHistory();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      try {
+        const { data } = await axiosRes.get(`/snapcomments/?snap=${id}`);
+        setComments(data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchComments();
+  }, [id]);
 
   const updateSnaps = (snapId, changes) => {
     setSnaps(prevSnaps => ({
@@ -175,7 +191,7 @@ function Snap(props) {
         <OverlayTrigger placement="top" overlay={<Tooltip>Log in to view comments!</Tooltip>}>
           <Link to={`/snaps/${id}`} className={`${styles.commentButton} ${styles.disabled}`}>
             <Button variant="primary" disabled>
-              <i className="far fa-comments" /> {snapcomments_count}
+              <i className="far fa-comments" /> 
             </Button>
           </Link>
         </OverlayTrigger>

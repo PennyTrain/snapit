@@ -16,7 +16,6 @@ export const fetchAdditionalDetails = async (assets, setAssets) => {
   }
 };
 
-
 export const friendHelper = (profile, clickedProfile, friendship_id) => {
   if (profile.id === clickedProfile.id) {
     return {

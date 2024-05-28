@@ -46,7 +46,8 @@ function SnapFeed() {
                             profileImage={currentUser?.profile_image}
                             profile_id={currentUser?.profile_id}
                         />
-                         {comments.results.map((comment) => (
+                        Comments
+                        {comments.results.map((comment) => (
                             <Comment
                                 key={comment.id}
                                 {...comment}

@@ -8,26 +8,21 @@ import Snap from "./Snap";
 
 function SnapsFeed({ message, filter = "" }) {
   const [snaps, setSnaps] = useState({ results: [] });
-  const [isReady, setIsReady] = useState(false);
-  const { pathname } = useLocation();
+  const [hasMore, setHasMore] = useState(true);
   const [query, setQuery] = useState("");
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-  };
+  const { pathname } = useLocation();
 
   useEffect(() => {
     const fetchSnaps = async () => {
       try {
         const { data } = await axiosReq.get(`/snaps/?${filter}search=${query}`);
         setSnaps(data);
-        setIsReady(true);
       } catch (err) {
         console.log(err);
       }
     };
 
-    setIsReady(false);
+    setHasMore(true);
     const timer = setTimeout(() => {
       fetchSnaps();
     }, 1000);
@@ -37,46 +32,55 @@ function SnapsFeed({ message, filter = "" }) {
     };
   }, [filter, query, pathname]);
 
+  const fetchMoreData = async () => {
+    if (snaps.next) {
+      try {
+        const { data } = await axiosReq.get(snaps.next);
+        setSnaps((prevSnaps) => ({
+          ...data,
+          results: [...prevSnaps.results, ...data.results],
+        }));
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setHasMore(false);
+    }
+  };
+
   return (
-    <div>
-      <Container>
-        <Form onSubmit={handleSubmit}>
+    <Container>
+      <Form onSubmit={(event) => event.preventDefault()}>
+        <Form.Group controlId="searchBar">
           <Form.Control
+            type="text"
+            placeholder="Search snaps"
             value={query}
             onChange={(event) => setQuery(event.target.value)}
-            placeholder="Search snaps"
           />
-        </Form>
-      </Container>
-
-      {isReady ? (
-        snaps.results.length ? (
-          <InfiniteScroll
-            dataLength={snaps.results.length}
-            loader={<Container>Loading...</Container>}
-            hasMore={!!snaps.next}
-            next={() => fetchAdditionalDetails(snaps, setSnaps)}
-          >
-            <Row className="snap-row">
-              {snaps.results.map((snap) => (
-                <Col key={snap.id} xs={6} sm={6} md={4} lg={3}>
-                  <Snap {...snap} setSnaps={setSnaps} />
-                </Col>
-              ))}
-            </Row>
-          </InfiniteScroll>
-        ) : (
-          <Container>
-            {/* <Asset src={NoResults} message={message} /> */}
-          </Container>
-        )
+        </Form.Group>
+      </Form>
+      {snaps.results.length ? (
+        <InfiniteScroll
+          dataLength={snaps.results.length}
+          next={fetchMoreData}
+          hasMore={hasMore}
+          loader={<h4>Loading...</h4>}
+        >
+          {snaps.results.map((snap) => (
+            <Snap key={snap.id} {...snap} setSnaps={setSnaps} />
+          ))}
+          
+        </InfiniteScroll>
       ) : (
         <Container>
-          {/* <Asset spinner /> */}
+          <h4>{message}</h4>
         </Container>
       )}
-    </div>
+    </Container>
+    
   );
 }
 
 export default SnapsFeed;
+  
