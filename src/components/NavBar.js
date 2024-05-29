@@ -6,6 +6,7 @@ import ProfilePic from './ProfilePic';
 import LogoutButton from './LogoutButton'; 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import useCloseBurgerToggle from '../hooks/useCloseBurgerToggle';
+import logo from "../assets/project/logo.png"
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -24,7 +25,7 @@ const NavBar = () => {
         <Container>
           <NavLink to="/">
             <Navbar.Brand className={styles.NavbarBrand}>
-              <img alt="logo" src="/path/to/logo.png" height="45" />
+              <img alt="logo" src={logo} height="45" />
             </Navbar.Brand>
           </NavLink>
           <Navbar.Brand className={styles.NavbarBrand}>
@@ -42,7 +43,6 @@ const NavBar = () => {
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
               {currentUser ? (
                 <>
-                  <NavLink className={styles.NavLink} to="/friended/feed">Feed</NavLink>
                   <NavLink className={styles.NavLink} to="/liked/feed">Liked</NavLink>
                   <NavLink className={styles.NavLink} to="/disliked/feed">Disliked</NavLink>
                   <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>

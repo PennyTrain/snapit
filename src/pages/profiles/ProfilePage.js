@@ -52,17 +52,17 @@ function ProfilePage() {
       <div className={styles.profileInfo}>
         <h3>{pageProfile?.owner}</h3>
         <div>Snaps: {pageProfile?.snaps_count}</div>
-        <div>Followers: {pageProfile?.friended_count}</div>
-        <div>Following: {pageProfile?.friendship_count}</div>
+        {/* <div>Followers: {pageProfile?.friended_count}</div>
+        <div>Following: {pageProfile?.friendship_count}</div> */}
       </div>
       <div className={styles.profileActions}>
-        {currentUser && !is_owner && (
+        {/* {currentUser && !is_owner && (
           pageProfile?.friendship_id ? (
             <Button onClick={() => handleUnfriend(pageProfile)}>handleUnfriend</Button>
           ) : (
             <Button onClick={() => handleFriend(pageProfile)}>Friend</Button>
           )
-        )}
+        )} */}
         {pageProfile?.content && <div>{pageProfile.content}</div>}
       </div>
       <div className={styles.snapsContainer}>

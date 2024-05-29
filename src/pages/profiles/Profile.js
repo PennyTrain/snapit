@@ -26,14 +26,14 @@ const Profile = (props) => {
         <p>{owner}</p>
       </div>
       <div className={styles.profileButton}>
-        {!mobile &&
+        {/* {!mobile &&
           currentUser &&
           !is_owner &&
           (friendship_id ? (
             <Button onClick={() => handleUnfriend(profile)}>unfriend</Button>
           ) : (
             <Button onClick={() => handleFriend(profile)}>friend</Button>
-          ))}
+          ))} */}
       </div>
     </div>
   );
