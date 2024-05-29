@@ -1,4 +1,5 @@
 import './App.css';
+import React from "react";
 import NavBar from './components/NavBar';
 import { Container } from 'react-bootstrap';
 import { Route, Switch } from "react-router-dom";
@@ -10,16 +11,11 @@ import Snap from './pages/snaps/Snap';
 import SnapFeed from './pages/snaps/SnapFeed';
 import SnapsFeed from './pages/snaps/SnapsFeed';
 import SnapEdit from './pages/snaps/SnapEdit';
-import Comment from './pages/comments/Comment';
-import CreateComment from './pages/comments/CreateComment';
 import { useCurrentUser } from "./contexts/CurrentUserContext";
 import ProfileEdit from './pages/profiles/ProfileEdit';
 import ProfilePage from './pages/profiles/ProfilePage';
 import UserPassword from './pages/profiles/UserPassword';
 import UserUsername from './pages/profiles/UserUsername';
-
-
-
 
 // The Switch holds all our Routes,  and renders a given component when  
 // a Route path matches the current URL. The render prop on our Route component  

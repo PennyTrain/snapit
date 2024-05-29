@@ -1,24 +1,22 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import PropTypes from "prop-types";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
-import Comment from "../comments/Comment";
-import CreateComment from "../comments/CreateComment";
 import styles from '../../styles/Snap.module.css';
 
 function Snap(props) {
   const {
-    id, owner, profile_id, profile_image,
-    created, updated, title, body,
+    id, owner, profile_id,
+    title, body,
     snaplikes_count, featured_image,
-    status, snaplike_id, snapcomments_count,
+    snaplike_id, snapcomments_count,
     snapdislike_id, snapdislikes_count,
     setSnaps
   } = props;
 
-  const [comments, setComments] = useState({ results: [] });
   const history = useHistory();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -27,7 +25,7 @@ function Snap(props) {
     const fetchComments = async () => {
       try {
         const { data } = await axiosRes.get(`/snapcomments/?snap=${id}`);
-        setComments(data);
+        // Do something with the comments data if needed
       } catch (err) {
         console.log(err);
       }
@@ -52,12 +50,13 @@ function Snap(props) {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/snaps/${id}/`);
-      history.goBack();
+      history.push("/");
       console.log("deleted");
     } catch (err) {
       console.log(err);
     }
   };
+
 
   const handleSnapLike = async () => {
     try {
@@ -114,7 +113,7 @@ function Snap(props) {
   const renderLikeButton = () => {
     if (is_owner) {
       return (
-        <OverlayTrigger placement="top" overlay={<Tooltip>You can't like your own post!</Tooltip>}>
+        <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t like your own post!</Tooltip>}>
           <span><i style={{ color: "gray" }} className={`${styles.iconButton} far fa-heart`} /></span>
         </OverlayTrigger>
       );
@@ -143,7 +142,7 @@ function Snap(props) {
   const renderDislikeButton = () => {
     if (is_owner) {
       return (
-        <OverlayTrigger placement="top" overlay={<Tooltip>You can't dislike your own snaps!</Tooltip>}>
+        <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t dislike your own snaps!</Tooltip>}>
           <span> <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "gray" }} /></span>
         </OverlayTrigger>
       );
@@ -151,7 +150,7 @@ function Snap(props) {
     if (snapdislike_id) {
       return (
         <span onClick={handleSnapUndislike}>
-          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "red" }} onClick={handleSnapUndislike} /> 
+          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "red" }} /> 
         </span>
       );
     }
@@ -218,5 +217,20 @@ function Snap(props) {
     </Card>
   );
 }
+
+Snap.propTypes = {
+  id: PropTypes.number.isRequired,
+  owner: PropTypes.string.isRequired,
+  profile_id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  snaplikes_count: PropTypes.number.isRequired,
+  featured_image: PropTypes.string.isRequired,
+  snaplike_id: PropTypes.number,
+  snapcomments_count: PropTypes.number.isRequired,
+  snapdislike_id: PropTypes.number,
+  snapdislikes_count: PropTypes.number.isRequired,
+  setSnaps: PropTypes.func.isRequired
+};
 
 export default Snap;

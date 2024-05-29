@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Container } from "react-bootstrap";
-import { useProfileDetail, useSetProfileDetail } from "../../contexts/ProfileDetailContext";
+import { useProfileDetail } from "../../contexts/ProfileDetailContext";
 import Profile from "./Profile";
 
 const PopularProfiles = ({ mobile }) => {
@@ -13,7 +14,7 @@ const PopularProfiles = ({ mobile }) => {
                     {mobile ? (
                         <div>
                             {popularProfiles.results.slice(0, 4).map((profile) => (
-                                <Profile key={profile.id} profile={profile} />
+                                <Profile key={profile.id} profile={profile} mobile={mobile} />
                             ))}
                         </div>
                     ) : (
@@ -27,6 +28,10 @@ const PopularProfiles = ({ mobile }) => {
             )}
         </Container>
     );
+};
+
+PopularProfiles.propTypes = {
+    mobile: PropTypes.bool.isRequired,
 };
 
 export default PopularProfiles;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
 
 const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
@@ -14,6 +15,10 @@ const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
   );
 });
 
+ThreeDots.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
+
 export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) {
   return (
     <Dropdown className="ml-auto" drop="left">
@@ -28,6 +33,11 @@ export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) 
       </Dropdown.Menu>
     </Dropdown>
   );
+};
+
+MoreDropDown.propTypes = {
+  handleEdit: PropTypes.func.isRequired,
+  handleDelete: PropTypes.func.isRequired,
 };
 
 export default MoreDropDown;

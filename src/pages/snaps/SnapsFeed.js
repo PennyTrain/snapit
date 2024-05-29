@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Form, Row, Col, Container } from "react-bootstrap";
+import PropTypes from "prop-types";
+import { Form, Container } from "react-bootstrap";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../snapit_api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
-import { fetchAdditionalDetails } from "../../utils/utils";
 import Snap from "./Snap";
 
 function SnapsFeed({ message, filter = "" }) {
@@ -70,7 +70,6 @@ function SnapsFeed({ message, filter = "" }) {
           {snaps.results.map((snap) => (
             <Snap key={snap.id} {...snap} setSnaps={setSnaps} />
           ))}
-          
         </InfiniteScroll>
       ) : (
         <Container>
@@ -78,9 +77,12 @@ function SnapsFeed({ message, filter = "" }) {
         </Container>
       )}
     </Container>
-    
   );
 }
 
+SnapsFeed.propTypes = {
+  message: PropTypes.string.isRequired,
+  filter: PropTypes.string,
+};
+
 export default SnapsFeed;
-  

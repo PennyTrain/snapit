@@ -12,6 +12,7 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import LogoutButton from "../../components/LogoutButton"
 
 const ProfileEdit = () => {
   const currentUser = useCurrentUser();
@@ -54,6 +55,7 @@ const ProfileEdit = () => {
       [event.target.name]: event.target.value,
     });
   };
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -100,6 +102,7 @@ const ProfileEdit = () => {
       <Button type="submit">
         Save
       </Button>
+      <LogoutButton />
     </>
   );
 

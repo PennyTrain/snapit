@@ -25,6 +25,121 @@ Snap It aims to be the go-to social media platform for pet lovers around the wor
 
 By focusing on the specific needs and interests of pet owners, Snap It not only offers a fun and engaging user experience but also contributes to the well-being of pets everywhere through education, community support, and partnerships with animal welfare organizations.
 
+### User Stories
+
+* Navigation
+<br />
+	As a user, I want to be able to easily navigate the page
+    <br />
+	As a user, I want to be able to navigate throughout the site quickly
+    <br />
+	As a user, I want to be logged in until I decide to log out
+    
+
+* Account management
+<br />
+	As a user, I want to be able to update my profile
+    <br />
+	As a user, I want to be able to change my profile picture
+    <br />
+	As a user, I want to be able to change my username
+    <br />
+	As a user, I want to be able to change my password
+    <br />
+	As a user, I want to be able to change my bio
+    <br />
+    As a user, I want to be able to friend other users
+    <br />
+    As a user, I want to be able to unfriend other users
+    <br />
+    As a user, I want to see the most popular users
+
+* Account registration
+<br />
+	As a new user, I want to be able to register a new account
+    <br />
+	As a new user, I want there to be apparent features I am gaining when creating an account
+
+* Account sign-in
+<br />
+	As a reoccuring user, I want an account unique to me
+    <br />
+	As a user, I want it to be clear that I am signed in
+
+* Account sign-out
+<br />
+	As a user, I want to be able to sign out of my account so that it is secure
+    <br />
+	As a user, I want it to be clear that I am signed out
+	
+* Account deletion
+<br />
+	As a user, I want full control over my account allowing me to delete it if I wish
+
+* Snap Managment
+<br />
+	As a user, I want to be able to snap a photo of my pet and post it
+    <br />
+	As a user, I want to be able to view my snaps
+    <br />
+	As a user, I want to be able to edit my snap
+    <br />
+	As a user, I want to be able to delete my snap
+    <br />
+	As a user, I do not want to be able to dislike my own snap
+    <br />
+	As a user, I do not want to be able to like my own snap
+    <br />
+	As a user, I want to be able to comment on my own snap
+    <br />
+	As a user, I want to be able to like others snaps
+    <br />
+	As a user, I want to be able to dislike others snaps
+    <br />
+	As a user, I want to be able to see other users snaps
+	
+* Comment Managment
+<br />
+	As a user, I want to be able to comment on snaps
+    <br />
+	As a user, I want to be able to attach a photo of my pet
+    <br />
+	As a user, I want to be able to include information about my pet
+    <br />
+	As a user, I want to be able to edit my comment
+    <br />
+	As a user, I want to be able to delete my comment
+    <br />
+	As a user, I want to be able to view my comments on a snap
+    <br />
+	As a user, I want to be able to view others comments on a snap
+
+* Filtering and Searching
+<br />
+	As a user, I want to be able to filter through my friends uploaded snaps
+    <br />
+	As a user, I want to be able to filter through my liked snaps
+    <br />
+	As a user, I want to be able to filter through my disliked snaps
+    <br />
+	As a user, I want to be able to search through pet types
+    <br />
+	As a user, I want to be able to search through pet ages
+    <br />
+	As a user, I want to be able to search through pet breeds
+    <br />
+	As a user, I want to be able to search through other users snaps
+    <br />
+	As a user, I want to be able to search through pet names
+
+[User Stories Github](https://github.com/users/PennyTrain/projects/8/views/1)
+![Screenshot of github user stories](../snapit/src/assets/readme/github-userstories.png)
+
+### WireFrames
+
+- Since the wireframes were made the project has gone through some major changes! Along with that I changed the color scheme to green considering it looked too much like my last project with the blue! 
+
+
 
 ### CRUD Functionality
 
@@ -32,40 +147,85 @@ SnapIt offers complete Create, Read, Update, and Delete (CRUD) functionality thr
 
 #### Create
 Users can register a new account, allowing them to join the SnapIt community. Once registered, users can create various types of content:
-- Comments: Authenticated users can create comments on snaps with additional details such as pet name, age, breed, and type.
-- Snaps: Users can create new snaps featuring their pets, including images and detailed descriptions.
+<br />
+Comments: 
+<br />
+Authenticated users can create comments on snaps with additional details such as pet name, age, breed, and type.
+<br />
+Snaps:
+<br />
+Users can create new snaps featuring their pets, including images and detailed descriptions.
+
 #### Read
 SnapIt ensures that authenticated users can easily access and view content:
-- Snaps: Users can browse and view snaps posted by the community, enjoying a feed filled with pet photos and stories.
-- Comments: Users can view comments on each snap, providing a space for interaction and engagement.
-- User Profiles: Users can view their profile image and display name, along with those of other community members.
+<br />
+Snaps:
+Users can browse and view snaps posted by the community, enjoying a feed filled with pet photos and stories.
+<br />
+Comments:
+Users can view comments on each snap, providing a space for interaction and engagement. 
+<br />
+User Profiles:
+Users can view their profile image and display name, along with those of other community members.
+
 #### Update
 SnapIt allows users to update and manage their content seamlessly:
-- Profile Updates: Authenticated users can update their profile image, display name, and password to keep their account information current.
-- Comment Edits: Users can edit and save comments they have created, ensuring their interactions remain accurate and relevant.
+<br />
+Profile Updates: Authenticated users can update their profile image, display name, and password to keep their account information current.
+<br />
+Comment Edits: Users can edit and save comments they have created, ensuring their interactions remain accurate and relevant.
+<br />
 - Snap Edits: Users can edit snaps they have posted, including updating images and descriptions to reflect any changes.
+
 #### Delete
 SnapIt provides users with control over their content by enabling them to delete various elements:
-- Comments: Users can delete comments they have created, managing their interactions on the platform.
-- Snaps: Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
-- User Accounts: Users can delete their accounts, removing all their data from the platform.
+<br />
+Comments: Users can delete comments they have created, managing their interactions on the platform.
+<br />
+Snaps: Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
+<br />
+User Accounts: Users can delete their accounts, removing all their data from the platform.
+<br />
 By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
 
 ### Future Improvements and Features
 
-In the future, I would love to add:
+* In the future, I would love to add:
 
-Pet-Friendly Marketplace:
+- Pet-Friendly Marketplace:
+<br />
 A marketplace section allows users to buy and sell pet-related products, from handmade pet toys to grooming supplies. Users can also find services such as pet sitting, walking, and training.
 
-Pet Care Resources:
+- Pet Care Resources:
+<br />
 The app includes a library of articles and videos on pet care, training, nutrition, and health. Users can also find recommendations for vets, groomers, and pet-friendly places in their area.
 
-Adoption and Rescue:
+- Adoption and Rescue:
+<br />
 Snap It partners with animal shelters and rescue organizations to feature pets in need of adoption. Users can browse adoptable pets, share their profiles, and even apply for adoption through the app.
 
-Community and Groups:
+- Community and Groups:
+<br />
 Users can join or create groups based on their interests, such as specific breeds, pet care tips, or animal rescue efforts. This fosters a sense of community and allows for the exchange of advice, stories, and support among like-minded individuals.
+
+### Reusable Components
+
+- Profile
+<br />
+Because Profile is self-contained and relies on props, it can be reused across the application wherever profile information needs to be displayed. This reduces code duplication and ensures that any changes to the profile display logic only need to be made in one place.
+
+- Snap
+<br />
+The Snap component is highly reusable due to its modular design and use of props, which allow it to be easily integrated into various parts of an application with different data. By handling actions like like, dislike, comment, edit, and delete within the component, it centralizes functionality and maintains consistency across the application. Additionally, it adapts to user roles (owner or not) and current user status (logged in or not), enhancing its flexibility and reusability.
+
+- Navbar
+<br />
+The NavBar component demonstrates reusability through its modular structure, incorporating reusable subcomponents like ProfilePic and LogoutButton. By leveraging props and context, it dynamically adapts to whether a user is logged in or not, offering different navigation links accordingly. The component utilizes useCloseBurgerToggle custom hook to manage the responsive burger menu state, making it adaptable for various screen sizes. CSS modules are used for styling, ensuring that styles are scoped locally to the component and preventing conflicts. Overall, the component's design allows it to be easily integrated and reused across different parts of an application, enhancing maintainability and consistency.
+
+- Profile Pic
+<br />
+The ProfilePic component is reusable because it is parameterized with props, allowing for customization of the image source, size, and accompanying text. It encapsulates styling using CSS modules, ensuring consistent and conflict-free presentation across different parts of the application. Its simplicity and focused functionality make it easy to integrate into various contexts like user profiles, comment sections, and navigation bars, promoting consistent user interface design.
+- Log out Button
 
 ### Custom Hooks
 
@@ -77,11 +237,16 @@ Specifically, useImageUpload offers several functions: handleChangeImage reads t
 
 ### Frameworks, Libraries and Dependencys
 
-React-Router-DOM
+* React-Router-DOM
+<br />
 react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in TribeHub, i.e. to implement the links on the bottom navbar, and register, sign-in and sign-out links. Using React-Router-DOM also enabled implementation of 'single page mode'to enhance the experience for users on larger screens. The useSinglePage custom hook is referenced in App.js, with different Route components conditionally rendered for the various paths depending on whether the app is running in single page mode. The useLocation hook from React-Router-DOM is used in some components to determine the current URL and respond accordingly, for example by ensuring the correct nav button is highlighted in the bottom navbar for mobile users.
-ReactDOM
+
+* ReactDOM
+<br />
 react-dom - react-dom is used to manipulate the DOM outside of a specific component, and supports the user experience by enabling modal dialogs to be appended to the top level of the DOM (important for accessability) and alerts to be appended to specific components. For example, notifications are fetched by the NotificationsMenu component, but this takes the form of a dropdown menu, so using ReactDOM allows the component to 'reach out' into the DOM and display error alerts in a more obvious location than inside the dropdown.
-Axios
+
+* Axios
+<br />
 Axios - the axios library was chosen to simplify making HTTP requests to the REST API (e.g. not having to manually configure HTTP headers), and because it enables simple implementation of 'interceptors' which are used to request a refresh token in the event of a HTTP 401 error. This enhances the user experience beacuse an authenticated user remains signed in for up to 24 hours, rather than having to sign in again after five minutes.
 
 ### Project Deployment

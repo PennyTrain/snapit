@@ -19,7 +19,7 @@ const ProfileDetailProvider = ({ children }) => {
 
     const handleFriend = async (clickedProfile) => {
         try {
-            const { data } = await axiosRes.post("/friendships/", {
+            const { data } = await axiosRes.put("/friendships/", {
                 friended: clickedProfile.id,
             });
 

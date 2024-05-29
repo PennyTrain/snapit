@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import PropTypes from "prop-types"; // Import PropTypes
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
@@ -21,9 +22,6 @@ const Comment = (props) => {
     const [editBody, setEditBody] = useState(false);
     const currentUser = useCurrentUser();
     const is_owner = currentUser?.username === owner;
-
-    console.log("currentUser:", currentUser); 
-    console.log("profile_id:", profile_id); 
 
     const handleDelete = async () => {
         try {
@@ -81,6 +79,18 @@ const Comment = (props) => {
             </Media>
         </>
     );
+};
+
+// Add prop-type validation
+Comment.propTypes = {
+    profile_id: PropTypes.number.isRequired,
+    profile_image: PropTypes.string.isRequired,
+    owner: PropTypes.string.isRequired,
+    updated: PropTypes.string.isRequired,
+    body: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    setSnaps: PropTypes.func.isRequired,
+    setComments: PropTypes.func.isRequired,
 };
 
 export default Comment;
