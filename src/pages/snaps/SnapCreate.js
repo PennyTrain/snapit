@@ -22,6 +22,10 @@ const SnapCreate = () => {
 
     const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
 
+    const validateTitle = (title) => {
+        return title.trim().length > 0;
+    };
+
     const handleChange = (event) => {
         setSnapData({
             ...snapData,
@@ -31,8 +35,12 @@ const SnapCreate = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData();
+        if (!validateTitle(title)) {
+            setErrors({ title: ["Title cannot be empty or just spaces"] });
+            return;
+        }
 
+        const formData = new FormData();
         formData.append('title', title);
         formData.append('body', body);
         formData.append('pet_name', pet_name);
