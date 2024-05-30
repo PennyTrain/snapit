@@ -4,26 +4,10 @@
 This project provides a Django Reszt Framework API for [Snap It app livelink](#) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 
-Pet Profiles:
-Users can create dedicated profiles for their pets, complete with photos, biographies. Each pet profile serves as a hub where followers can keep up with the latest updates and adventures of their favorite furry, feathered, or scaly friends.
+## Concerns
 
-Photo and Video Sharing:
-Much like Facebook, users can post photos, but with a twist: all content revolves around pets. Whether it's a cute kitten playing, a dog learning new tricks, or a parrot showing off its colorful feathers, Snap It is the place to share these moments.
+Snap It is currently not up to the standard I aspire to achieve due to a combination of time constraints and illness. Unfortunately, these factors have impacted the development process, resulting in certain aspects of the application not meeting the desired level of quality. Time constraints have limited the amount of attention and effort I could dedicate to the project, leading to compromises in various areas such as code organization, feature completeness, and user experience. Additionally, dealing with illness has further disrupted the development schedule, reducing productivity and making it challenging to focus on implementing improvements and resolving issues effectively.
 
-Why Snap It?
-Dedicated Space for Pets:
-Unlike other social media platforms, Snap It is solely dedicated to pets, ensuring that users’ feeds are filled with delightful and relevant content without any unrelated posts.
-
-Strong Community Focus:
-The platform emphasizes building a supportive and engaged community of pet lovers who can share their experiences and advice.
-
-Enhanced Engagement:
-Features like pet profiles, and pet-centric filters enhance user engagement and make the platform more enjoyable and useful for pet owners.
-
-Vision and Mission
-Snap It aims to be the go-to social media platform for pet lovers around the world. Its mission is to create a space where pet enthusiasts can connect, share, and celebrate their pets, fostering a global community that supports and uplifts each other through the love of animals.
-
-By focusing on the specific needs and interests of pet owners, Snap It not only offers a fun and engaging user experience but also contributes to the well-being of pets everywhere through education, community support, and partnerships with animal welfare organizations.
 
 ### User Stories
 
