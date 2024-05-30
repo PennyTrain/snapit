@@ -1,7 +1,7 @@
 # Snap It!
 
 ## Introduction
-This project provides a Django Reszt Framework API for [Snap It app livelink](#) 
+This project provides a Django Reszt Framework API for [Snap It app livelink](https://snapit-2fde1c079281.herokuapp.com/) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 
 ## Concerns
@@ -237,11 +237,8 @@ Specifically, useImageUpload offers several functions: handleChangeImage reads t
 
 * React-Router-DOM
 <br />
-react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in TribeHub, i.e. to implement the links on the bottom navbar, and register, sign-in and sign-out links. Using React-Router-DOM also enabled implementation of 'single page mode'to enhance the experience for users on larger screens. The useSinglePage custom hook is referenced in App.js, with different Route components conditionally rendered for the various paths depending on whether the app is running in single page mode. The useLocation hook from React-Router-DOM is used in some components to determine the current URL and respond accordingly, for example by ensuring the correct nav button is highlighted in the bottom navbar for mobile users.
-
+react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in Snap It, i.e. to implement the links on register, sign-in and sign-out links. And the navbar.
 * ReactDOM
-<br />
-react-dom - react-dom is used to manipulate the DOM outside of a specific component, and supports the user experience by enabling modal dialogs to be appended to the top level of the DOM (important for accessability) and alerts to be appended to specific components. For example, notifications are fetched by the NotificationsMenu component, but this takes the form of a dropdown menu, so using ReactDOM allows the component to 'reach out' into the DOM and display error alerts in a more obvious location than inside the dropdown.
 
 * Axios
 <br />
@@ -249,7 +246,7 @@ Axios - the axios library was chosen to simplify making HTTP requests to the RES
 
 ### Project Deployment
 
-The site was deployed via Heroku, and the live link can be found here - [
+The site was deployed via Heroku, and the live link can be found here - 
 To deploy the project through Heroku I followed these steps:
 * Sign up / Log in to [Heroku](https://www.heroku.com/)
 * From the main Heroku Dashboard page select 'New' and then 'Create New App'
@@ -286,7 +283,7 @@ To deploy the project through Heroku I followed these steps:
 #### Create a clone of this repository
 Creating a clone enables you to make a copy of the repository at that point in time - this lets you run a copy of the project locally:
 This can be done by:
-* Navigate to https://github.com/PennyTrain/Aquarium/
+* Navigate to https://github.com/PennyTrain/snapit
 * click on the arrow on the green code button at the top of the list of files
 * select the clone by https option and copy the URL it provides to the clipboard
 * Navigate to your code editor of choice and within the terminal change the directory to the location you want to clone the repository to.
