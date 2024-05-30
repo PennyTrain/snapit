@@ -217,7 +217,6 @@ function Snap(props) {
     </Card>
   );
 }
-
 Snap.propTypes = {
   id: PropTypes.number.isRequired,
   owner: PropTypes.string.isRequired,

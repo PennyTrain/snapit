@@ -2,7 +2,17 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useHistory } from "react-router";
-
+/*
+The code sets up a React user context for 
+managing the current user state and provides 
+hooks for accessing and updating this state 
+throughout the application. Upon mounting, 
+it fetches the current user data using Axios 
+and sets it as the initial state. It also 
+implements interceptors to handle token refresh
+ and unauthorized errors, redirecting users to 
+ the login page if necessary.
+ */
 export const CurrentUserContext = createContext();
 export const SetCurrentUserContext = createContext();
 

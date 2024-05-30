@@ -16,7 +16,7 @@ const LogoutButton = () => {
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
 
-  const handleLogOut = async () => {
+  const handleLogout = async () => {
     try {
       await axios.post("dj-rest-auth/logout/");
       setCurrentUser(null);
@@ -27,7 +27,7 @@ const LogoutButton = () => {
   };
 
   return (
-    <button onClick={handleLogOut}>Logout</button>
+    <button onClick={handleLogout}>Logout</button>
   );
 };
 

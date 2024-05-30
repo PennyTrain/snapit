@@ -6,14 +6,23 @@ import ProfilePic from './ProfilePic';
 import LogoutButton from './LogoutButton'; 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import useCloseBurgerToggle from '../hooks/useCloseBurgerToggle';
-import logo from "../assets/project/logo.png"
+import logo from "../assets/project/logo.png";
+/*
+This code defines a React component called NavBar 
+that renders a navigation bar using React Bootstrap 
+components. It includes links for navigating to 
+different pages, such as home, user profile, and 
+authentication pages like login and register. The
+component dynamically adjusts its content based
+on whether a user is logged in or not, displaying
+options like creating a new snap or logging out accordingly.
+ */
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
-
   const { openBurger, setOpenBurger, ref } = useCloseBurgerToggle();
 
-  const createSnap = currentUser && (
+  const createSnapLink = currentUser && (
     <NavLink className={styles.NavLink} to="/snaps/create">
       <i className="far fa-plus-square"></i> Snap
     </NavLink>
@@ -29,15 +38,15 @@ const NavBar = () => {
             </Navbar.Brand>
           </NavLink>
           <Navbar.Brand className={styles.NavbarBrand}>
-          <span style={{ color: '#fff' }}>SNAP IT</span>
+            <span style={{ color: '#fff' }}>SNAP IT</span>
           </Navbar.Brand>
-          {createSnap}
+          {createSnapLink}
           <Navbar.Toggle 
-          onClick={() => setOpenBurger(!openBurger)} 
-          ref={ref} 
-          aria-controls="basic-navbar-nav"
-          style={{ color: '#fff' }}
-           />
+            onClick={() => setOpenBurger(!openBurger)} 
+            ref={ref} 
+            aria-controls="basic-navbar-nav"
+            style={{ color: '#fff' }}
+          />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>

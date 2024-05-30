@@ -1,7 +1,15 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useHistory } from "react-router-dom";
-
+/*
+This React component, ProfileEditDropDown, 
+renders a dropdown menu with options for editing
+a user's profile. It utilizes React Bootstrap's 
+Dropdown component to create the dropdown functionality. 
+Each dropdown item triggers a specific action to 
+navigate the user to different profile editing pages 
+using React Router's useHistory hook.
+ */
 const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
   return (
     <i
@@ -15,19 +23,19 @@ const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
   );
 });
 
-function ProfileEditDropDown({ id }) {
+function ProfileEditDropDown() {
   const history = useHistory();
 
   const handleEditProfile = () => {
-    history.push(`/profiles/${id}/edit`);
+    history.push(`/profiles/edit`);
   };
 
   const handleEditUsername = () => {
-    history.push(`/profiles/${id}/edit/username`);
+    history.push(`/profiles/edit/username`);
   };
 
   const handleEditPassword = () => {
-    history.push(`/profiles/${id}/edit/password`);
+    history.push(`/profiles/edit/password`);
   };
 
   return (
@@ -47,6 +55,5 @@ function ProfileEditDropDown({ id }) {
     </Dropdown>
   );
 }
-
 
 export default ProfileEditDropDown;

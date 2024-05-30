@@ -6,6 +6,7 @@ import { Col, Row, Container } from "react-bootstrap";
 import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Comment from "../comments/Comment";
+import CommentsContainer from "../../components/CommentsContainer"; // Import CommentsContainer
 
 function SnapFeed() {
     const { id } = useParams();
@@ -13,9 +14,6 @@ function SnapFeed() {
         results: []
     });
     const currentUser = useCurrentUser();
-    const [comments, setComments] = useState({
-        results: []
-    });
 
     useEffect(() => {
         const handleMount = async () => {
@@ -38,23 +36,15 @@ function SnapFeed() {
                 {snap.results.length > 0 && (
                     <>
                         <Snap {...snap.results[0]} setSnaps={setSnap} />
-                        <Container>Comments</Container>
+                        <Container>
+                            <CommentsContainer snapId={id} />
+                        </Container>
                         <CommentCreateForm
                             snapId={id}
                             setSnaps={setSnap}
-                            setComments={setComments}
                             profileImage={currentUser?.profile_image}
                             profile_id={currentUser?.profile_id}
                         />
-                        Comments
-                        {comments.results.map((comment) => (
-                            <Comment
-                                key={comment.id}
-                                {...comment}
-                                setSnaps={setSnap}
-                                setComments={setComments}
-                            />
-                        ))}
                     </>
                 )}
             </Col>
