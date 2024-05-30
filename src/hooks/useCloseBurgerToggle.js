@@ -1,4 +1,14 @@
 import { useEffect, useRef, useState } from "react";
+/*
+The useCloseBurgerToggle custom hook manages the 
+state of a burger menu's open or closed status. 
+It sets up event listeners to close the menu when 
+a user clicks outside of the menu or presses the 
+"Escape" key, and cleans up these listeners when 
+the component is unmounted. The hook returns the 
+state variable openBurger, its setter setOpenBurger, 
+and a ref ref to be attached to the burger menu element.
+ */
 
 const useCloseBurgerToggle = () => {
     const [openBurger, setOpenBurger] = useState(false);

@@ -7,6 +7,14 @@ import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
+/*
+The CommentCreateForm component allows authenticated users to create
+and submit comments with additional pet details such as name, age, 
+breed, and type, along with an optional image upload. It utilizes the 
+useImageUpload custom hook for handling image uploads and updates the 
+state and UI upon successful comment submission. If a user is not logged
+in, a prompt to log in is displayed instead of the form.
+ */
 
 function CommentCreateForm(props) {
   const { snapId, setSnaps, setComments, profileImage, profile_id } = props;

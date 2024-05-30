@@ -5,6 +5,13 @@ import { Button } from "react-bootstrap";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useSetProfileDetail } from "../../contexts/ProfileDetailContext";
 import styles from "../../styles/Profile.module.css";
+/*
+The Profile component renders a user profile, displaying the 
+user's avatar image and username. It also includes functionality 
+to add or remove friends, although this functionality is currently 
+commented out. The component dynamically adjusts its layout based on 
+whether it's being rendered in a mobile view or not.
+ */
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;

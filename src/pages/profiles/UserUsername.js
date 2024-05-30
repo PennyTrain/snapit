@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import {
@@ -11,7 +9,14 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 
-
+/*
+The UserUsername component enables users to change their username. 
+It pre-fills the form with the current username if the user is 
+authorized and handles form submission by sending the updated 
+username to the server. Upon successful update, it reflects the 
+change in the global user context and navigates back, displaying 
+validation errors if any issues occur during the process.
+*/
 const UserUsername = () => {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState({});

@@ -1,9 +1,19 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import styles from '../../styles/AuthForm.module.css';
+/*
+The LogInForm component manages the user login process 
+by capturing username and password inputs and sending 
+them to the server via an API call. It uses the 
+useSetCurrentUser hook to update the current user context 
+upon successful login and redirects the user to the home 
+page. The component also handles and displays any errors 
+returned from the server, providing feedback to the user 
+within the form.
+ */
 
 const LogInForm = () => {
     const setCurrentUser = useSetCurrentUser();

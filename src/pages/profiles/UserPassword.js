@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
-
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
-
 import Form from "react-bootstrap/Form";
-
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
+/*
+The UserPassword component allows users to change their password. 
+It includes a form where users input their new password and confirm 
+it, and handles form submission by sending the details to the server 
+via an API call. The component ensures only the profile owner can access 
+the password change form, displaying validation errors if the password 
+change fails. 
+*/
 
 const UserPassword = () => {
     const history = useHistory();

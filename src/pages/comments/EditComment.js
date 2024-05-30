@@ -4,6 +4,15 @@ import Button from "react-bootstrap/Button";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
+/*
+The EditComment component facilitates editing existing comments, 
+allowing users to modify the comment text, pet name, age, breed, 
+and type. It also provides functionality to update an attached 
+image, if present, and includes options to cancel the edit or 
+submit the changes. The component integrates with the useImageUpload 
+hook for managing image uploads and updates the comment data upon 
+successful submission.
+ */
 
 function EditComment(props) {
   const { id, body, pet_name, pet_age, pet_breed, pet_type, attachment, setEnableUpdate, setComments } = props;

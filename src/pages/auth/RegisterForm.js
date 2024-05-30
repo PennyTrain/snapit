@@ -3,6 +3,15 @@ import { Form, Button, Alert, Container } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
 import styles from '../../styles/AuthForm.module.css';
+/*
+The RegisterForm component handles user registration by 
+capturing username and password inputs, validating them, 
+and sending the data to the server through an API call. 
+Upon successful registration, it redirects the user to the 
+login page. If there are errors returned from the server, 
+the component displays them to the user to provide feedback 
+on what needs to be corrected.
+ */
 
 const RegisterForm = () => {
     const [registerData, setRegisterData] = useState({

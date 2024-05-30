@@ -10,6 +10,16 @@ import ProfileEditDropDown from "../../components/ProfileEditDropDown";
 import { fetchAdditionalDetails } from "../../utils/utils";
 import styles from "../../styles/ProfilePage.module.css";
 import { axiosReq } from "../../snapit_api/axiosDefaults";
+/*
+
+The ProfilePage component fetches and displays a user's profile 
+details and associated snaps. If the current user owns the profile, 
+an edit dropdown is shown, and their profile image, bio, and snaps 
+are displayed using infinite scrolling. The component also handles 
+the potential for adding or removing friends, though these actions 
+are currently commented out. 
+*/
+
 
 function ProfilePage() {
   const [isReady, setIsReady] = useState(false);

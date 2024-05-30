@@ -139,7 +139,21 @@ By focusing on the specific needs and interests of pet owners, Snap It not only 
 
 - Since the wireframes were made the project has gone through some major changes! Along with that I changed the color scheme to green considering it looked too much like my last project with the blue! 
 
+* Home Page
+---
+![](../readme/browser-home.png)
+![](../readme/phone-home.png)
 
+
+### Agile Development Methodology
+
+I've used GitHub's project board and issue tracking system to create a smooth development process. By breaking down tasks into user stories and issues. I have understood the Agile principle of incremental development, allowing me to focus on delivering value to users in small, manageable parts. This approach not only helps maintain a clear map for the project but also means that I can respond quickly to changing requirements and priorities, ensuring to stay adaptable and flexible throughout the development cycle.
+
+### Design: Colours and Font
+
+The color scheme, predominantly featuring shades of green, works well together and is particularly suitable for an application called "Snap it," which implies capturing moments or snapshots. Green is often associated with nature, growth, and freshness, which aligns with the theme of sharing photos of pets. The use of various shades of green, complemented by black and white accents, creates a harmonious and visually appealing interface.
+
+Additionally, the chosen font, "Comic Sans MS," adds a playful and informal touch to the design, which is suitable for a platform focused on pets and casual photo sharing. Its rounded edges and relaxed style contribute to a friendly and approachable user experience, fostering a sense of warmth and enjoyment while interacting with the application. Overall, the color scheme and font choice contribute to creating a cohesive and inviting atmosphere for users to engage with Snap it and share moments with their beloved pets.
 
 ### CRUD Functionality
 

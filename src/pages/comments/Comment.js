@@ -1,11 +1,19 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types"; // Import PropTypes
+import PropTypes from "prop-types";
 import { Media } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import EditComment from "./EditComment";
+/*
+The Comment component renders individual comments within a snap, 
+including the owner's profile image, name, the comment body, and 
+the date it was updated. It allows the owner to edit or delete 
+their comments, utilizing state and context to manage and update 
+the comments and snaps. Prop types are used to ensure proper data 
+is passed to the component, maintaining type safety and avoiding runtime errors.
+ */
 
 const Comment = (props) => {
     const {
@@ -81,7 +89,6 @@ const Comment = (props) => {
     );
 };
 
-// Add prop-type validation
 Comment.propTypes = {
     profile_id: PropTypes.number.isRequired,
     profile_image: PropTypes.string.isRequired,

@@ -6,7 +6,14 @@ import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import styles from '../../styles/Snap.module.css';
-
+/*
+The Snap component represents a single snap in a social media-like application. 
+It displays the snap's owner, title, body, featured image, and various interaction 
+options like liking, disliking, and commenting. Users can interact with the snap by 
+liking, disliking, and commenting, with different visual cues provided based on their 
+authentication status and interaction history. Additionally, owners of snaps have access 
+to tools for editing and deleting their snaps.
+*/
 function Snap(props) {
   const {
     id, owner, profile_id,

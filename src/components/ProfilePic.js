@@ -19,7 +19,7 @@ const ProfilePic = ({ src, height = 45, text }) => {
         src={src}
         height={height}
         width={height}
-        alt="profile picture"
+        alt="profile pic!"
       />
       {text}
     </span>

@@ -2,6 +2,15 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useCurrentUser } from "./CurrentUserContext";
 import { friendHelper, unfriendHelper } from "../utils/utils";
+/*
+The code establishes a context for managing detailed profile data 
+and interactions within a React application, providing hooks for 
+accessing and updating this data. It includes functions for handling 
+friendships (friend and unfriend actions) that update the state 
+accordingly and a useEffect hook that fetches popular profiles from
+ an API when the current user changes. The context provider wraps 
+ its children with the current profile data and functions for updating it.
+ */
 
 const ProfileDetailContext = createContext();
 const SetProfileDetailContext = createContext();

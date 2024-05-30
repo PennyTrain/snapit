@@ -14,6 +14,15 @@ import {
 } from "../../contexts/CurrentUserContext";
 import LogoutButton from "../../components/LogoutButton"
 
+/*
+The ProfileEdit component allows users to edit their profile information, 
+including their bio and profile image. It fetches the current profile data 
+on mount, ensuring the user is authorized to edit the profile based on 
+their ID, and uses a form to handle updates. If the user makes changes 
+and submits the form, the updated data is sent to the server, and the 
+profile image is updated accordingly in the context, with any errors displayed to the user. 
+*/
+
 const ProfileEdit = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
