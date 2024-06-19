@@ -23,20 +23,16 @@ import UserUsername from './pages/profiles/UserUsername';
 // The path prop is the browser url  the user will be at when they see  
 // the component in our render prop. The “exact” prop tells the route to  
 // only render its component when the  url entered is exactly the same.
-
 function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
 
   return (
-
     <div className="App">
       <NavBar />
       <Container className="Down">
         <Switch>
-
-
-          <Route exact path="/" render={() => <SnapsFeed />} />
+          <Route exact path="/" render={() => <SnapsFeed message="Welcome to SnapIt!" />} />
 
           <Route exact path="/friended/feed" render={() => (<SnapsFeed
             message="No results found. Adjust the search keyword or follow a user."
@@ -50,11 +46,7 @@ function App() {
             message="No results found. Adjust the search keyword or follow a user."
             filter={`snapdislikes__owner__profile=${profile_id}&ordering=-snapdislikes__created&`}
           />)} />
-          <Route
-            exact
-            path="/profiles/:id/edit"
-            render={() => <ProfileEdit />}
-          />
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEdit />} />
           <Route exact path="/login" render={() => <LogInForm />} />
           <Route exact path="/register" render={() => <RegisterForm />} />
           <Route exact path="/snaps/create" render={() => <SnapCreate />} />
@@ -62,17 +54,9 @@ function App() {
           <Route exact path="/snaps/:id/edit" render={() => <SnapEdit />} />
           <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
           <Route exact path="/profiles/:id" render={() => <ProfilePage />} />
-
-          <Route
-            exact
-            path="/profiles/:id/edit/username"
-            render={() => <UserUsername />}
-          />
-          <Route
-            exact
-            path="/profiles/:id/edit/password"
-            render={() => <UserPassword />}
-          />
+          <Route exact path="/profiles/:id/edit/username" render={() => <UserUsername />} />
+          <Route exact path="/profiles/:id/edit/password" render={() => <UserPassword />} />
+          <Route exact path="/profiles/:id/edit" render={() => <ProfileEdit />} />
           <Route render={() => <p>Page not found!</p>} />
         </Switch>
       </Container>

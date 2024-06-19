@@ -4,27 +4,33 @@ import { axiosReq } from '../../snapit_api/axiosDefaults';
 import Snap from '../snaps/Snap';
 import { Col, Row, Container } from "react-bootstrap";
 import CommentCreateForm from '../comments/CreateComment';
-import { useCurrentUser } from "../../contexts/CurrentUserContext"
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentsContainer from "../../components/CommentsContainer";
 
 function SnapFeed() {
-    const { id } = useParams();
-    const [snap, setSnap] = useState({
-        results: []
-    });
+    const { id } = useParams(); // Ensure the snap ID from URL params is used
+    const snapId = Number(id); // Convert snapId to a number
+    const [snap, setSnap] = useState({ results: [] });
+    const [comments, setComments] = useState({ results: [] });
     const currentUser = useCurrentUser();
 
     useEffect(() => {
         const handleMount = async () => {
             try {
-                const { data: snap } = await axiosReq.get(`/snaps/${id}`);
+                const [{ data: snap }, { data: comments }] = await Promise.all([
+                    axiosReq.get(`/snaps/${snapId}`),
+                    axiosReq.get(`/snapcomments/?snap=${snapId}`),
+                ]);
                 setSnap({ results: [snap] });
+                setComments(comments);
+                console.log({snapId})
+                console.log({snap})
             } catch (err) {
                 console.log(err);
             }
         };
         handleMount();
-    }, [id]);
+    }, [snapId]);
 
     return (
         <Row>
@@ -33,11 +39,12 @@ function SnapFeed() {
                     <>
                         <Snap {...snap.results[0]} setSnaps={setSnap} />
                         <Container>
-                            <CommentsContainer snapId={id} setSnaps={setSnap} />
+                            <CommentsContainer snapId={snapId} setSnaps={setSnap} setComments={setComments} />
                         </Container>
                         <CommentCreateForm
-                            snapId={id}
+                            snapId={snapId}
                             setSnaps={setSnap}
+                            setComments={setComments}
                             profileImage={currentUser?.profile_image}
                             profile_id={currentUser?.profile_id}
                         />

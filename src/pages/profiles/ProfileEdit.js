@@ -40,8 +40,6 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     const handleMount = async () => {
-      console.log("currentUser:", currentUser);
-      console.log("id:", id);
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
@@ -64,7 +62,6 @@ const ProfileEdit = () => {
       [event.target.name]: event.target.value,
     });
   };
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();

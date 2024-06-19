@@ -12,7 +12,6 @@ login page. If there are errors returned from the server,
 the component displays them to the user to provide feedback 
 on what needs to be corrected.
  */
-
 const RegisterForm = () => {
     const [registerData, setRegisterData] = useState({
         username: "",
@@ -30,6 +29,13 @@ const RegisterForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        // Check if passwords match before making the API request
+        if (password1 !== password2) {
+            setErrors({ password2: ["Passwords do not match."] });
+            return;
+        }
+
         try {
             await axios.post("/dj-rest-auth/registration/", registerData);
             history.push('/login');

@@ -1,7 +1,7 @@
-
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
+
 /*
 This React component, ProfileEditDropDown, 
 renders a dropdown menu with options for editing
@@ -26,9 +26,10 @@ const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
 
 function ProfileEditDropDown() {
   const history = useHistory();
+  const { id } = useParams();
 
   const handleEditProfile = () => {
-    history.push(`/profiles/edit`);
+    history.push(`/profiles/${id}/edit`);
   };
 
   const handleEditUsername = () => {

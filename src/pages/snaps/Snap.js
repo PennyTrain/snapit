@@ -194,7 +194,7 @@ function Snap(props) {
       );
     } else {
       return (
-        <OverlayTrigger placement="top" overlay={<Tooltip>Log in to view comments!</Tooltip>}>
+        <OverlayTrigger placement="top" overlay={<Tooltip>Log in to create comments!</Tooltip>}>
           <Link to={`/snaps/${id}`} className={`${styles.commentButton} ${styles.disabled}`}>
             <Button variant="primary" disabled>
               <i className="far fa-comments" /> 

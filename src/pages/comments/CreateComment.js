@@ -16,7 +16,7 @@ state and UI upon successful comment submission. If a user is not logged
 in, a prompt to log in is displayed instead of the form.
  */
 
-function CommentCreateForm(props) {
+function CreateComment(props) {
   const { snapId, setSnaps, setComments, profileImage, profile_id } = props;
   const currentUser = useContext(CurrentUserContext);
   const [body, setBody] = useState("");
@@ -131,4 +131,4 @@ function CommentCreateForm(props) {
   );
 }
 
-export default CommentCreateForm;
+export default CreateComment;

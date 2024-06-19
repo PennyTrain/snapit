@@ -14,27 +14,33 @@ page. The component also handles and displays any errors
 returned from the server, providing feedback to the user 
 within the form.
  */
-
 const LogInForm = () => {
     const setCurrentUser = useSetCurrentUser();
     const [logInData, setLogInData] = useState({ username: "", password: "" });
     const [errors, setErrors] = useState({});
+    const [generalError, setGeneralError] = useState("");
     const history = useHistory();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
         setLogInData(prevData => ({ ...prevData, [name]: value }));
+        setGeneralError("");  // Reset general error message when user starts typing
     };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
-            const {data} = await axios.post("/dj-rest-auth/login/", logInData);
+            const { data } = await axios.post("/dj-rest-auth/login/", logInData);
             setCurrentUser(data.user);
             history.push('/');
-        } catch(err) {
+        } catch (err) {
             if (err.response?.data) {
                 setErrors(err.response.data);
+
+                // Check for a non-field error message indicating an incorrect login attempt
+                if (err.response.data.non_field_errors) {
+                    setGeneralError("Invalid username or password. Please try again.");
+                }
             }
         }
     };
@@ -43,6 +49,11 @@ const LogInForm = () => {
         <Container className={styles.formContainer}>
             <h1>Log In</h1>
             <Form onSubmit={handleSubmit}>
+                {generalError && (
+                    <Alert variant="danger" className={styles.alert}>
+                        {generalError}
+                    </Alert>
+                )}
                 <Form.Group controlId="username" className={styles.formControl}>
                     <Form.Label>Username</Form.Label>
                     <Form.Control

@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
 import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
-import useImageUpload from '../../hooks/useImageUpload';
 import { useHistory } from 'react-router';
 import { axiosReq } from '../../snapit_api/axiosDefaults';
 import styles from '../../styles/SnapForm.module.css';
+import useImageUpload from '../../hooks/useImageUpload';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const SnapCreate = () => {
     const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
     const [errors, setErrors] = useState({});
     const history = useHistory();
+    const currentUser = useCurrentUser();  // Get the current user
+
     const [snapData, setSnapData] = useState({
         title: "",
         body: "",
@@ -27,10 +30,29 @@ const SnapCreate = () => {
     };
 
     const handleChange = (event) => {
-        setSnapData({
-            ...snapData,
-            [event.target.name]: event.target.value,
-        });
+        const { name, value } = event.target;
+        let newErrors = { ...errors };
+
+        if (name === "pet_age") {
+            if (value < 0) {
+                newErrors.pet_age = ["Age cannot be negative"];
+            } else if (value > 300) {
+                newErrors.pet_age = ["Age cannot be more than 300 years"];
+            } else {
+                delete newErrors.pet_age;
+                setSnapData({
+                    ...snapData,
+                    [name]: value,
+                });
+            }
+        } else {
+            setSnapData({
+                ...snapData,
+                [name]: value,
+            });
+        }
+
+        setErrors(newErrors);
     };
 
     const handleSubmit = async (event) => {
@@ -60,6 +82,11 @@ const SnapCreate = () => {
             }
         }
     };
+
+    if (!currentUser) {
+        history.push('/login');  // Redirect to login page if user is not logged in
+        return null;  // Render nothing while redirecting
+    }
 
     const snapFields = (
         <div>
@@ -129,6 +156,7 @@ const SnapCreate = () => {
             <Form.Group controlId="form_pet_age" className={styles.formControl}>
                 <Form.Label>Pet Age</Form.Label>
                 <Form.Control
+                    type="number"
                     name="pet_age"
                     value={pet_age}
                     onChange={handleChange}
