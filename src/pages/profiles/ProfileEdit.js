@@ -13,6 +13,7 @@ import {
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
 import LogoutButton from "../../components/LogoutButton"
+import styles from "../../styles/ProfileEdit.module.css"
 
 /*
 The ProfileEdit component allows users to edit their profile information, 
@@ -61,6 +62,14 @@ const ProfileEdit = () => {
       ...profileData,
       [event.target.name]: event.target.value,
     });
+  };
+
+  const handleEditUsername = () => {
+    history.push(`/profiles/edit/username`);
+  };
+
+  const handleEditPassword = () => {
+    history.push(`/profiles/edit/password`);
   };
 
   const handleSubmit = async (event) => {
@@ -113,7 +122,7 @@ const ProfileEdit = () => {
   );
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className={styles.formContainer} onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container>

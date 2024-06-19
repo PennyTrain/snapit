@@ -9,6 +9,8 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 const SnapCreate = () => {
     const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
     const history = useHistory();
     const currentUser = useCurrentUser();  // Get the current user
 
@@ -57,6 +59,9 @@ const SnapCreate = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setSuccessMessage("");  // Clear any existing success messages
+        setErrorMessage("");    // Clear any existing error messages
+
         if (!validateTitle(title)) {
             setErrors({ title: ["Title cannot be empty or just spaces"] });
             return;
@@ -74,9 +79,13 @@ const SnapCreate = () => {
 
         try {
             const { data } = await axiosReq.post("/snaps/", formData);
-            history.push(`/snaps/${data.id}`);
+            setSuccessMessage("Snap created successfully!");
+            setTimeout(() => {
+                history.push(`/snaps/${data.id}`);
+            }, 2000);  // Redirect after 2 seconds
         } catch (err) {
             console.log(err);
+            setErrorMessage("An error occurred while creating the snap.");
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
@@ -213,6 +222,8 @@ const SnapCreate = () => {
     return (
         <Container className={styles.formContainer}>
             <h1>Create a New Snap</h1>
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formImage" className={styles.imageUpload}>
                     {image ? (

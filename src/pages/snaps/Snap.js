@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
@@ -6,14 +6,7 @@ import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import styles from '../../styles/Snap.module.css';
-/*
-The Snap component represents a single snap in a social media-like application. 
-It displays the snap's owner, title, body, featured image, and various interaction 
-options like liking, disliking, and commenting. Users can interact with the snap by 
-liking, disliking, and commenting, with different visual cues provided based on their 
-authentication status and interaction history. Additionally, owners of snaps have access 
-to tools for editing and deleting their snaps.
-*/
+
 function Snap(props) {
   const {
     id, owner, profile_id,
@@ -28,28 +21,6 @@ function Snap(props) {
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const { data } = await axiosRes.get(`/snapcomments/?snap=${id}`);
-        // Do something with the comments data if needed
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
-    fetchComments();
-  }, [id]);
-
-  const updateSnaps = (snapId, changes) => {
-    setSnaps(prevSnaps => ({
-      ...prevSnaps,
-      results: prevSnaps.results.map(snap => (
-        snap.id === snapId ? { ...snap, ...changes } : snap
-      ))
-    }));
-  };
-
   const handleEdit = () => {
     history.push(`/snaps/${id}/edit`);
   };
@@ -58,12 +29,10 @@ function Snap(props) {
     try {
       await axiosRes.delete(`/snaps/${id}/`);
       history.push("/");
-      console.log("deleted");
     } catch (err) {
       console.log(err);
     }
   };
-
 
   const handleSnapLike = async () => {
     try {
@@ -71,12 +40,12 @@ function Snap(props) {
         await axiosRes.delete(`/snapdislikes/${snapdislike_id}/`);
       }
       const { data } = await axiosRes.post("/snaplikes/", { snap: id });
-      updateSnaps(id, {
-        snaplikes_count: snaplikes_count + 1,
-        snaplike_id: data.id,
-        snapdislikes_count: snapdislike_id ? snapdislikes_count - 1 : snapdislikes_count,
-        snapdislike_id: null,
-      });
+      setSnaps(prevSnaps => ({
+        ...prevSnaps,
+        results: prevSnaps.results.map(snap => (
+          snap.id === id ? { ...snap, snaplikes_count: snaplikes_count + 1, snaplike_id: data.id, snapdislikes_count: snapdislike_id ? snapdislikes_count - 1 : snapdislikes_count, snapdislike_id: null } : snap
+        ))
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -85,7 +54,12 @@ function Snap(props) {
   const handleSnapUnlike = async () => {
     try {
       await axiosRes.delete(`/snaplikes/${snaplike_id}/`);
-      updateSnaps(id, { snaplikes_count: snaplikes_count - 1, snaplike_id: null });
+      setSnaps(prevSnaps => ({
+        ...prevSnaps,
+        results: prevSnaps.results.map(snap => (
+          snap.id === id ? { ...snap, snaplikes_count: snaplikes_count - 1, snaplike_id: null } : snap
+        ))
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -97,12 +71,12 @@ function Snap(props) {
         await axiosRes.delete(`/snaplikes/${snaplike_id}/`);
       }
       const { data } = await axiosRes.post("/snapdislikes/", { snap: id });
-      updateSnaps(id, {
-        snapdislikes_count: snapdislikes_count + 1,
-        snapdislike_id: data.id,
-        snaplikes_count: snaplike_id ? snaplikes_count - 1 : snaplikes_count,
-        snaplike_id: null,
-      });
+      setSnaps(prevSnaps => ({
+        ...prevSnaps,
+        results: prevSnaps.results.map(snap => (
+          snap.id === id ? { ...snap, snapdislikes_count: snapdislikes_count + 1, snapdislike_id: data.id, snaplikes_count: snaplike_id ? snaplikes_count - 1 : snaplikes_count, snaplike_id: null } : snap
+        ))
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -111,7 +85,12 @@ function Snap(props) {
   const handleSnapUndislike = async () => {
     try {
       await axiosRes.delete(`/snapdislikes/${snapdislike_id}/`);
-      updateSnaps(id, { snapdislikes_count: snapdislikes_count - 1, snapdislike_id: null });
+      setSnaps(prevSnaps => ({
+        ...prevSnaps,
+        results: prevSnaps.results.map(snap => (
+          snap.id === id ? { ...snap, snapdislikes_count: snapdislikes_count - 1, snapdislike_id: null } : snap
+        ))
+      }));
     } catch (err) {
       console.error(err);
     }
@@ -121,14 +100,14 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t like your own post!</Tooltip>}>
-          <span><i style={{ color: "gray" }} className={`${styles.iconButton} far fa-heart`} /></span>
+          <span><i style={{ color: "white" }} className={`${styles.iconButton} far fa-heart`} /></span>
         </OverlayTrigger>
       );
     }
     if (snaplike_id) {
       return (
         <span onClick={handleSnapUnlike}>
-          <i style={{ color: "red" }} className={`${styles.iconButton} far fa-heart`}/>
+          <i style={{ color: "#f84bd4" }} className={`${styles.iconButton} far fa-heart`}/>
         </span>
       );
     }
@@ -150,14 +129,14 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t dislike your own snaps!</Tooltip>}>
-          <span> <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "gray" }} /></span>
+          <span> <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "white" }} /></span>
         </OverlayTrigger>
       );
     }
     if (snapdislike_id) {
       return (
         <span onClick={handleSnapUndislike}>
-          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "red" }} /> 
+          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "#f84bd4" }} /> 
         </span>
       );
     }
@@ -187,18 +166,18 @@ function Snap(props) {
     if (currentUser) {
       return (
         <Link to={`/snaps/${id}`} className={styles.commentButton}>
-          <Button variant="primary">
+          <span>
             <i className="far fa-comments" /> {snapcomments_count}
-          </Button>
+          </span>
         </Link>
       );
     } else {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>Log in to create comments!</Tooltip>}>
-          <Link to={`/snaps/${id}`} className={`${styles.commentButton} ${styles.disabled}`}>
-            <Button variant="primary" disabled>
+          <Link to={`/snaps/${id}`} className={styles.commentButton}>
+            <span>
               <i className="far fa-comments" /> 
-            </Button>
+              </span>
           </Link>
         </OverlayTrigger>
       );
@@ -224,6 +203,7 @@ function Snap(props) {
     </Card>
   );
 }
+
 Snap.propTypes = {
   id: PropTypes.number.isRequired,
   owner: PropTypes.string.isRequired,

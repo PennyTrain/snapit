@@ -1,6 +1,6 @@
 .formContainer {
-  background-color: #6E9971; 
-  border: 2px solid #000000; 
+  background-color: #4F6C50; 
+  border: 2px solid #000; 
   padding: 20px;
   border-radius: 10px;
   display: flex;
@@ -24,27 +24,6 @@
 .imagePreview {
   max-width: 100px;
   margin-top: 10px;
-}
-
-.cancelBtn,
-.submitBtn {
-  background-color: #A8D5BA; 
-  color: #002366; 
-  border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin: 5px;
-  width: 100px;
-  text-align: center;
-}
-
-.cancelBtn {
-  background-color: #77B66B; 
-}
-
-button {
-  display: inline-block;
 }
 
 label {

@@ -70,7 +70,12 @@ function CreateComment(props) {
           <Form.Group>
             <InputGroup>
               <Link to={`/profiles/${profile_id}`}>
-                <img src={profileImage} alt="Profile" />
+                <img 
+                src={profileImage} 
+                alt="Profile"
+                height={50}
+                width={50}
+                 />
               </Link>
               <Form.Control
                 placeholder="my comment..."

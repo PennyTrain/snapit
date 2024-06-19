@@ -5,6 +5,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../snapit_api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Snap from "./Snap";
+import styles from "../../styles/SnapsFeed.module.css"
 
 function SnapsFeed({ message, filter = "" }) {
   const [snaps, setSnaps] = useState({ results: [] });
@@ -13,10 +14,14 @@ function SnapsFeed({ message, filter = "" }) {
   const { pathname } = useLocation();
 
   useEffect(() => {
+    let mounted = true; // Flag to track mounted status
+
     const fetchSnaps = async () => {
       try {
         const { data } = await axiosReq.get(`/snaps/?${filter}search=${query}`);
-        setSnaps(data);
+        if (mounted) {
+          setSnaps(data);
+        }
       } catch (err) {
         console.log(err);
       }
@@ -28,7 +33,8 @@ function SnapsFeed({ message, filter = "" }) {
     }, 1000);
 
     return () => {
-      clearTimeout(timer);
+      mounted = false; // Component is unmounting, update mounted flag
+      clearTimeout(timer); // Clear timeout to prevent memory leaks
     };
   }, [filter, query, pathname]);
 
@@ -67,9 +73,11 @@ function SnapsFeed({ message, filter = "" }) {
           hasMore={hasMore}
           loader={<h4>Loading...</h4>}
         >
+          <div className={styles.snapsList}>
           {snaps.results.map((snap) => (
             <Snap key={snap.id} {...snap} setSnaps={setSnaps} />
           ))}
+          </div>
         </InfiniteScroll>
       ) : (
         <Container>

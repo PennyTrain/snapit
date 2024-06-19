@@ -1,61 +1,52 @@
 .cardContainer {
-    max-width: 20rem;
-    margin: 1rem auto;
-    border: 1px solid #77B66B; 
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #4F6C50; 
-  }
-  
-  .cardImage {
-    border-bottom: 1px solid #77B66B;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
-  
-  .cardBody {
-    padding: 1rem;
-  }
-  
-  .cardTitle {
-    font-size: 1.25rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .cardText {
-    font-size: 1rem;
-    color: #377D49;
-    margin-bottom: 1rem;
-  }
-  
-  .buttonGroup {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .iconButton {
-    cursor: pointer;
-    margin-right: 0.5rem;
-  }
-  
-  .iconButton.disabled {
-    cursor: not-allowed;
-  }
-  
-  .commentButton {
-    display: flex;
-    align-items: center;
-    font-size: 1rem;
-    color: #377D49; 
-    text-decoration: none;
-  }
-  
-  .commentButton.disabled {
-    color: #5E8A63; 
-  }
-  
-  .commentButton i {
-    margin-right: 0.5rem;
-  }
-  
+  max-width: 20rem;
+  min-width: 15rem; 
+  max-height: 30rem;
+  margin: 1rem auto;
+  border: 1px solid #000;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  background-color: #4F6C50;
+}
+
+.cardImage {
+  border-bottom: 1px solid #0000;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  max-height: 15rem;
+}
+
+.cardBody {
+  padding: 1rem;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.cardText {
+  font-size: 1rem;
+  color: #FFFF;
+  margin-bottom: 1rem;
+}
+
+.buttonGroup {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.iconButton {
+  cursor: pointer;
+  margin-right: 0.5rem;
+}
+
+.iconButton.disabled {
+  cursor: not-allowed;
+}
+
+.commentButton {
+  display: inline-block;
+  margin-right: 10px;
+}
