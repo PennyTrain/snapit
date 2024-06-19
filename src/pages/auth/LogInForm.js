@@ -34,13 +34,16 @@ const LogInForm = () => {
             setCurrentUser(data.user);
             history.push('/');
         } catch (err) {
-            if (err.response?.data) {
+            if (err.response) {
                 setErrors(err.response.data);
-
                 // Check for a non-field error message indicating an incorrect login attempt
                 if (err.response.data.non_field_errors) {
                     setGeneralError("Invalid username or password. Please try again.");
+                } else {
+                    setGeneralError("An error occurred. Please try again later.");
                 }
+            } else {
+                setGeneralError("Network error. Please check your connection and try again.");
             }
         }
     };
