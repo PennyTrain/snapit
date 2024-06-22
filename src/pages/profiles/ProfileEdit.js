@@ -28,7 +28,7 @@ const ProfileEdit = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const { id } = useParams();
-  const history = useHistory(); 
+  const history = useHistory();
   const imageFile = useRef();
   const [profileData, setProfileData] = useState({
     name: "",
@@ -38,6 +38,7 @@ const ProfileEdit = () => {
   const { name, content, image } = profileData;
 
   const [errors, setErrors] = useState({});
+  const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
     const handleMount = async () => {
@@ -86,10 +87,12 @@ const ProfileEdit = () => {
         ...currentUser,
         profile_image: data.image,
       }));
-      history.goBack();
+      setSuccessMessage("Profile updated successfully!");
+      setErrors({});
     } catch (err) {
       console.log(err);
       setErrors(err.response?.data);
+      setSuccessMessage("");
     }
   };
 
@@ -123,6 +126,7 @@ const ProfileEdit = () => {
 
   return (
     <Form className={styles.formContainer} onSubmit={handleSubmit}>
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
       <Row>
         <Col className="py-2 p-0 p-md-2 text-center" md={7} lg={6}>
           <Container>

@@ -26,6 +26,7 @@ const UserPassword = () => {
     });
     const { new_password1, new_password2 } = userDetail;
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
 
     const handleChange = (event) => {
         setUserDetail({
@@ -36,7 +37,7 @@ const UserPassword = () => {
 
     useEffect(() => {
         if (currentUser?.profile_id?.toString() !== id) {
-            history.push("/")
+            history.push("/");
         }
     }, [currentUser, history, id]);
 
@@ -44,15 +45,19 @@ const UserPassword = () => {
         event.preventDefault();
         try {
             await axiosRes.post("/dj-rest-auth/password/change/", userDetail);
+            setSuccessMessage("Password changed successfully!");
+            setErrors({});
             history.goBack();
         } catch (err) {
             console.log(err);
             setErrors(err.response?.data);
+            setSuccessMessage("");
         }
     };
 
     return (
         <Form onSubmit={handleSubmit}>
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
             <Form.Group>
                 <Form.Label>New Password</Form.Label>
                 <Form.Control
@@ -91,7 +96,7 @@ const UserPassword = () => {
                 Save Password!
             </Button>
         </Form>
-    )
-}
+    );
+};
 
 export default UserPassword;

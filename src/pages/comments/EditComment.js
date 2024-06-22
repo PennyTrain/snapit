@@ -27,10 +27,10 @@ function EditComment(props) {
     setImage(attachment);
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
     try {
-      const formData = new FormData();
+        const formData = new FormData();
       formData.append("body", editBody.trim());
       formData.append("pet_name", editPetName);
       formData.append("pet_age", editPetAge);
@@ -41,9 +41,9 @@ function EditComment(props) {
       }
 
       const { data } = await axiosRes.put(`/snapcomments/${id}/`, formData);
-      setComments((prevComments) => ({
-        ...prevComments,
-        results: prevComments.results.map((comment) => {
+            setComments((prevComments) => ({
+                ...prevComments,
+                results: prevComments.results.map((comment) => {
           return comment.id === id
             ? {
                 ...comment,
@@ -56,26 +56,26 @@ function EditComment(props) {
                 updated: "Just now!",
               }
             : comment;
-        }),
-      }));
+                }),
+            }));
       setEnableUpdate(false);
-    } catch (err) {
+        } catch (err) {
       console.log(err);
-    }
-  };
+        }
+    };
 
-  return (
+    return (
     <Form className={styles.formContainer} onSubmit={handleSubmit}>
       <Form.Group controlId="editComment">
         <Form.Label>Edit Comment</Form.Label>
-        <Form.Control
-          as="textarea"
+                <Form.Control
+                    as="textarea"
           rows={3}
           value={editBody}
           onChange={(e) => setEditBody(e.target.value)}
           className={styles.formControl}
-        />
-      </Form.Group>
+                />
+            </Form.Group>
       <Form.Group controlId="editPetName">
         <Form.Label>Pet Name</Form.Label>
         <Form.Control
@@ -124,13 +124,13 @@ function EditComment(props) {
         )}
       </Form.Group>
       <Button onClick={() => setEnableUpdate(false)} type="button" className={styles.cancelBtn}>
-        Cancel
-      </Button>
+                Cancel
+            </Button>
       <Button variant="primary" type="submit" className={styles.submitBtn}>
         Update Comment
       </Button>
-    </Form>
-  );
+        </Form>
+    );
 }
 
 export default EditComment;

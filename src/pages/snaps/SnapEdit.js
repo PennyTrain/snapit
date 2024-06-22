@@ -17,11 +17,12 @@ function SnapEdit() {
         location: "",
     });
     const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
-
     const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
-
     const history = useHistory();
     const { id } = useParams();
+
+    const [successMessage, setSuccessMessage] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     useEffect(() => {
         const handleMount = async () => {
@@ -95,9 +96,13 @@ function SnapEdit() {
 
         try {
             await axiosReq.put(`/snaps/${id}/`, formData);
+            setSuccessMessage("Snap updated successfully!");
+            setErrorMessage("");
             history.push(`/snaps/${id}`);
         } catch (err) {
             console.log(err);
+            setSuccessMessage("");
+            setErrorMessage("Failed to update snap. Please try again.");
             if (err.response?.status !== 401) {
                 setErrors(err.response?.data);
             }
@@ -200,7 +205,7 @@ function SnapEdit() {
                     <option>Other</option>
                 </Form.Control>
             </Form.Group>
-            
+
             <Form.Group controlId="form_location" className={styles.formControl}>
                 <Form.Label>Location</Form.Label>
                 <Form.Control
@@ -230,6 +235,8 @@ function SnapEdit() {
     return (
         <Container className={styles.formContainer}>
             <h1>Edit Snap</h1>
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formImage" className={styles.imageUpload}>
                     {image ? (

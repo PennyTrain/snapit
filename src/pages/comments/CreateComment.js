@@ -26,12 +26,12 @@ function CreateComment(props) {
   const [petType, setPetType] = useState("Other");
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
     try {
-      const formData = new FormData();
+        const formData = new FormData();
       formData.append("body", body);
-      formData.append("snap", snapId);
+        formData.append("snap", snapId);
       formData.append("pet_name", petName);
       formData.append("pet_age", petAge);
       formData.append("pet_breed", petBreed);
@@ -43,7 +43,7 @@ function CreateComment(props) {
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],
-      }));
+            }));
       setSnaps((prevSnaps) => ({
         results: [
           {
@@ -58,12 +58,12 @@ function CreateComment(props) {
       setPetBreed("");
       setPetType("Other");
       resetImage();
-    } catch (err) {
+        } catch (err) {
       console.log(err);
-    }
-  };
+        }
+    };
 
-  return (
+    return (
     <>
       {currentUser ? (
         <Form className={`mt-2 ${styles.formContainer}`} onSubmit={handleSubmit}>
@@ -77,16 +77,16 @@ function CreateComment(props) {
                 width={50}
                  />
               </Link>
-              <Form.Control
+                <Form.Control
                 placeholder="my comment..."
-                as="textarea"
+                    as="textarea"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                rows={2}
+                    rows={2}
                 className={styles.formControl}
-              />
+                />
             </InputGroup>
-          </Form.Group>
+            </Form.Group>
           <Form.Group>
             <Form.Control
               placeholder="Pet Name"
@@ -127,13 +127,13 @@ function CreateComment(props) {
           </Form.Group>
           <Button disabled={!body.trim()} type="submit" className={styles.btn}>
             Post
-          </Button>
+            </Button>
         </Form>
       ) : (
         <p>Please log in to comment.</p>
       )}
     </>
-  );
+    );
 }
 
 export default CreateComment;

@@ -20,6 +20,7 @@ validation errors if any issues occur during the process.
 const UserUsername = () => {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState({});
+    const [successMessage, setSuccessMessage] = useState("");
 
     const history = useHistory();
     const { id } = useParams();
@@ -45,21 +46,25 @@ const UserUsername = () => {
                 ...prevUser,
                 username,
             }));
+            setSuccessMessage("Username changed successfully!");
+            setErrors({});
             history.goBack();
         } catch (err) {
             console.log(err);
             setErrors(err.response?.data);
+            setSuccessMessage("");
         }
     };
     return (
         <Form onSubmit={handleSubmit}>
-            <Form.Group>
-                <Form.Label></Form.Label>
+            {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            <Form.Group controlId="username">
+                <Form.Label>Change Username</Form.Label>
                 <Form.Control
-                placeholder="username"
-                type="text"
-                value={username}
-                onChange={(event) => setUsername(event.target.value)}
+                    type="text"
+                    placeholder="New username"
+                    value={username}
+                    onChange={(event) => setUsername(event.target.value)}
                 />
             </Form.Group>
             {errors?.username?.map((message, idx) => (
@@ -68,13 +73,13 @@ const UserUsername = () => {
                 </Alert>
             ))}
             <Button onClick={() => history.goBack()}>
-                cancel
+                Cancel
             </Button>
             <Button type="submit">
-                save
+                Save
             </Button>
         </Form>
-    )
-}
+    );
+};
 
 export default UserUsername;
