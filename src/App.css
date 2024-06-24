@@ -26,20 +26,6 @@ a:hover {
   background-color: #FFFF; 
 }
 
-button {
-  background-color: #6BAF5E; 
-  color: #377D49; 
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-button:hover {
-  background-color: #77B66B; 
-}
-
 /* Inputs */
 input, textarea {
   background-color: #FFF; 

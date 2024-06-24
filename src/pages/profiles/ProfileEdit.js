@@ -14,6 +14,7 @@ import {
 } from "../../contexts/CurrentUserContext";
 import LogoutButton from "../../components/LogoutButton"
 import styles from "../../styles/ProfileEdit.module.css"
+import ProfileEditDropDown from "../../components/ProfileEditDropDown";
 
 /*
 The ProfileEdit component allows users to edit their profile information, 
@@ -65,14 +66,6 @@ const ProfileEdit = () => {
     });
   };
 
-  const handleEditUsername = () => {
-    history.push(`/profiles/edit/username`);
-  };
-
-  const handleEditPassword = () => {
-    history.push(`/profiles/edit/password`);
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -115,7 +108,7 @@ const ProfileEdit = () => {
         </Alert>
       ))}
       <Button onClick={() => history.goBack()}>
-        Cancel
+        Exit!
       </Button>
       <Button type="submit">
         Save

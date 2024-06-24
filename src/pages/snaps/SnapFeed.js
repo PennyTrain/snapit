@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { axiosReq } from '../../snapit_api/axiosDefaults';
 import Snap from '../snaps/Snap';
-import { Col, Row, Container } from "react-bootstrap";
+import { Col, Row, Container, Button } from "react-bootstrap";
 import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentsContainer from "../../components/CommentsContainer";
@@ -12,6 +12,7 @@ function SnapFeed() {
     const snapId = Number(id); // Convert snapId to a number
     const [snap, setSnap] = useState({ results: [] });
     const [comments, setComments] = useState({ results: [] });
+    const [showCommentForm, setShowCommentForm] = useState(false);
     const currentUser = useCurrentUser();
 
     useEffect(() => {
@@ -32,6 +33,10 @@ function SnapFeed() {
         handleMount();
     }, [snapId]);
 
+    const handleShowCommentForm = () => {
+        setShowCommentForm(!showCommentForm);
+    };
+
     return (
         <Row>
             <Col>
@@ -41,13 +46,18 @@ function SnapFeed() {
                         <Container>
                             <CommentsContainer snapId={snapId} setSnaps={setSnap} setComments={setComments} />
                         </Container>
-                        <CommentCreateForm
-                            snapId={snapId}
-                            setSnaps={setSnap}
-                            setComments={setComments}
-                            profileImage={currentUser?.profile_image}
-                            profile_id={currentUser?.profile_id}
-                        />
+                        <Button onClick={handleShowCommentForm}>
+                            {showCommentForm ? "Close Comment Form" : "Add Comment"}
+                        </Button>
+                        {showCommentForm && (
+                            <CommentCreateForm
+                                snapId={snapId}
+                                setSnaps={setSnap}
+                                setComments={setComments}
+                                profileImage={currentUser?.profile_image}
+                                profile_id={currentUser?.profile_id}
+                            />
+                        )}
                     </>
                 )}
             </Col>

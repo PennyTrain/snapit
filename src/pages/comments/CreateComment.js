@@ -3,18 +3,11 @@ import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
-/*
-The CommentCreateForm component allows authenticated users to create
-and submit comments with additional pet details such as name, age, 
-breed, and type, along with an optional image upload. It utilizes the 
-useImageUpload custom hook for handling image uploads and updates the 
-state and UI upon successful comment submission. If a user is not logged
-in, a prompt to log in is displayed instead of the form.
- */
 
 function CreateComment(props) {
   const { snapId, setSnaps, setComments, profileImage, profile_id } = props;
@@ -25,13 +18,14 @@ function CreateComment(props) {
   const [petBreed, setPetBreed] = useState("");
   const [petType, setPetType] = useState("Other");
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
-
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+  const [successMessage, setSuccessMessage] = useState("");
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-        const formData = new FormData();
+      const formData = new FormData();
       formData.append("body", body);
-        formData.append("snap", snapId);
+      formData.append("snap", snapId);
       formData.append("pet_name", petName);
       formData.append("pet_age", petAge);
       formData.append("pet_breed", petBreed);
@@ -43,7 +37,7 @@ function CreateComment(props) {
       setComments((prevComments) => ({
         ...prevComments,
         results: [data, ...prevComments.results],
-            }));
+      }));
       setSnaps((prevSnaps) => ({
         results: [
           {
@@ -58,13 +52,18 @@ function CreateComment(props) {
       setPetBreed("");
       setPetType("Other");
       resetImage();
-        } catch (err) {
+      setSuccessMessage("Comment posted successfully!");
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000); // Refresh the page after 1 second
+    } catch (err) {
       console.log(err);
-        }
-    };
+    }
+  };
 
-    return (
+  return (
     <>
+      {successMessage && <Alert variant="success">{successMessage}</Alert>}
       {currentUser ? (
         <Form className={`mt-2 ${styles.formContainer}`} onSubmit={handleSubmit}>
           <Form.Group>
@@ -77,16 +76,16 @@ function CreateComment(props) {
                 width={50}
                  />
               </Link>
-                <Form.Control
+              <Form.Control
                 placeholder="my comment..."
-                    as="textarea"
+                as="textarea"
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
-                    rows={2}
+                rows={2}
                 className={styles.formControl}
-                />
+              />
             </InputGroup>
-            </Form.Group>
+          </Form.Group>
           <Form.Group>
             <Form.Control
               placeholder="Pet Name"
@@ -127,13 +126,13 @@ function CreateComment(props) {
           </Form.Group>
           <Button disabled={!body.trim()} type="submit" className={styles.btn}>
             Post
-            </Button>
+          </Button>
         </Form>
       ) : (
         <p>Please log in to comment.</p>
       )}
     </>
-    );
+  );
 }
 
 export default CreateComment;
