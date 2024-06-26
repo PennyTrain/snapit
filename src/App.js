@@ -18,6 +18,7 @@ import UserPassword from './pages/profiles/UserPassword';
 import UserUsername from './pages/profiles/UserUsername';
 import { MessageProvider } from './contexts/MessageContext';  // Import MessageProvider
 import Messages from './components/Messages';  // Import Messages component
+import ProfileDelete from './pages/profiles/ProfileDelete';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/login" render={() => <LogInForm />} />
             <Route exact path="/register" render={() => <RegisterForm />} />
             <Route exact path="/snaps/create" render={() => <SnapCreate />} />
+            <Route path="/profiles/:id/delete" render={() => <ProfileDelete />} />
             <Route exact path="/snaps/:id/edit" render={() => <SnapEdit />} />
             <Route exact path="/snaps/:id" render={() => <SnapFeed />} />
             <Route exact path="/profiles/:id" render={() => <ProfilePage />} />

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { Media } from "react-bootstrap";
+import { Media, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import EditComment from "./EditComment";
+import styles from "../../styles/Comment.module.css";
 /*
 The Comment component renders individual comments within a snap, 
 including the owner's profile image, name, the comment body, and 
@@ -23,6 +24,7 @@ const Comment = (props) => {
         updated,
         body,
         id,
+        attachment,
         setSnaps,
         setComments,
     } = props;
@@ -54,27 +56,35 @@ const Comment = (props) => {
     return (
         <>
             <hr />
-            <Media>
+            <Media className={styles.comment}>
                 <Link to={`/profiles/${profile_id}`}>
                     <img
                         src={profile_image}
                         alt={`${owner}'s profile`}
+                        className="mr-3"
                         height={50}
                         width={50}
-                        className="mr-3"
                     />
                 </Link>
                 <Media.Body className="align-self-center ml-2">
-                    <span>{owner}, {updated}</span>
+                    <div className={styles.commentHeader}>
+                        <span className={styles.commentText}>{owner}, {updated}</span>
+                        {attachment && (
+                            <Button variant="link" href={attachment} target="_blank" className={styles.attachmentButton}>
+                                <i className="fas fa-paperclip"></i>
+                            </Button>
+                        )}
+                    </div>
                     {editBody ? (
                         <EditComment
                             id={id}
                             body={body}
+                            attachment={attachment}
                             setComments={setComments}
                             setEnableUpdate={setEditBody}
                         />
                     ) : (
-                        <p>{body}</p>
+                        <p className={styles.commentText}>{body}</p>
                     )}
                 </Media.Body>
                 {is_owner && !editBody && (
@@ -95,6 +105,7 @@ Comment.propTypes = {
     updated: PropTypes.string.isRequired,
     body: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
+    attachment: PropTypes.string,
     setSnaps: PropTypes.func.isRequired,
     setComments: PropTypes.func.isRequired,
 };

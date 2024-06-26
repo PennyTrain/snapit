@@ -1,45 +1,71 @@
-.NavBar {
-    background-color: #4F6C50; 
-    border-bottom: 2px solid black; 
-  }
-  
-  .Active {
-    text-decoration: underline;
-    color: #FFFFFF; 
-  }
-  
-  .NavLink {
-    padding: 10px 15px;
-    color: #FFFFFF; 
-    text-decoration: none;
-    font-family: 'Comic Sans MS', sans-serif;
-    transition: color 0.3s ease, background-color 0.3s ease;
-    border-radius: 10px; 
-    border: 1px solid black; 
-  }
-  
-  .NavLink:hover {
-    color: #FFFFFF; 
-    background-color: #5F805D; 
-  }
-  
-  .NavbarBrand img {
-    border-radius: 50%;
-    transition: transform 0.3s ease;
-    color: white;
-  }
-  
-  .NavbarBrand img:hover {
-    transform: rotate(20deg);
-  }
-  
-  .NavbarBrand {
-    font-family: 'Comic Sans MS', sans-serif;
-    color: #FFFFFF; 
-  }
-  
-  .ProfilePic img {
-    border-radius: 50%;
-    border: 2px solid black; 
-  }
+/* NavBar.module.css */
 
+.NavBar {
+  background-color: #4F6C50; 
+  border-bottom: 2px solid black; 
+}
+
+.Active {
+  text-decoration: underline;
+  color: #FFFFFF; 
+}
+
+.NavLink {
+  background-color: #D8E2D1; 
+  color: #002366; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+
+.NavLink:hover {
+  background-color: #B4C6B8; 
+}
+
+.NavbarBrand img {
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.NavbarBrand img:hover {
+  transform: rotate(20deg);
+}
+
+.NavbarBrand {
+  font-family: 'Comic Sans MS', sans-serif;
+  color: #FFFFFF; 
+}
+
+.ProfilePic img {
+  border-radius: 50%;
+  border: 2px solid black; 
+}
+
+.NavLinksContainer {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+
+.logoutBtn {
+  background-color: #D8E2D1; 
+  color: #002366; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+
+.logoutBtn:hover {
+  background-color: #B4C6B8; 
+}

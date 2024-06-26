@@ -48,16 +48,16 @@ const NavBar = () => {
             style={{ color: '#fff' }}
           />
           <Navbar.Collapse id="basic-navbar-nav">
-            <Nav className="mr-auto">
+            <Nav className={styles.NavLinksContainer}>
               <NavLink exact to="/" activeClassName={styles.Active} className={styles.NavLink}>Home</NavLink>
               {currentUser ? (
                 <>
                   <NavLink className={styles.NavLink} to="/liked/feed">Liked</NavLink>
                   <NavLink className={styles.NavLink} to="/disliked/feed">Disliked</NavLink>
                   <NavLink className={styles.NavLink} to={`/profiles/${currentUser?.profile_id}`}>
-                    <ProfilePic src={currentUser?.profile_image} text="Profile" height={40} />
+                      Profile
                   </NavLink>
-                  <LogoutButton className={styles.LogoutButton} />
+                  <LogoutButton />
                 </>
               ) : (
                 <>

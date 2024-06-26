@@ -19,9 +19,22 @@ function CreateComment(props) {
   const [petType, setPetType] = useState("Other");
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
   const [successMessage, setSuccessMessage] = useState("");
-  
+  const [errors, setErrors] = useState({});
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const newErrors = {};
+    if (petAge < 0) {
+      newErrors.pet_age = ["Age cannot be negative"];
+    } else if (petAge > 300) {
+      newErrors.pet_age = ["Age cannot be more than 300 years"];
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
     try {
       const formData = new FormData();
       formData.append("body", body);
@@ -102,6 +115,11 @@ function CreateComment(props) {
               onChange={(e) => setPetAge(e.target.value)}
               className={styles.formControl}
             />
+            {errors?.pet_age?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
           </Form.Group>
           <Form.Group>
             <Form.Control

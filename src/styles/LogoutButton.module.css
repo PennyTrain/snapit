@@ -1,0 +1,19 @@
+/* LogoutButton.module.css */
+
+.logoutBtn {
+    background-color: #D8E2D1; 
+    color: #002366; 
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .logoutBtn:hover {
+    background-color: #B4C6B8; 
+  }
+  

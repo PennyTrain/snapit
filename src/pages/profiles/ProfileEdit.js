@@ -114,6 +114,9 @@ const ProfileEdit = () => {
         Save
       </Button>
       <LogoutButton />
+      {/* <Button variant="danger" onClick={() => history.push(`/profiles/${id}/delete`)}>
+        Delete Profile
+      </Button> */}
     </>
   );
 

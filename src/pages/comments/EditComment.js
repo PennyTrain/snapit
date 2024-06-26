@@ -16,6 +16,7 @@ function EditComment(props) {
     const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const [errors, setErrors] = useState({});
 
     if (attachment && !image) {
         setImage(attachment);
@@ -24,8 +25,14 @@ function EditComment(props) {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        if (!editBody.trim() || !editPetName.trim() || !editPetAge || !editPetBreed.trim() || !editPetType.trim()) {
-            setErrorMessage("All fields are required.");
+        const newErrors = {};
+        if (editPetAge < 0) {
+            newErrors.pet_age = ["Age cannot be negative"];
+        } else if (editPetAge > 300) {
+            newErrors.pet_age = ["Age cannot be more than 300 years"];
+        }
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
             return;
         }
 
@@ -75,68 +82,68 @@ function EditComment(props) {
         <Form className={styles.formContainer} onSubmit={handleSubmit}>
             {successMessage && <Alert variant="success" className={styles.alert}>{successMessage}</Alert>}
             {errorMessage && <Alert variant="danger" className={styles.alert}>{errorMessage}</Alert>}
-            <Form.Group controlId="editComment">
-                <Form.Label>Edit Comment</Form.Label>
+            <Form.Group controlId="editCommentBody">
                 <Form.Control
                     as="textarea"
-                    rows={3}
+                    rows={2}
                     value={editBody}
                     onChange={(e) => setEditBody(e.target.value)}
                     className={styles.formControl}
                 />
             </Form.Group>
             <Form.Group controlId="editPetName">
-                <Form.Label>Pet Name</Form.Label>
                 <Form.Control
                     type="text"
+                    placeholder="Pet Name"
                     value={editPetName}
                     onChange={(e) => setEditPetName(e.target.value)}
                     className={styles.formControl}
                 />
             </Form.Group>
             <Form.Group controlId="editPetAge">
-                <Form.Label>Pet Age</Form.Label>
                 <Form.Control
                     type="number"
+                    placeholder="Pet Age"
                     value={editPetAge}
                     onChange={(e) => setEditPetAge(e.target.value)}
                     className={styles.formControl}
                 />
+                {errors?.pet_age?.map((message, idx) => (
+                    <Alert variant="warning" key={idx}>
+                        {message}
+                    </Alert>
+                ))}
             </Form.Group>
             <Form.Group controlId="editPetBreed">
-                <Form.Label>Pet Breed</Form.Label>
                 <Form.Control
                     type="text"
+                    placeholder="Pet Breed"
                     value={editPetBreed}
                     onChange={(e) => setEditPetBreed(e.target.value)}
                     className={styles.formControl}
                 />
             </Form.Group>
             <Form.Group controlId="editPetType">
-                <Form.Label>Pet Type</Form.Label>
                 <Form.Control
                     type="text"
+                    placeholder="Pet Type"
                     value={editPetType}
                     onChange={(e) => setEditPetType(e.target.value)}
                     className={styles.formControl}
                 />
             </Form.Group>
-            <Form.Group className={styles.imageUpload}>
+            <Form.Group controlId="editCommentImage">
                 <Form.Control type="file" ref={imageInputRef} style={{ display: "none" }} onChange={handleChangeImage} />
-                <Button onClick={handleOpenFileDialog}>Choose Image</Button>
-                {image && (
-                    <img
-                        src={typeof image === 'string' ? image : URL.createObjectURL(imageInputRef.current.files[0])}
-                        alt="Preview"
-                        className={styles.imagePreview}
-                    />
-                )}
+                <Button onClick={handleOpenFileDialog} className={styles.btn}>
+                    Choose Image
+                </Button>
+                {image && <img src={image} alt="Preview" className={styles.imagePreview} />}
             </Form.Group>
-            <Button onClick={() => setEnableUpdate(false)} type="button" className={styles.cancelBtn}>
-                Cancel
+            <Button type="submit" className={styles.btn}>
+                Save
             </Button>
-            <Button variant="primary" type="submit" className={styles.submitBtn}>
-                Update Comment
+            <Button variant="secondary" onClick={() => setEnableUpdate(false)} className={styles.btn}>
+                Cancel
             </Button>
         </Form>
     );
