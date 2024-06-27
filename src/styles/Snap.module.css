@@ -1,19 +1,20 @@
+/* Snap.module.css */
 .cardContainer {
-  max-width: 20rem;
-  min-width: 15rem; 
-  max-height: 30rem;
+  max-width: 350px;
+  min-width: 300px;
   margin: 1rem auto;
-  border: 1px solid #000;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.9);
+  border: 2px solid black;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #4F6C50;
+  overflow: hidden;
 }
 
 .cardImage {
-  border-bottom: 1px solid #0000;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  max-height: 15rem;
+  max-height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
 
 .cardBody {
@@ -21,25 +22,39 @@
 }
 
 .cardTitle {
-  font-size: 1.25rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
   margin-bottom: 0.5rem;
 }
 
 .cardText {
-  font-size: 1rem;
-  color: #FFFF;
+  font-size: 0.95rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.petDetails {
+  font-size: 0.85rem;
+  color: #fff;
   margin-bottom: 1rem;
 }
 
 .buttonGroup {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
 }
 
 .iconButton {
   cursor: pointer;
-  margin-right: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.iconButton:hover {
+  transform: scale(1.2);
 }
 
 .iconButton.disabled {
@@ -49,4 +64,28 @@
 .commentButton {
   display: inline-block;
   margin-right: 10px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.commentButton:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.authorLink {
+  color: #fff;
+  font-size: 0.85rem;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.authorLink:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.countText {
+  font-size: 0.85rem;
+  color: #fff;
 }

@@ -6,14 +6,14 @@ import { axiosReq } from '../../snapit_api/axiosDefaults';
 import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { useMessages } from '../../contexts/MessageContext';  // Import the context
+import { useMessages } from '../../contexts/MessageContext';
 
 const SnapCreate = () => {
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
   const [errors, setErrors] = useState({});
   const history = useHistory();
-  const currentUser = useCurrentUser();  // Get the current user
-  const { addMessage } = useMessages();  // Get the addMessage function
+  const currentUser = useCurrentUser();
+  const { addMessage } = useMessages();
 
   const [snapData, setSnapData] = useState({
     title: "",
@@ -43,17 +43,13 @@ const SnapCreate = () => {
         newErrors.pet_age = ["Age cannot be more than 300 years"];
       } else {
         delete newErrors.pet_age;
-        setSnapData({
-          ...snapData,
-          [name]: value,
-        });
       }
-    } else {
-      setSnapData({
-        ...snapData,
-        [name]: value,
-      });
     }
+
+    setSnapData({
+      ...snapData,
+      [name]: value,
+    });
 
     setErrors(newErrors);
   };
@@ -78,13 +74,13 @@ const SnapCreate = () => {
 
     try {
       const { data } = await axiosReq.post("/snaps/", formData);
-      addMessage("Snap created successfully!", "success");  // Use the addMessage function
+      addMessage("Snap created successfully!", "success");
       setTimeout(() => {
         history.push(`/snaps/${data.id}`);
-      }, 2000);  // Redirect after 2 seconds
+      }, 2000);
     } catch (err) {
       console.log(err);
-      addMessage("An error occurred while creating the snap.", "danger");  // Use the addMessage function
+      addMessage("An error occurred while creating the snap.", "danger");
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -92,8 +88,8 @@ const SnapCreate = () => {
   };
 
   if (!currentUser) {
-    history.push('/login');  // Redirect to login page if user is not logged in
-    return null;  // Render nothing while redirecting
+    history.push('/login');
+    return null;
   }
 
   const snapFields = (
@@ -230,7 +226,7 @@ const SnapCreate = () => {
               style={{ display: "none" }}
             />
             <Button variant="primary" onClick={handleOpenFileDialog}>
-              Choose Image
+              Choose Image  
             </Button>
           </div>
           {errors?.featured_image?.map((message, idx) => (

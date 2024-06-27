@@ -23,6 +23,7 @@ function Snap(props) {
     snaplikes_count, featured_image,
     snaplike_id, snapcomments_count,
     snapdislike_id, snapdislikes_count,
+    pet_name, pet_age, pet_breed, pet_type, location,
     setSnaps
   } = props;
 
@@ -109,14 +110,14 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t like your own post!</Tooltip>}>
-          <span><i style={{ color: "white" }} className={`${styles.iconButton} far fa-heart`} /></span>
+          <span><i className={`${styles.iconButton} far fa-heart`} style={{ color: "gray" }} /></span>
         </OverlayTrigger>
       );
     }
     if (snaplike_id) {
       return (
         <span onClick={handleSnapUnlike}>
-          <i style={{ color: "#f84bd4" }} className={`${styles.iconButton} far fa-heart`}/>
+          <i className={`${styles.iconButton} fas fa-heart`} style={{ color: "#f84bd4" }} />
         </span>
       );
     }
@@ -129,7 +130,7 @@ function Snap(props) {
     }
     return (
       <OverlayTrigger placement="top" overlay={<Tooltip>Log in to like posts!</Tooltip>}>
-        <span><i className={`${styles.iconButton} far fa-heart`} /></span>
+        <span><i className={`${styles.iconButton} far fa-heart`} style={{ color: "gray" }} /></span>
       </OverlayTrigger>
     );
   };
@@ -138,14 +139,14 @@ function Snap(props) {
     if (is_owner) {
       return (
         <OverlayTrigger placement="top" overlay={<Tooltip>You can&apos;t dislike your own snaps!</Tooltip>}>
-          <span> <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "white" }} /></span>
+          <span><i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "gray" }} /></span>
         </OverlayTrigger>
       );
     }
     if (snapdislike_id) {
       return (
         <span onClick={handleSnapUndislike}>
-          <i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "#f84bd4" }} /> 
+          <i className={`${styles.iconButton} fas fa-thumbs-down`} style={{ color: "#f84bd4" }} />
         </span>
       );
     }
@@ -158,7 +159,7 @@ function Snap(props) {
     }
     return (
       <OverlayTrigger placement="top" overlay={<Tooltip>Log in to dislike snaps!</Tooltip>}>
-        <span> <i className={`${styles.iconButton} far fa-thumbs-down`} /></span>
+        <span><i className={`${styles.iconButton} far fa-thumbs-down`} style={{ color: "white" }} /></span>
       </OverlayTrigger>
     );
   };
@@ -185,8 +186,8 @@ function Snap(props) {
         <OverlayTrigger placement="top" overlay={<Tooltip>Log in to create comments!</Tooltip>}>
           <Link to={`/snaps/${id}`} className={styles.commentButton}>
             <span>
-              <i className="far fa-comments" /> 
-              </span>
+              <i className="far fa-comments" />
+            </span>
           </Link>
         </OverlayTrigger>
       );
@@ -195,17 +196,19 @@ function Snap(props) {
 
   return (
     <Card className={styles.cardContainer}>
+      <Card.Text className={styles.petDetails}>Location: {location}</Card.Text>
       <Link to={`/snaps/${id}`}>
         <Card.Img variant="top" src={featured_image} className={styles.cardImage} />
       </Link>
+      {renderOwnerTools()}
       <Card.Body className={styles.cardBody}>
-        <Link to={`/profiles/${profile_id}`}>{owner}</Link>
+        <Link to={`/profiles/${profile_id}`} className={styles.authorLink}>User: {owner} </Link>
         <Card.Title className={styles.cardTitle}>{title}</Card.Title>
         <Card.Text className={styles.cardText}>{body}</Card.Text>
-        {renderOwnerTools()}
+        <Card.Text className={styles.petDetails}>Pet Age: {pet_age} | Pet Breed: {pet_breed} | Pet Type: {pet_type} | Pet Name: {pet_name}</Card.Text>
         <div className={styles.buttonGroup}>
-          {renderLikeButton()} {snaplikes_count}
-          {renderDislikeButton()} {snapdislikes_count}
+          {renderLikeButton()} <span className={styles.countText}>{snaplikes_count}</span>
+          {renderDislikeButton()} <span className={styles.countText}>{snapdislikes_count}</span>
           {renderCommentsButton()}
         </div>
       </Card.Body>
@@ -225,6 +228,11 @@ Snap.propTypes = {
   snapcomments_count: PropTypes.number.isRequired,
   snapdislike_id: PropTypes.number,
   snapdislikes_count: PropTypes.number.isRequired,
+  pet_name: PropTypes.string,
+  pet_age: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  pet_breed: PropTypes.string,
+  pet_type: PropTypes.string,
+  location: PropTypes.string,
   setSnaps: PropTypes.func.isRequired
 };
 
