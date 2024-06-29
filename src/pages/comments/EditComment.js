@@ -50,31 +50,30 @@ function EditComment(props) {
             const { data } = await axiosRes.put(`/snapcomments/${id}/`, formData);
             setComments((prevComments) => ({
                 ...prevComments,
-                results: prevComments.results.map((comment) => {
-                    return comment.id === id
+                results: prevComments.results.map((comment) =>
+                    comment.id === id
                         ? {
-                            ...comment,
-                            body: data.body,
-                            pet_name: data.pet_name,
-                            pet_age: data.pet_age,
-                            pet_breed: data.pet_breed,
-                            pet_type: data.pet_type,
-                            attachment: data.attachment,
-                            updated: "Just now!",
-                        }
-                        : comment;
-                }),
+                              ...comment,
+                              body: data.body,
+                              pet_name: data.pet_name,
+                              pet_age: data.pet_age,
+                              pet_breed: data.pet_breed,
+                              pet_type: data.pet_type,
+                              attachment: data.attachment,
+                              updated: "Just now!",
+                          }
+                        : comment
+                ),
             }));
             setSuccessMessage("Comment updated successfully!");
             setErrorMessage("");
-
-            // Delay setting `setEnableUpdate` to allow success message to be shown
             setTimeout(() => {
                 setEnableUpdate(false);
             }, 2000);
         } catch (err) {
+            console.error("Error updating comment:", err);
             setErrorMessage("Failed to update comment. Please try again.");
-            console.log(err);
+            setErrors(err.response?.data || {});
         }
     };
 
@@ -109,7 +108,7 @@ function EditComment(props) {
                     className={styles.formControl}
                 />
                 {errors?.pet_age?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
+                    <Alert key={idx} variant="warning" className={styles.alert}>
                         {message}
                     </Alert>
                 ))}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Button, Alert, Container } from "react-bootstrap";
 import { Link, useHistory } from 'react-router-dom';
 import axios from "axios";
+import { useMessages } from '../../contexts/MessageContext'; 
 import styles from '../../styles/AuthForm.module.css';
 /*
 The RegisterForm component handles user registration by 
@@ -21,6 +22,7 @@ const RegisterForm = () => {
     const { username, password1, password2 } = registerData;
     const history = useHistory();
     const [errors, setErrors] = useState({});
+    const { addMessage } = useMessages();
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,8 +31,6 @@ const RegisterForm = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-
-        // Check if passwords match before making the API request
         if (password1 !== password2) {
             setErrors({ password2: ["Passwords do not match."] });
             return;
@@ -38,11 +38,14 @@ const RegisterForm = () => {
 
         try {
             await axios.post("/dj-rest-auth/registration/", registerData);
+            setRegisterData({ username: "", password1: "", password2: "" });
+            addMessage({ text: "You have been successfully registered. Please log in.", type: "success" });
             history.push('/login');
         } catch (err) {
             if (err.response?.data) {
                 setErrors(err.response.data);
             }
+            addMessage({ text: "Failed to register. Please try again later.", type: "danger" });
         }
     };
 

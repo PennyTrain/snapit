@@ -1,4 +1,3 @@
-// src/components/SnapCreate.js
 import React, { useState } from 'react';
 import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router';
@@ -6,14 +5,12 @@ import { axiosReq } from '../../snapit_api/axiosDefaults';
 import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-import { useMessages } from '../../contexts/MessageContext';
 
 const SnapCreate = () => {
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
   const [errors, setErrors] = useState({});
   const history = useHistory();
   const currentUser = useCurrentUser();
-  const { addMessage } = useMessages();
 
   const [snapData, setSnapData] = useState({
     title: "",
@@ -56,12 +53,12 @@ const SnapCreate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
     if (!validateTitle(title)) {
       setErrors({ title: ["Title cannot be empty or just spaces"] });
       return;
     }
-
+  
     const formData = new FormData();
     formData.append('title', title);
     formData.append('body', body);
@@ -71,22 +68,18 @@ const SnapCreate = () => {
     formData.append('pet_type', pet_type);
     formData.append('location', location);
     formData.append('featured_image', imageInputRef.current.files[0]);
-
+  
     try {
       const { data } = await axiosReq.post("/snaps/", formData);
-      addMessage("Snap created successfully!", "success");
-      setTimeout(() => {
-        history.push(`/snaps/${data.id}`);
-      }, 2000);
+      history.push(`/snaps/${data.id}`);
     } catch (err) {
       console.log(err);
-      addMessage("An error occurred while creating the snap.", "danger");
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
+        setErrors(err.response?.data || {});
       }
     }
   };
-
+  
   if (!currentUser) {
     history.push('/login');
     return null;
@@ -211,11 +204,11 @@ const SnapCreate = () => {
   );
 
   return (
-    <Container className="mt-4">
+    <Container className={styles.formContainer}>
       <h1 className="text-center">Create Snap</h1>
       <Form onSubmit={handleSubmit}>
         <Form.Group>
-          {image && <Image src={image} thumbnail className={styles.image} />}
+          {image && <Image src={image} thumbnail className={styles.imagePreview} />}
           <div className="d-flex justify-content-center">
             <Form.File
               id="image-upload"
@@ -226,7 +219,7 @@ const SnapCreate = () => {
               style={{ display: "none" }}
             />
             <Button variant="primary" onClick={handleOpenFileDialog}>
-              Choose Image  
+              Choose Image
             </Button>
           </div>
           {errors?.featured_image?.map((message, idx) => (
@@ -235,10 +228,15 @@ const SnapCreate = () => {
             </Alert>
           ))}
         </Form.Group>
+
         {snapFields}
-        <div className="text-center">
-          <Button variant="primary" type="submit">
-            Create Snap
+
+        <div className={styles.buttonGroup}>
+          <Button variant="secondary" className={styles.cancelBtn} onClick={() => history.goBack()}>
+            Cancel
+          </Button>
+          <Button variant="success" className={styles.submitBtn} type="submit">
+            Create
           </Button>
         </div>
       </Form>

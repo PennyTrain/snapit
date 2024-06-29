@@ -25,6 +25,10 @@ const Comment = (props) => {
         body,
         id,
         attachment,
+        pet_name,
+        pet_age,
+        pet_breed,
+        pet_type,
         setSnaps,
         setComments,
     } = props;
@@ -57,7 +61,7 @@ const Comment = (props) => {
         <>
             <hr />
             <Media className={styles.comment}>
-                <Link to={`/profiles/${profile_id}`}>
+                <Link to={`/profiles/${profile_id}`} className={styles.imgContainer}>
                     <img
                         src={profile_image}
                         alt={`${owner}'s profile`}
@@ -84,7 +88,10 @@ const Comment = (props) => {
                             setEnableUpdate={setEditBody}
                         />
                     ) : (
-                        <p className={styles.commentText}>{body}</p>
+                        <>
+                            <p className={styles.commentText}>{body}</p>
+                            <p className={styles.commentInfo}>Pet Name: {pet_name} | Pet Age: {pet_age} | Pet Breed: {pet_breed} | Pet Breed: {pet_breed}</p>
+                        </>
                     )}
                 </Media.Body>
                 {is_owner && !editBody && (
@@ -106,6 +113,10 @@ Comment.propTypes = {
     body: PropTypes.string.isRequired,
     id: PropTypes.number.isRequired,
     attachment: PropTypes.string,
+    pet_name: PropTypes.string,
+    pet_age: PropTypes.string,
+    pet_breed: PropTypes.string,
+    pet_type: PropTypes.string,
     setSnaps: PropTypes.func.isRequired,
     setComments: PropTypes.func.isRequired,
 };

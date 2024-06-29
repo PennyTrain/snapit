@@ -1,275 +1,272 @@
-import React, { useEffect, useState } from "react";
-import { Form, Button, Container, Alert, Image } from "react-bootstrap";
-import { useHistory, useParams } from "react-router-dom";
-import { axiosReq } from "../../snapit_api/axiosDefaults";
-import useImageUpload from "../../hooks/useImageUpload";
-import styles from "../../styles/SnapForm.module.css";
+import React, { useState, useEffect } from 'react';
+import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
+import { useHistory, useParams } from 'react-router';
+import { axiosReq } from '../../snapit_api/axiosDefaults';
+import styles from '../../styles/SnapForm.module.css';
+import useImageUpload from '../../hooks/useImageUpload';
+import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
-function SnapEdit() {
-    const [errors, setErrors] = useState({});
-    const [snapData, setSnapData] = useState({
-        title: "",
-        body: "",
-        pet_name: "",
-        pet_age: "",
-        pet_breed: "",
-        pet_type: "",
-        location: "",
+const SnapEdit = () => {
+  const { id } = useParams();
+  const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
+  const [errors, setErrors] = useState({});
+  const history = useHistory();
+  const currentUser = useCurrentUser();
+
+  const [snapData, setSnapData] = useState({
+    title: "",
+    body: "",
+    pet_name: "",
+    pet_age: "",
+    pet_breed: "",
+    pet_type: "",
+    location: "",
+  });
+
+  useEffect(() => {
+    const fetchSnapData = async () => {
+      try {
+        const { data } = await axiosReq.get(`/snaps/${id}`);
+        setSnapData({
+          title: data.title,
+          body: data.body,
+          pet_name: data.pet_name,
+          pet_age: data.pet_age,
+          pet_breed: data.pet_breed,
+          pet_type: data.pet_type,
+          location: data.location,
+        });
+      } catch (error) {
+        console.error('Error fetching snap:', error);
+      }
+    };
+
+    fetchSnapData();
+  }, [id]);
+
+  const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
+
+  const validateTitle = (title) => {
+    return title.trim().length > 0;
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    let newErrors = { ...errors };
+
+    if (name === "pet_age") {
+      if (value < 0) {
+        newErrors.pet_age = ["Age cannot be negative"];
+      } else if (value > 300) {
+        newErrors.pet_age = ["Age cannot be more than 300 years"];
+      } else {
+        delete newErrors.pet_age;
+      }
+    }
+
+    setSnapData({
+      ...snapData,
+      [name]: value,
     });
-    const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
-    const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
-    const history = useHistory();
-    const { id } = useParams();
 
-    const [successMessage, setSuccessMessage] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
+    setErrors(newErrors);
+  };
 
-    useEffect(() => {
-        const handleMount = async () => {
-            try {
-                const { data } = await axiosReq.get(`/snaps/${id}/`);
-                const {
-                    title, body, featured_image,
-                    pet_name, pet_age, pet_breed, pet_type,
-                    location, is_owner
-                } = data;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-                if (is_owner) {
-                    setSnapData({
-                        title, body,
-                        pet_name, pet_age, pet_breed, pet_type,
-                        location,
-                    });
-                    setImage(featured_image);
-                } else {
-                    history.push("/");
-                }
-            } catch (err) {
-                console.log(err);
-            }
-        };
+    if (!validateTitle(title)) {
+      setErrors({ title: ["Title cannot be empty or just spaces"] });
+      return;
+    }
 
-        handleMount();
-    }, [history, id, setImage]);
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('body', body);
+    formData.append('pet_name', pet_name);
+    formData.append('pet_age', pet_age);
+    formData.append('pet_breed', pet_breed);
+    formData.append('pet_type', pet_type);
+    formData.append('location', location);
+    if (imageInputRef.current.files[0]) {
+      formData.append('featured_image', imageInputRef.current.files[0]);
+    }
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        let newErrors = { ...errors };
+    try {
+      const { data } = await axiosReq.put(`/snaps/${id}/`, formData);
+      setTimeout(() => {
+        history.push(`/snaps/${data.id}`);
+      }, 2000);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+      }
+    }
+  };
 
-        if (name === "pet_age") {
-            if (value < 0) {
-                newErrors.pet_age = ["Age cannot be negative"];
-            } else if (value > 300) {
-                newErrors.pet_age = ["Age cannot be more than 300 years"];
-            } else {
-                delete newErrors.pet_age;
-                setSnapData({
-                    ...snapData,
-                    [name]: value,
-                });
-            }
-        } else {
-            setSnapData({
-                ...snapData,
-                [name]: value,
-            });
-        }
+  if (!currentUser) {
+    history.push('/login');
+    return null;
+  }
 
-        setErrors(newErrors);
-    };
+  const snapFields = (
+    <div>
+      <Form.Group controlId="formTitle" className={styles.formControl}>
+        <Form.Control
+          name="title"
+          value={title}
+          onChange={handleChange}
+          size="lg"
+          type="text"
+          placeholder="Enter title"
+        />
+        {errors?.title?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
-        const formData = new FormData();
+      <Form.Group controlId="formBody" className={styles.formControl}>
+        <Form.Label>Body</Form.Label>
+        <Form.Control
+          name="body"
+          value={body}
+          onChange={handleChange}
+          as="textarea"
+          rows={3}
+          placeholder="Enter body"
+        />
+        {errors?.body?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-        formData.append("title", title);
-        formData.append("body", body);
-        formData.append("pet_name", pet_name);
-        formData.append("pet_age", pet_age);
-        formData.append("pet_breed", pet_breed);
-        formData.append("pet_type", pet_type);
-        formData.append("location", location);
+      <Form.Group controlId="form_pet_name" className={styles.formControl}>
+        <Form.Label>Pet Name</Form.Label>
+        <Form.Control
+          name="pet_name"
+          value={pet_name}
+          onChange={handleChange}
+          placeholder="Enter your pet's name!"
+        />
+        {errors?.pet_name?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-        if (imageInputRef.current.files[0]) {
-            formData.append("featured_image", imageInputRef.current.files[0]);
-        }
+      <Form.Group controlId="form_pet_breed" className={styles.formControl}>
+        <Form.Label>Pet Breed</Form.Label>
+        <Form.Control
+          name="pet_breed"
+          value={pet_breed}
+          onChange={handleChange}
+          placeholder="Enter your pet's breed!"
+        />
+        {errors?.pet_breed?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-        try {
-            await axiosReq.put(`/snaps/${id}/`, formData);
-            setSuccessMessage("Snap updated successfully!");
-            setErrorMessage("");
-            history.push(`/snaps/${id}`);
-        } catch (err) {
-            console.log(err);
-            setSuccessMessage("");
-            setErrorMessage("Failed to update snap. Please try again.");
-            if (err.response?.status !== 401) {
-                setErrors(err.response?.data);
-            }
-        }
-    };
+      <Form.Group controlId="form_pet_age" className={styles.formControl}>
+        <Form.Label>Pet Age</Form.Label>
+        <Form.Control
+          type="number"
+          name="pet_age"
+          value={pet_age}
+          onChange={handleChange}
+          placeholder="Enter your pet's age!"
+        />
+        {errors?.pet_age?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-    const snapFields = (
-        <div>
-            <Form.Group controlId="formTitle" className={styles.formControl}>
-                <Form.Label>Title</Form.Label>
-                <Form.Control
-                    name="title"
-                    value={title}
-                    onChange={handleChange}
-                    size="lg"
-                    type="text"
-                    placeholder="Enter title"
-                />
-                {errors?.title?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
+      <Form.Group controlId="form_pet_type" className={styles.formControl}>
+        <Form.Label>Pet Type</Form.Label>
+        <Form.Control as="select" name="pet_type" value={pet_type} onChange={handleChange}>
+          <option>Cat</option>
+          <option>Dog</option>
+          <option>Bunny</option>
+          <option>Hamster</option>
+          <option>Bird</option>
+          <option>Fish</option>
+          <option>Horse</option>
+          <option>Reptiles</option>
+          <option>Other</option>
+        </Form.Control>
+        {errors?.pet_type?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
 
-            <Form.Group controlId="formBody" className={styles.formControl}>
-                <Form.Label>Body</Form.Label>
-                <Form.Control
-                    name="body"
-                    value={body}
-                    onChange={handleChange}
-                    as="textarea"
-                    rows={3}
-                    placeholder="Enter body"
-                />
-                {errors?.body?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
+      <Form.Group controlId="form_location" className={styles.formControl}>
+        <Form.Label>Location</Form.Label>
+        <Form.Control
+          name="location"
+          value={location}
+          onChange={handleChange}
+          placeholder="Where is this?"
+        />
+        {errors?.location?.map((message, idx) => (
+          <Alert variant="warning" key={idx}>
+            {message}
+          </Alert>
+        ))}
+      </Form.Group>
+    </div>
+  );
 
-            <Form.Group controlId="form_pet_name" className={styles.formControl}>
-                <Form.Label>Pet Name</Form.Label>
-                <Form.Control
-                    name="pet_name"
-                    value={pet_name}
-                    onChange={handleChange}
-                    placeholder="Enter your pet's name!"
-                />
-                {errors?.pet_name?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
+  return (
+    <Container className={styles.formContainer}>
+      <h1 className="text-center">Edit Snap</h1>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          {image && <Image src={image} thumbnail className={styles.imagePreview} />}
+          <div className="d-flex justify-content-center">
+            <Form.File
+              id="image-upload"
+              label="Upload Image"
+              custom
+              onChange={handleChangeImage}
+              ref={imageInputRef}
+              style={{ display: "none" }}
+            />
+            <Button variant="primary" onClick={handleOpenFileDialog}>
+              Choose Image
+            </Button>
+          </div>
+          {errors?.featured_image?.map((message, idx) => (
+            <Alert variant="warning" key={idx}>
+              {message}
+            </Alert>
+          ))}
+        </Form.Group>
 
-            <Form.Group controlId="form_pet_breed" className={styles.formControl}>
-                <Form.Label>Pet Breed</Form.Label>
-                <Form.Control
-                    name="pet_breed"
-                    value={pet_breed}
-                    onChange={handleChange}
-                    placeholder="Enter your pet's breed!"
-                />
-                {errors?.pet_breed?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
+        {snapFields}
 
-            <Form.Group controlId="form_pet_age" className={styles.formControl}>
-                <Form.Label>Pet Age</Form.Label>
-                <Form.Control
-                    type="number"
-                    name="pet_age"
-                    value={pet_age}
-                    onChange={handleChange}
-                    placeholder="Enter your pet's age!"
-                />
-                {errors?.pet_age?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
-
-            <Form.Group controlId="form_pet_type" className={styles.formControl}>
-                <Form.Label>Pet Type</Form.Label>
-                <Form.Control as="select" name="pet_type" value={pet_type} onChange={handleChange}>
-                    <option>Cat</option>
-                    <option>Dog</option>
-                    <option>Bunny</option>
-                    <option>Hamster</option>
-                    <option>Bird</option>
-                    <option>Fish</option>
-                    <option>Horse</option>
-                    <option>Reptiles</option>
-                    <option>Other</option>
-                </Form.Control>
-            </Form.Group>
-
-            <Form.Group controlId="form_location" className={styles.formControl}>
-                <Form.Label>Location</Form.Label>
-                <Form.Control
-                    name="location"
-                    value={location}
-                    onChange={handleChange}
-                    placeholder="Enter your location!"
-                />
-                {errors?.location?.map((message, idx) => (
-                    <Alert variant="warning" key={idx}>
-                        {message}
-                    </Alert>
-                ))}
-            </Form.Group>
-
-            <div className={styles.buttonGroup}>
-                <Button onClick={() => history.goBack()} className={styles.cancelBtn}>
-                    Nevermind!
-                </Button>
-                <Button type="submit" className={styles.submitBtn}>
-                    Save Snap
-                </Button>
-            </div>
+        <div className={styles.buttonGroup}>
+          <Button variant="secondary" className={styles.cancelBtn} onClick={() => history.goBack()}>
+            Cancel
+          </Button>
+          <Button variant="success" className={styles.submitBtn} type="submit">
+            Update
+          </Button>
         </div>
-    );
-
-    return (
-        <Container className={styles.formContainer}>
-            <h1>Edit Snap</h1>
-            {successMessage && <Alert variant="success">{successMessage}</Alert>}
-            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="formImage" className={styles.imageUpload}>
-                    {image ? (
-                        <>
-                            <figure>
-                                <Image src={image} rounded className={styles.imagePreview} />
-                            </figure>
-                            <Form.Label onClick={handleOpenFileDialog} style={{ cursor: 'pointer' }}>
-                                Change the image
-                            </Form.Label>
-                        </>
-                    ) : (
-                        <Form.Label onClick={handleOpenFileDialog} style={{ cursor: 'pointer' }}>
-                            Click or tap to upload an image
-                        </Form.Label>
-                    )}
-                    <Form.File
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleChangeImage}
-                        ref={imageInputRef}
-                        style={{ display: 'none' }}
-                    />
-                    {errors?.featured_image?.map((message, idx) => (
-                        <Alert variant="warning" key={idx}>
-                            {message}
-                        </Alert>
-                    ))}
-                </Form.Group>
-                <Container>{snapFields}</Container>
-            </Form>
-        </Container>
-    );
-}
+      </Form>
+    </Container>
+  );
+};
 
 export default SnapEdit;

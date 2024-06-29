@@ -2,17 +2,17 @@ import React, { createContext, useContext, useState } from 'react';
 
 const MessageContext = createContext();
 
-export const useMessages = () => useContext(MessageContext);
-
 export const MessageProvider = ({ children }) => {
   const [messages, setMessages] = useState([]);
 
-  const addMessage = (message, type = 'success') => {
-    setMessages([...messages, { text: message, type }]);
+  const addMessage = (message) => {
+    setMessages([...messages, message]);
   };
 
   const removeMessage = (index) => {
-    setMessages(messages.filter((_, i) => i !== index));
+    const updatedMessages = [...messages];
+    updatedMessages.splice(index, 1);
+    setMessages(updatedMessages);
   };
 
   return (
@@ -21,3 +21,5 @@ export const MessageProvider = ({ children }) => {
     </MessageContext.Provider>
   );
 };
+
+export const useMessages = () => useContext(MessageContext);

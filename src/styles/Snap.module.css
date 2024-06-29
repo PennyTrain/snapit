@@ -1,20 +1,23 @@
-/* Snap.module.css */
 .cardContainer {
-  max-width: 350px;
-  min-width: 300px;
+  max-width: 20rem;
+  min-width: 20rem;
   margin: 1rem auto;
   border: 2px solid black;
-  border-radius: 10px;
+  border-radius: 10px; /* Keep border-radius for top corners */
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #4F6C50;
   overflow: hidden;
 }
 
 .cardImage {
+  width: 100%;
   max-height: 200px;
   object-fit: cover;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border: 2px solid black;
+  border-top-left-radius: 10px; /* Rounded top-left corner */
+  border-top-right-radius: 10px; /* Rounded top-right corner */
+  border-bottom-left-radius: 10px; /* Straight bottom-left corner */
+  border-bottom-right-radius: 10px; /* Straight bottom-right corner */
 }
 
 .cardBody {

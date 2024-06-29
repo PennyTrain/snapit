@@ -47,10 +47,16 @@ const UserPassword = () => {
             await axiosRes.post("/dj-rest-auth/password/change/", userDetail);
             setSuccessMessage("Password changed successfully!");
             setErrors({});
-            history.goBack();
+            setUserDetail({
+                new_password1: "",
+                new_password2: "",
+            });
+            setTimeout(() => {
+                history.push("/");
+            }, 2000);
         } catch (err) {
             console.log(err);
-            setErrors(err.response?.data);
+            setErrors(err.response?.data || {});
             setSuccessMessage("");
         }
     };
@@ -58,6 +64,11 @@ const UserPassword = () => {
     return (
         <Form onSubmit={handleSubmit}>
             {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            {errors?.non_field_errors?.map((message, idx) => (
+                <Alert key={idx} variant="danger">
+                    {message}
+                </Alert>
+            ))}
             <Form.Group>
                 <Form.Label>New Password</Form.Label>
                 <Form.Control
@@ -69,7 +80,7 @@ const UserPassword = () => {
                 />
             </Form.Group>
             {errors?.new_password1?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
+                <Alert key={idx} variant="danger">
                     {message}
                 </Alert>
             ))}
@@ -85,15 +96,15 @@ const UserPassword = () => {
                 />
             </Form.Group>
             {errors?.new_password2?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
+                <Alert key={idx} variant="danger">
                     {message}
                 </Alert>
             ))}
-            <Button onClick={() => history.goBack()}>
-                Back
+            <Button onClick={() => history.goBack()} variant="secondary">
+                Cancel
             </Button>
             <Button type="submit">
-                Save Password!
+                Save Password
             </Button>
         </Form>
     );

@@ -33,11 +33,11 @@ function ProfileEditDropDown() {
   };
 
   const handleEditUsername = () => {
-    history.push(`/profiles/edit/username`);
+    history.push(`/profiles/${id}/edit/username`);
   };
 
   const handleEditPassword = () => {
-    history.push(`/profiles/edit/password`);
+    history.push(`/profiles/${id}/edit/password`);
   };
 
   return (

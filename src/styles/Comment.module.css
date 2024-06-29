@@ -1,31 +1,51 @@
 .comment {
-    position: relative;
-    background-color: #4F6C50; /* Set background color */
-    padding: 10px;
-    border: 2px solid #fff; /* White border */
-    border-radius: 5px; /* Rounded corners */
+  position: relative;
+  background-color: #4F6C50; 
+  padding: 15px;
+  border: 2px solid #fff; 
+  border-radius: 10px; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+  transition: transform 0.2s, box-shadow 0.2s; 
+  margin-bottom: 15px;
+}
+
+.comment:hover {
+  transform: translateY(-5px); 
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); 
 }
 
 .commentHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0px; /* Space between header and comment body */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  flex-wrap: wrap; 
 }
 
 .attachmentButton {
-    color: #fff; /* White text color */
-    text-decoration: none;
-    padding: 0;
-    border: none;
-    background: none;
-    font-size: 1.25rem;
-    cursor: pointer;
-    margin-right: 20px; /* Space between edit comment and attachment icon */
+  color: #fff;
+  text-decoration: none;
+  padding: 0;
+  border: none;
+  background: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  margin-right: 20px; 
+  transition: color 0.2s; 
+}
+
+.attachmentButton:hover {
+  color: #D8E2D1; 
 }
 
 .commentText {
-    color: #fff; /* White text color */
+  color: #fff;
+}
+
+.commentInfo {
+  font-size: 0.85rem;
+  color: #fff;
+  margin-bottom: 1rem;
 }
 
 .cancelBtn,
@@ -39,12 +59,78 @@
   margin: 5px;
   width: 100px;
   text-align: center;
+  transition: background-color 0.3s, transform 0.3s; 
 }
 
 .cancelBtn {
   background-color: #B4C6B8; 
 }
 
+.cancelBtn:hover,
+.submitBtn:hover {
+  transform: scale(1.05);
+}
+
 button {
   display: inline-block;
+}
+
+.img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px; 
+}
+
+img {
+  border-radius: 50%;
+  border: 2px solid #fff;
+  transition: box-shadow 0.3s; 
+}
+
+img:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5); 
+}
+
+
+@media (max-width: 768px) {
+  .comment {
+      padding: 10px;
+  }
+
+  .attachmentButton {
+      font-size: 1rem; 
+      margin-right: 10px; 
+  }
+
+  .commentText {
+      font-size: 0.9rem; 
+  }
+
+  .cancelBtn,
+  .submitBtn {
+      width: auto; 
+      padding: 5px 8px;
+  }
+}
+
+@media (max-width: 576px) {
+  .commentHeader {
+      flex-direction: column; 
+      align-items: flex-start;
+  }
+
+  .commentText {
+      font-size: 0.85rem;
+  }
+
+  .cancelBtn,
+  .submitBtn {
+      margin: 3px; 
+      padding: 5px 7px; 
+  }
+
+  .attachmentButton {
+      margin-right: 5px; 
+  }
 }

@@ -51,13 +51,19 @@ const UserUsername = () => {
             history.goBack();
         } catch (err) {
             console.log(err);
-            setErrors(err.response?.data);
+            setErrors(err.response?.data || {});
             setSuccessMessage("");
         }
     };
+
     return (
         <Form onSubmit={handleSubmit}>
             {successMessage && <Alert variant="success">{successMessage}</Alert>}
+            {errors?.username?.map((message, idx) => (
+                <Alert key={idx} variant="danger">
+                    {message}
+                </Alert>
+            ))}
             <Form.Group controlId="username">
                 <Form.Label>Change Username</Form.Label>
                 <Form.Control
@@ -67,12 +73,7 @@ const UserUsername = () => {
                     onChange={(event) => setUsername(event.target.value)}
                 />
             </Form.Group>
-            {errors?.username?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                    {message}
-                </Alert>
-            ))}
-            <Button onClick={() => history.goBack()}>
+            <Button onClick={() => history.goBack()} variant="secondary">
                 Cancel
             </Button>
             <Button type="submit">

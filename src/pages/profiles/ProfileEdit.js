@@ -12,9 +12,8 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import LogoutButton from "../../components/LogoutButton"
-import styles from "../../styles/ProfileEdit.module.css"
-import ProfileEditDropDown from "../../components/ProfileEditDropDown";
+import LogoutButton from "../../components/LogoutButton";
+import styles from "../../styles/ProfileEdit.module.css";
 
 /*
 The ProfileEdit component allows users to edit their profile information, 
@@ -24,7 +23,6 @@ their ID, and uses a form to handle updates. If the user makes changes
 and submits the form, the updated data is sent to the server, and the 
 profile image is updated accordingly in the context, with any errors displayed to the user. 
 */
-
 const ProfileEdit = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -42,7 +40,7 @@ const ProfileEdit = () => {
   const [successMessage, setSuccessMessage] = useState("");
 
   useEffect(() => {
-    const handleMount = async () => {
+    const fetchProfileData = async () => {
       if (currentUser?.profile_id?.toString() === id) {
         try {
           const { data } = await axiosReq.get(`/profiles/${id}/`);
@@ -56,7 +54,7 @@ const ProfileEdit = () => {
         history.push("/");
       }
     };
-    handleMount();
+    fetchProfileData();
   }, [currentUser, history, id]);
 
   const handleChange = (event) => {
@@ -83,8 +81,8 @@ const ProfileEdit = () => {
       setSuccessMessage("Profile updated successfully!");
       setErrors({});
     } catch (err) {
-      console.log(err);
-      setErrors(err.response?.data);
+      console.error("Error updating profile:", err);
+      setErrors(err.response?.data || {});
       setSuccessMessage("");
     }
   };
@@ -103,20 +101,17 @@ const ProfileEdit = () => {
       </Form.Group>
 
       {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
+        <Alert key={idx} variant="warning">
           {message}
         </Alert>
       ))}
-      <Button onClick={() => history.goBack()}>
-        Exit!
+      <Button className={styles.button} onClick={() => history.goBack()}>
+        Exit
       </Button>
-      <Button type="submit">
+      <Button className={styles.button} type="submit">
         Save
       </Button>
       <LogoutButton />
-      {/* <Button variant="danger" onClick={() => history.push(`/profiles/${id}/delete`)}>
-        Delete Profile
-      </Button> */}
     </>
   );
 
@@ -128,38 +123,37 @@ const ProfileEdit = () => {
           <Container>
             <Form.Group>
               {image && (
-                <figure>
-                  <Image src={image} fluid />
+                <figure className={styles.figure}>
+                  <Image src={image} fluid className={styles.imagePreview} />
                 </figure>
               )}
               {errors?.image?.map((message, idx) => (
-                <Alert variant="warning" key={idx}>
+                <Alert key={idx} variant="warning">
                   {message}
                 </Alert>
               ))}
-              <div>
-                <Form.Label htmlFor="image-upload">
+              <div className={styles.imageUpload}>
+                <Form.Label htmlFor="image-upload" className={styles.label}>
                   Change the image
                 </Form.Label>
+                <Form.File
+                  id="image-upload"
+                  ref={imageFile}
+                  accept="image/*"
+                  onChange={(e) => {
+                    if (e.target.files.length) {
+                      setProfileData({
+                        ...profileData,
+                        image: URL.createObjectURL(e.target.files[0]),
+                      });
+                    }
+                  }}
+                />
               </div>
-              <Form.File
-                id="image-upload"
-                ref={imageFile}
-                accept="image/*"
-                onChange={(e) => {
-                  if (e.target.files.length) {
-                    setProfileData({
-                      ...profileData,
-                      image: URL.createObjectURL(e.target.files[0]),
-                    });
-                  }
-                }}
-              />
             </Form.Group>
-            <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
-        <Col>
+        <Col className={styles.textFieldsContainer}>
           <Container>{textFields}</Container>
         </Col>
       </Row>

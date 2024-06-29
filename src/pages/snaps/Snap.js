@@ -1,20 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Tooltip, OverlayTrigger, Button } from "react-bootstrap";
+import { Card, Tooltip, OverlayTrigger } from "react-bootstrap";
 import { axiosRes } from '../../snapit_api/axiosDefaults';
 import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import styles from '../../styles/Snap.module.css';
-
-/*
-The Snap component represents a single snap in a social media-like application. 
-It displays the snap's owner, title, body, featured image, and various interaction 
-options like liking, disliking, and commenting. Users can interact with the snap by 
-liking, disliking, and commenting, with different visual cues provided based on their 
-authentication status and interaction history. Additionally, owners of snaps have access 
-to tools for editing and deleting their snaps.
-*/
 
 function Snap(props) {
   const {
@@ -30,6 +21,15 @@ function Snap(props) {
   const history = useHistory();
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
+  const [deleteMessage, setDeleteMessage] = useState(null);
+
+  useEffect(() => {
+    if (deleteMessage) {
+      setTimeout(() => {
+        setDeleteMessage(null);
+      }, 5000); 
+    }
+  }, [deleteMessage]);
 
   const handleEdit = () => {
     history.push(`/snaps/${id}/edit`);
@@ -38,9 +38,15 @@ function Snap(props) {
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/snaps/${id}/`);
-      history.push("/");
+      setSnaps(prevSnaps => ({
+        ...prevSnaps,
+        results: prevSnaps.results.filter(snap => snap.id !== id)
+      }));
+      setDeleteMessage("Snap deleted successfully.");
+      window.location.reload();
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      setDeleteMessage("Failed to delete snap. Please try again later.");
     }
   };
 
