@@ -4,112 +4,246 @@
 This project provides a Django Reszt Framework API for [Snap It app livelink](https://snapit-2fde1c079281.herokuapp.com/) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 
-### User Stories
+# Project Goals
 
-* Navigation
-<br />
-	As a user, I want to be able to easily navigate the page
-    <br />
-	As a user, I want to be able to navigate throughout the site quickly
-    <br />
-	As a user, I want to be logged in until I decide to log out
-    
+1. Provide an intuitive and seamless user experience for navigating the site.
+2. Enable comprehensive account management features.
+3. Facilitate easy and engaging snap management.
+4. Support robust commenting and interaction on snaps.
+5. Implement effective filtering and searching functionalities.
 
-* Account management
-<br />
-	As a user, I want to be able to update my profile
-    <br />
-	As a user, I want to be able to change my profile picture
-    <br />
-	As a user, I want to be able to change my username
-    <br />
-	As a user, I want to be able to change my password
-    <br />
-	As a user, I want to be able to change my bio
-    <br />
-    As a user, I want to be able to friend other users
-    <br />
-    As a user, I want to be able to unfriend other users
-    <br />
-    As a user, I want to see the most popular users
+# User Stories
 
-* Account registration
-<br />
-	As a new user, I want to be able to register a new account
-    <br />
-	As a new user, I want there to be apparent features I am gaining when creating an account
+## 1. Navigation
 
-* Account sign-in
-<br />
-	As a reoccuring user, I want an account unique to me
-    <br />
-	As a user, I want it to be clear that I am signed in
+### Goal: Provide an intuitive and seamless user experience for navigating the site
 
-* Account sign-out
-<br />
-	As a user, I want to be able to sign out of my account so that it is secure
-    <br />
-	As a user, I want it to be clear that I am signed out
-	
-* Account deletion
-<br />
-	As a user, I want full control over my account allowing me to delete it if I wish
+**As a user, I want to be able to easily navigate the page**
+- **Acceptance Criteria:**
+  - Navigation bar is present on all pages.
+  - Links are clearly labeled and functional.
 
-* Snap Managment
-<br />
-	As a user, I want to be able to snap a photo of my pet and post it
-    <br />
-	As a user, I want to be able to view my snaps
-    <br />
-	As a user, I want to be able to edit my snap
-    <br />
-	As a user, I want to be able to delete my snap
-    <br />
-	As a user, I do not want to be able to dislike my own snap
-    <br />
-	As a user, I do not want to be able to like my own snap
-    <br />
-	As a user, I want to be able to comment on my own snap
-    <br />
-	As a user, I want to be able to like others snaps
-    <br />
-	As a user, I want to be able to dislike others snaps
-    <br />
-	As a user, I want to be able to see other users snaps
-	
-* Comment Managment
-<br />
-	As a user, I want to be able to comment on snaps
-    <br />
-	As a user, I want to be able to attach a photo of my pet
-    <br />
-	As a user, I want to be able to include information about my pet
-    <br />
-	As a user, I want to be able to edit my comment
-    <br />
-	As a user, I want to be able to delete my comment
-    <br />
-	As a user, I want to be able to view my comments on a snap
-    <br />
-	As a user, I want to be able to view others comments on a snap
+**As a user, I want to be able to navigate throughout the site quickly**
+- **Acceptance Criteria:**
+  - Page load times are under 2 seconds.
+  - Navigation menu is accessible from any page.
 
-* Filtering and Searching
-<br />
-	As a user, I want to be able to filter through my friends uploaded snaps
-    <br />
-	As a user, I want to be able to filter through my liked snaps
-    <br />
-	As a user, I want to be able to filter through my disliked snaps
-    <br />
-	As a user, I want to be able to search through pet types
-    <br />
-	As a user, I want to be able to search through pet ages
-    <br />
-	As a user, I want to be able to search through pet breeds
-    <br />
-	As a user, I want to be able to search through other users snaps
-    <br />
-	As a user, I want to be able to search through pet names
+**As a user, I want to be logged in until I decide to log out**
+- **Acceptance Criteria:**
+  - Sessions persist even after closing the browser.
+  - Manual logout button is available.
+
+## 2. Account Management
+
+### Goal: Enable comprehensive account management features
+
+**As a user, I want to be able to update my profile**
+- **Acceptance Criteria:**
+  - Users can change their personal information (name, email, etc.).
+
+**As a user, I want to be able to change my profile picture**
+- **Acceptance Criteria:**
+  - Users can upload and save a new profile picture.
+
+**As a user, I want to be able to change my username**
+- **Acceptance Criteria:**
+  - Users can update their username, given it’s unique.
+
+**As a user, I want to be able to change my password**
+- **Acceptance Criteria:**
+  - Users can change their password after providing the current one.
+
+**As a user, I want to be able to change my bio**
+- **Acceptance Criteria:**
+  - Users can add/edit a bio on their profile.
+
+**As a user, I want to be able to friend other users**
+- **Acceptance Criteria:**
+  - Users can send friend requests to other users.
+
+**As a user, I want to be able to unfriend other users**
+- **Acceptance Criteria:**
+  - Users can remove friends from their friends list.
+
+**As a user, I want to see the most popular users**
+- **Acceptance Criteria:**
+  - A section displays users with the most friends or snaps.
+
+## 3. Account Registration
+
+### Goal: Facilitate easy and engaging account registration
+
+**As a new user, I want to be able to register a new account**
+- **Acceptance Criteria:**
+  - Registration form includes fields for username, email, and password.
+
+**As a new user, I want there to be apparent features I am gaining when creating an account**
+- **Acceptance Criteria:**
+  - Features of having an account are highlighted on the registration page.
+
+## 4. Account Sign-In
+
+### Goal: Support secure and unique user accounts
+
+**As a recurring user, I want an account unique to me**
+- **Acceptance Criteria:**
+  - Unique usernames and email addresses are enforced.
+
+**As a user, I want it to be clear that I am signed in**
+- **Acceptance Criteria:**
+  - User’s name or profile picture is displayed when logged in.
+
+## 5. Account Sign-Out
+
+### Goal: Ensure user account security
+
+**As a user, I want to be able to sign out of my account so that it is secure**
+- **Acceptance Criteria:**
+  - A clear sign-out button is available.
+  - Sessions are terminated after sign-out.
+
+**As a user, I want it to be clear that I am signed out**
+- **Acceptance Criteria:**
+  - No personal information is displayed after sign-out.
+
+## 6. Account Deletion
+
+### Goal: Provide full control over user accounts
+
+**As a user, I want full control over my account allowing me to delete it if I wish**
+- **Acceptance Criteria:**
+  - Users can delete their account after confirmation.
+  - All personal data is removed upon deletion.
+
+## 7. Snap Management
+
+### Goal: Facilitate easy and engaging snap management
+
+**As a user, I want to be able to snap a photo of my pet and post it**
+- **Acceptance Criteria:**
+  - Users can take or upload a photo and post it as a snap.
+
+**As a user, I want to be able to view my snaps**
+- **Acceptance Criteria:**
+  - Users can see a gallery of their posted snaps.
+
+**As a user, I want to be able to edit my snap**
+- **Acceptance Criteria:**
+  - Users can edit captions or tags on their snaps.
+
+**As a user, I want to be able to delete my snap**
+- **Acceptance Criteria:**
+  - Users can delete their snaps.
+
+**As a user, I do not want to be able to dislike my own snap**
+- **Acceptance Criteria:**
+  - The dislike button is disabled for the user’s own snaps.
+
+**As a user, I do not want to be able to like my own snap**
+- **Acceptance Criteria:**
+  - The like button is disabled for the user’s own snaps.
+
+**As a user, I want to be able to comment on my own snap**
+- **Acceptance Criteria:**
+  - Users can comment on their own snaps.
+
+**As a user, I want to be able to like others snaps**
+- **Acceptance Criteria:**
+  - Users can like snaps posted by others.
+
+**As a user, I want to be able to dislike others snaps**
+- **Acceptance Criteria:**
+  - Users can dislike snaps posted by others.
+
+**As a user, I want to be able to see other users snaps**
+- **Acceptance Criteria:**
+  - Users can view a feed or gallery of other users' snaps.
+
+## 8. Comment Management
+
+### Goal: Support robust commenting and interaction on snaps
+
+**As a user, I want to be able to comment on snaps**
+- **Acceptance Criteria:**
+  - Users can leave comments on snaps.
+
+**As a user, I want to be able to attach a photo of my pet**
+- **Acceptance Criteria:**
+  - Users can attach a photo in the comment section.
+
+**As a user, I want to be able to include information about my pet**
+- **Acceptance Criteria:**
+  - Users can add text information about their pet in comments.
+
+**As a user, I want to be able to edit my comment**
+- **Acceptance Criteria:**
+  - Users can edit their comments after posting.
+
+**As a user, I want to be able to delete my comment**
+- **Acceptance Criteria:**
+  - Users can delete their comments.
+
+**As a user, I want to be able to view my comments on a snap**
+- **Acceptance Criteria:**
+  - Users can see a list of their comments on snaps.
+
+**As a user, I want to be able to view others comments on a snap**
+- **Acceptance Criteria:**
+  - Users can see comments from others on snaps.
+
+## 9. Filtering and Searching
+
+### Goal: Implement effective filtering and searching functionalities
+
+**As a user, I want to be able to filter through my friends uploaded snaps**
+- **Acceptance Criteria:**
+  - Users can filter snaps to only show those posted by friends.
+
+**As a user, I want to be able to filter through my liked snaps**
+- **Acceptance Criteria:**
+  - Users can filter snaps to only show those they have liked.
+
+**As a user, I want to be able to filter through my disliked snaps**
+- **Acceptance Criteria:**
+  - Users can filter snaps to only show those they have disliked.
+
+**As a user, I want to be able to search through pet types**
+- **Acceptance Criteria:**
+  - Users can search snaps by pet types (e.g., dogs, cats).
+
+**As a user, I want to be able to search through pet ages**
+- **Acceptance Criteria:**
+  - Users can search snaps by pet ages.
+
+**As a user, I want to be able to search through pet breeds**
+- **Acceptance Criteria:**
+  - Users can search snaps by pet breeds.
+
+**As a user, I want to be able to search through other users snaps**
+- **Acceptance Criteria:**
+  - Users can search for snaps by other users.
+
+**As a user, I want to be able to search through pet names**
+- **Acceptance Criteria:**
+  - Users can search snaps by pet names.
+
+# Prioritization and Milestones
+
+## Must Have
+- Basic navigation
+- Account registration and sign-in
+- Basic snap management
+
+## Should Have
+- Advanced account management (changing profile picture, username, etc.)
+- Comment management
+
+## Could Have
+- Advanced filtering and searching
+
+
+## Won't Have
+- Popular users feature
 
 [User Stories Github](https://github.com/users/PennyTrain/projects/8/views/1)
 ![Screenshot of github user stories](../snapit/src/assets/readme/github-userstories.png)
