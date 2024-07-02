@@ -10,8 +10,7 @@ import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
 import { useMessages } from "../../contexts/MessageContext";
 
-function CreateComment(props) {
-  const { snapId, setSnaps, setComments, profileImage, profile_id } = props;
+function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id }) {
   const currentUser = useContext(CurrentUserContext);
   const [body, setBody] = useState("");
   const [petName, setPetName] = useState("");

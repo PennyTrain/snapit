@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { axiosReq } from "../snapit_api/axiosDefaults";
 import Comment from "../pages/comments/Comment";
 
-function CommentsContainer({ snapId, setSnaps, setComments }) {
+function CommentsContainer({ snapId, setComments, setSnaps }) {
     const [comments, setCommentsState] = useState({ results: [] });
 
     useEffect(() => {
@@ -26,8 +26,9 @@ function CommentsContainer({ snapId, setSnaps, setComments }) {
                 <Comment 
                     key={comment.id} 
                     {...comment} 
+                    pet_age={String(comment.pet_age)}
                     setSnaps={setSnaps} 
-                    setComments={setCommentsState} 
+                    setComments={setCommentsState}
                 />
             ))}
         </div>
@@ -36,8 +37,8 @@ function CommentsContainer({ snapId, setSnaps, setComments }) {
 
 CommentsContainer.propTypes = {
     snapId: PropTypes.number.isRequired,
-    setSnaps: PropTypes.func.isRequired,
     setComments: PropTypes.func.isRequired,
+    setSnaps: PropTypes.func.isRequired,
 };
 
 export default CommentsContainer;

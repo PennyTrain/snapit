@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 import { useSetCurrentUser } from '../contexts/CurrentUserContext';
-import styles from "../styles/LogoutButton.module.css"
+import styles from "../styles/LogoutButton.module.css";
 import { useMessages } from '../contexts/MessageContext';
 /* 
 The LogoutButton component in React triggers
