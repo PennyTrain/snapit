@@ -17,3 +17,26 @@
 | Comment Management | View Comment | 1 | As a user, I want to be able to view my comments on a snap. | User can see a list of their comments on snaps. | Pass |
 | Comment Management | View Others' Comments | 1 | As a user, I want to be able to view others comments on a snap. | User can see comments from others on snaps. | Pass |
 
+# CSS Validation Results
+
+The following CSS files were validated using the [W3C CSS Validator](https://jigsaw.w3.org/css-validator/). Each file has been tested to ensure it adheres to standard CSS practices.
+
+| CSS File                | Validation Result |
+|-------------------------|-------------------|
+| AuthForm.module.css     | Passed            |
+| Comment.module.css      | Passed            |
+| CommentForm.module.css  | Passed            |
+| LogoutButton.module.css | Passed            |
+| NavBar.module.css       | Passed            |
+| PageNotFound.module.css | Passed            |
+| Profile.module.css      | Passed            |
+| ProfileEdit.module.css  | Passed            |
+| ProfilePage.module.css  | Passed            |
+| ProfilePic.module.css   | Passed            |
+| Snap.module.css         | Passed            |
+| SnapForm.module.css     | Passed            |
+| SnapsFeed.module.css    | Passed            |
+
+All the listed CSS files have successfully passed the validation, indicating they conform to the CSS standards set by the W3C.
+
+
