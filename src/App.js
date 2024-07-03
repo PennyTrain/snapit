@@ -16,9 +16,10 @@ import ProfileEdit from './pages/profiles/ProfileEdit';
 import ProfilePage from './pages/profiles/ProfilePage';
 import UserPassword from './pages/profiles/UserPassword';
 import UserUsername from './pages/profiles/UserUsername';
-import { MessageProvider } from './contexts/MessageContext';  // Import MessageProvider
-import Messages from './components/Messages';  // Import Messages component
+import { MessageProvider } from './contexts/MessageContext';
+import Messages from './components/Messages'; 
 import ProfileDelete from './pages/profiles/ProfileDelete';
+import PageNotFound from './pages/auth/PageNotFound';
 
 function App() {
   const currentUser = useCurrentUser();
@@ -28,7 +29,7 @@ function App() {
     <MessageProvider>
       <div className="App">
         <NavBar />
-        <Messages />  {/* Add Messages component here */}
+        <Messages />
         <Container className="Down">
           <Switch>
             <Route exact path="/" render={() => <SnapsFeed message="Welcome to SnapIt!" />} />
@@ -54,7 +55,7 @@ function App() {
             <Route exact path="/profiles/:id/edit/username" render={() => <UserUsername />} />
             <Route exact path="/profiles/:id/edit/password" render={() => <UserPassword />} />
             <Route exact path="/profiles/:id/edit" render={() => <ProfileEdit />} />
-            <Route render={() => <p>Page not found!</p>} />
+            <Route render={() => <PageNotFound />} />
           </Switch>
         </Container>
       </div>

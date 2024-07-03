@@ -122,3 +122,5 @@ to how it looked, therefore not all of the information was displayed on the comm
 - The pet age field on both the comments form and the snap creation form only accept positive integers and no alphebitical letters! Along with that it is capped at 300 years old pets due to some reptiles that live exceptionally long lives! 
 - The comments issue was the main one that really slowed me down, spending time with tutor support really helped me get that sorted and now the comments are specific to the posts that they are intended for :D
 
+### Success messages:
+- When the site has an intense display change I not included success messages, however when it does not I have added them. 

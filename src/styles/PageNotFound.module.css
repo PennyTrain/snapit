@@ -1,0 +1,43 @@
+.PageNotFoundContainer {
+    background-color: #6E9971;
+    border: 5px solid #000000;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+  }
+  
+  .Logo {
+    max-width: 150px;
+    margin-bottom: 20px;
+  }
+  
+  .Title {
+    color: #FFFFFF;
+    margin-bottom: 20px;
+  }
+  
+  .Message {
+    color: #FFFFFF;
+    margin-bottom: 30px;
+  }
+  
+  .HomeButton {
+    background-color: #D8E2D1;
+    color: #002366;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .HomeButton:hover {
+    background-color: #B4C6B8;
+  }
+  
