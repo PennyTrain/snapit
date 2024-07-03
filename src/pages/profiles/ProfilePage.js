@@ -1,7 +1,7 @@
 // ProfilePage.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Button, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useProfileDetail, useSetProfileDetail } from "../../contexts/ProfileDetailContext";
@@ -27,7 +27,7 @@ function ProfilePage() {
   const currentUser = useCurrentUser();
   const { id } = useParams();
   const { pageProfile } = useProfileDetail();
-  const { setProfileDetail, handleFriend, handleUnfriend } = useSetProfileDetail();
+  const { setProfileDetail } = useSetProfileDetail();
 
   const is_owner = currentUser?.username === pageProfile?.owner;
 

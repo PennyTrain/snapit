@@ -7,7 +7,6 @@ import './snapit_api/axiosDefaults';
 import RegisterForm from './pages/auth/RegisterForm';
 import LogInForm from './pages/auth/LogInForm';
 import SnapCreate from './pages/snaps/SnapCreate';
-import Snap from './pages/snaps/Snap';
 import SnapFeed from './pages/snaps/SnapFeed';
 import SnapsFeed from './pages/snaps/SnapsFeed';
 import SnapEdit from './pages/snaps/SnapEdit';

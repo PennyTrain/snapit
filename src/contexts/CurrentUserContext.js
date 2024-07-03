@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from 'prop-types';
 import axios from "axios";
 import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useHistory } from "react-router";
@@ -86,4 +87,8 @@ export const CurrentUserProvider = ({ children }) => {
       </SetCurrentUserContext.Provider>
     </CurrentUserContext.Provider>
   );
+};
+
+CurrentUserProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };

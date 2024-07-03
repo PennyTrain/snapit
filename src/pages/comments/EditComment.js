@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Alert from "react-bootstrap/Alert";
@@ -18,9 +18,17 @@ function EditComment(props) {
     const [errorMessage, setErrorMessage] = useState("");
     const [errors, setErrors] = useState({});
 
-    if (attachment && !image) {
-        setImage(attachment);
-    }
+    // useEffect to set the initial state of the form fields
+    useEffect(() => {
+        setEditBody(body);
+        setEditPetName(pet_name);
+        setEditPetAge(pet_age);
+        setEditPetBreed(pet_breed);
+        setEditPetType(pet_type);
+        if (attachment && !image) {
+            setImage(attachment);
+        }
+    }, [body, pet_name, pet_age, pet_breed, pet_type, attachment, image, setImage]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();

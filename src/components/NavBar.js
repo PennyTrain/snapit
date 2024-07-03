@@ -2,7 +2,6 @@ import React from 'react';
 import { Navbar, Container, Nav } from "react-bootstrap";
 import styles from "../styles/NavBar.module.css";
 import { NavLink } from "react-router-dom";
-import ProfilePic from './ProfilePic';
 import LogoutButton from './LogoutButton'; 
 import { useCurrentUser } from '../contexts/CurrentUserContext';
 import useCloseBurgerToggle from '../hooks/useCloseBurgerToggle';

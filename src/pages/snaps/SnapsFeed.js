@@ -5,7 +5,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../snapit_api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Snap from "./Snap";
-import styles from "../../styles/SnapsFeed.module.css"
+import styles from "../../styles/SnapsFeed.module.css";
 
 function SnapsFeed({ message, filter = "" }) {
   const [snaps, setSnaps] = useState({ results: [] });

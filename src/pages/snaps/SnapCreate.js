@@ -9,6 +9,7 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 const SnapCreate = () => {
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
   const currentUser = useCurrentUser();
 
@@ -53,9 +54,11 @@ const SnapCreate = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
   
     if (!validateTitle(title)) {
       setErrors({ title: ["Title cannot be empty or just spaces"] });
+      setIsSubmitting(false);
       return;
     }
   
@@ -77,6 +80,7 @@ const SnapCreate = () => {
       if (err.response?.status !== 401) {
         setErrors(err.response?.data || {});
       }
+      setIsSubmitting(false);
     }
   };
   
@@ -232,10 +236,19 @@ const SnapCreate = () => {
         {snapFields}
 
         <div className={styles.buttonGroup}>
-          <Button variant="secondary" className={styles.cancelBtn} onClick={() => history.goBack()}>
+          <Button 
+            variant="secondary" 
+            className={styles.cancelBtn} 
+            onClick={() => history.goBack()}
+          >
             Cancel
           </Button>
-          <Button variant="success" className={styles.submitBtn} type="submit">
+          <Button 
+            variant="success" 
+            className={styles.submitBtn} 
+            type="submit" 
+            disabled={isSubmitting}
+          >
             Create
           </Button>
         </div>
