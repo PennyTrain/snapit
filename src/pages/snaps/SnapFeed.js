@@ -7,6 +7,15 @@ import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentsContainer from "../../components/CommentsContainer";
 
+
+// The SnapFeed component fetches and displays details of a specific 
+// snap and its associated comments based on the id parameter from the 
+// URL. It uses useEffect to perform API requests upon component mount, 
+// fetching both the snap details and comments asynchronously. The component 
+// conditionally renders the snap and its comments using the Snap and CommentsContainer 
+// components, respectively, and optionally displays a comment creation form when the 
+// user is logged in, controlled by showCommentForm state toggled via a button click.
+
 function SnapFeed() {
   const { id } = useParams(); // Ensure the snap ID from URL params is used
   const snapId = Number(id); // Convert snapId to a number
@@ -49,17 +58,21 @@ function SnapFeed() {
                 setComments={setComments}
               />
             </Container>
-            <Button onClick={handleShowCommentForm}>
-              {showCommentForm ? "Close Comment Form" : "Add Comment"}
-            </Button>
-            {showCommentForm && (
-              <CommentCreateForm
-                snapId={snapId}
-                setSnaps={setSnap}
-                setComments={setComments}
-                profileImage={currentUser?.profile_image}
-                profile_id={currentUser?.profile_id}
-              />
+            {currentUser && (
+              <>
+                <Button onClick={handleShowCommentForm}>
+                  {showCommentForm ? "Close Comment Form" : "Add Comment"}
+                </Button>
+                {showCommentForm && (
+                  <CommentCreateForm
+                    snapId={snapId}
+                    setSnaps={setSnap}
+                    setComments={setComments}
+                    profileImage={currentUser?.profile_image}
+                    profile_id={currentUser?.profile_id}
+                  />
+                )}
+              </>
             )}
           </>
         )}

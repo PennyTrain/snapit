@@ -10,6 +10,14 @@ import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
 import { useMessages } from "../../contexts/MessageContext";
 
+// The CreateComment component manages a form for users to submit comments 
+// associated with a specific snap. It handles form submission, validates 
+// input fields such as pet age to prevent negative values or excessive ages,
+// and utilizes an image upload feature. Upon successful submission, it updates 
+// both the comments and snaps states, resets the form fields, and displays a 
+// success message using the useMessages context. If the user is not logged in, 
+// it prompts them to log in before commenting.
+
 function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id }) {
   const currentUser = useContext(CurrentUserContext);
   const [body, setBody] = useState("");

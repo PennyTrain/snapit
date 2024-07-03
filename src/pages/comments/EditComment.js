@@ -6,6 +6,16 @@ import { axiosRes } from "../../snapit_api/axiosDefaults";
 import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
 
+// The EditComment component facilitates editing existing comments 
+// associated with a snap. It initializes state variables for various 
+// fields like comment body, pet details, and an image upload feature 
+// using useImageUpload. Upon component mount, it fetches the comment's 
+// data via an API call and populates the form fields accordingly. The 
+// component handles form submission, validates the pet age to ensure 
+// it's within acceptable limits, updates the comment via a PUT request 
+// to the API, and provides user feedback through success or error messages 
+// displayed using Bootstrap Alerts.
+
 function EditComment(props) {
     const { id, body, pet_name, pet_age, pet_breed, pet_type, attachment, setEnableUpdate, setComments } = props;
     const [editBody, setEditBody] = useState(body || "");
@@ -13,22 +23,30 @@ function EditComment(props) {
     const [editPetAge, setEditPetAge] = useState(pet_age || "");
     const [editPetBreed, setEditPetBreed] = useState(pet_breed || "");
     const [editPetType, setEditPetType] = useState(pet_type || "");
-    const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
+    const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
     const [successMessage, setSuccessMessage] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const [errors, setErrors] = useState({});
 
-    // useEffect to set the initial state of the form fields
+    // Fetch the comment data when the component mounts
     useEffect(() => {
-        setEditBody(body);
-        setEditPetName(pet_name);
-        setEditPetAge(pet_age);
-        setEditPetBreed(pet_breed);
-        setEditPetType(pet_type);
-        if (attachment && !image) {
-            setImage(attachment);
-        }
-    }, [body, pet_name, pet_age, pet_breed, pet_type, attachment, image, setImage]);
+        const fetchCommentData = async () => {
+            try {
+                const { data } = await axiosRes.get(`/snapcomments/${id}/`);
+                setEditBody(data.body);
+                setEditPetName(data.pet_name);
+                setEditPetAge(data.pet_age);
+                setEditPetBreed(data.pet_breed);
+                setEditPetType(data.pet_type);
+                if (data.attachment) {
+                    setImage(data.attachment);
+                }
+            } catch (err) {
+                console.error("Error fetching comment data:", err);
+            }
+        };
+        fetchCommentData();
+    }, [id, setImage]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();

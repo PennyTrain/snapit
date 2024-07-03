@@ -6,6 +6,13 @@ import { useSetCurrentUser } from '../../contexts/CurrentUserContext';
 import { useMessages } from '../../contexts/MessageContext';
 import styles from '../../styles/AuthForm.module.css';
 
+// The LogInForm component manages the user login process, including form handling, 
+// validation, and error display. It uses React state to manage form data, errors, 
+// and general error messages. Upon form submission, it sends a POST request to the 
+// server to log in the user, sets the current user on successful login, and displays 
+// a success message. If login fails, it displays detailed error messages based on the 
+// server's response.
+
 const LogInForm = () => {
     const setCurrentUser = useSetCurrentUser();
     const { addMessage } = useMessages(); 

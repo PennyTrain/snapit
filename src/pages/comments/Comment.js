@@ -28,7 +28,6 @@ const Comment = (props) => {
         pet_name,
         pet_age,
         pet_breed,
-        pet_type,
         setSnaps,
         setComments,
     } = props;

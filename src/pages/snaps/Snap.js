@@ -7,6 +7,26 @@ import { Link, useHistory } from "react-router-dom";
 import { MoreDropDown } from "../../components/MoreDropDown";
 import styles from '../../styles/Snap.module.css';
 
+
+// The Snap component is responsible for rendering a card that displays details of 
+// a snap (post) fetched from an API. It receives numerous props containing data 
+// such as the snap's ID, owner's username, title, body content, like and dislike 
+// counts, featured image URL, pet details, and comment count. The component includes 
+// functionalities to handle actions like editing and deleting a snap if the current 
+// user matches the owner of the snap.
+
+// The component also integrates features for liking and disliking snaps, which dynamically 
+// update the snap's like and dislike counts upon interaction using POST and DELETE requests 
+// to the API. Error handling is implemented to manage potential issues during these API 
+// interactions, displaying appropriate messages on failure. Additionally, it supports navigation 
+// to the snap's detailed view and the owner's profile through React Router links, enhancing user 
+// engagement and interaction with the application.
+
+// Styling is applied using React Bootstrap components and custom CSS from the styles module, 
+// ensuring a cohesive and visually appealing presentation of the snap's information and interactive 
+// elements. Overall, Snap encapsulates the display, interaction, and management of individual snaps 
+// within the broader application context.
+
 function Snap(props) {
   const {
     id, owner, profile_id,
@@ -43,7 +63,7 @@ function Snap(props) {
         results: prevSnaps.results.filter(snap => snap.id !== id)
       }));
       setDeleteMessage("Snap deleted successfully.");
-      window.location.reload();
+      history.goBack();
     } catch (err) {
       console.error(err);
       setDeleteMessage("Failed to delete snap. Please try again later.");

@@ -4,6 +4,10 @@ import { NavLink } from 'react-router-dom';
 import styles from '../../styles/PageNotFound.module.css';
 import logo from "../../assets/project/logo.png";
 
+
+// The PageNotFound component displays a 404 error page with a logo, message, 
+// and a button that redirects the user to the homepage.
+
 const PageNotFound = () => {
   return (
     <Container className={styles.PageNotFoundContainer}>

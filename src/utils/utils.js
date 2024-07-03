@@ -1,5 +1,11 @@
 import { axiosReq } from "../snapit_api/axiosDefaults";
 
+// The fetchAdditionalDetails function asynchronously fetches 
+// additional assets using an axios instance (axiosReq) and updates 
+// the state of assets (setAssets) by appending new results from the 
+// fetched data, ensuring no duplicates based on ID. Error handling 
+// logs any encountered errors to the console for debugging purposes.
+
 export const fetchAdditionalDetails = async (assets, setAssets) => {
   try {
     const { data } = await axiosReq.get(assets.next);

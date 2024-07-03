@@ -6,6 +6,14 @@ import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
+// The SnapEdit component facilitates editing of a snap's details, including title, 
+// body, pet information, and location. It uses useEffect to fetch the current snap 
+// data from the server upon component mount, populating the form fields for editing. 
+// Users can upload a new featured image, validate input fields such as pet age constraints, 
+// and submit updates via a PUT request to the API endpoint. Error messages are displayed 
+// for validation failures, and upon successful submission, users are redirected back to view 
+// the updated snap.
+
 const SnapEdit = () => {
   const { id } = useParams();
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();

@@ -7,6 +7,16 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Snap from "./Snap";
 import styles from "../../styles/SnapsFeed.module.css";
 
+
+// The SnapsFeed component manages a feed of snaps, fetching data from an API 
+// endpoint based on optional filtering criteria (filter) and search queries 
+// (query). It utilizes useState to maintain state for snaps data and whether 
+// more data is available (hasMore), and useEffect to fetch initial snaps data 
+// when the component mounts or when dependencies (filter, query, pathname) change. 
+// It incorporates InfiniteScroll from react-infinite-scroll-component for dynamically 
+// loading more snaps as the user scrolls, rendering each snap using the Snap component 
+// and updating state via setSnaps.
+
 function SnapsFeed({ message, filter = "" }) {
   const [snaps, setSnaps] = useState({ results: [] });
   const [hasMore, setHasMore] = useState(true);

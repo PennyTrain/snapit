@@ -6,6 +6,15 @@ import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
+
+// The SnapCreate component enables users to create new posts (snaps) 
+// with fields for title, body, pet details, and location. It integrates 
+// image uploading functionality through a custom hook (useImageUpload) 
+// and performs client-side validation for fields like pet age constraints 
+// and title presence. Upon submission, the component sends a POST request to 
+// the server to create the snap, displaying validation errors if any occur, and 
+// redirects to the newly created snap's page upon success.
+
 const SnapCreate = () => {
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
   const [errors, setErrors] = useState({});

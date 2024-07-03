@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
+import { useMessages } from '../contexts/MessageContext';
+
   /* 
 This code defines a React component called MoreDropDown, 
 which renders a dropdown menu with options for editing and 
@@ -10,7 +12,6 @@ awesome icons. The component requires two functions,
 handleEdit and handleDelete, as props to handle user 
 interactions for editing and deleting items respectively.
 */
-
 /**
  * Renders a dropdown menu with options for editing and deleting items.
  * @param {Object} props - The component props.
@@ -19,6 +20,18 @@ interactions for editing and deleting items respectively.
  * @returns {JSX.Element} A dropdown menu component.
  */
 export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) {
+  const { addMessage } = useMessages();
+  
+
+  const handleDeleteWithMessage = async () => {
+    try {
+      await handleDelete();
+      addMessage({ type: 'success', text: 'Item deleted successfully!' });
+    } catch (error) {
+      addMessage({ type: 'danger', text: 'Failed to delete item.' });
+    }
+  };
+
   return (
     <Dropdown className="ml-auto" drop="left">
       <Dropdown.Toggle as={ThreeDots} />
@@ -26,7 +39,7 @@ export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) 
         <Dropdown.Item onClick={handleEdit} aria-label="edit">
           <i className="fas fa-edit" /> Edit
         </Dropdown.Item>
-        <Dropdown.Item onClick={handleDelete} aria-label="delete">
+        <Dropdown.Item onClick={handleDeleteWithMessage} aria-label="delete">
           <i className="fas fa-trash-alt" /> Delete
         </Dropdown.Item>
       </Dropdown.Menu>
