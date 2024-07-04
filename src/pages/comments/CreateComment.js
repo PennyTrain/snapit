@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -162,5 +163,13 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
     </>
   );
 }
+
+CreateComment.propTypes = {
+  snapId: PropTypes.number.isRequired,
+  setSnaps: PropTypes.func.isRequired,
+  setComments: PropTypes.func.isRequired,
+  profileImage: PropTypes.string.isRequired,
+  profile_id: PropTypes.number.isRequired,
+};
 
 export default CreateComment;

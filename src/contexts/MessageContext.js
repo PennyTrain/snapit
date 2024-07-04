@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState } from 'react';
+import PropTypes from 'prop-types';
 
 // The MessageProvider component manages a context for messages, allowing adding and 
 // removing messages from the state. It provides the messages and the functions to 
@@ -25,6 +26,10 @@ export const MessageProvider = ({ children }) => {
       {children}
     </MessageContext.Provider>
   );
+};
+
+MessageProvider.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export const useMessages = () => useContext(MessageContext);

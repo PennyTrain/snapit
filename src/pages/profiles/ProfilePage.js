@@ -1,4 +1,3 @@
-// ProfilePage.js
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { Image } from "react-bootstrap";
@@ -19,7 +18,6 @@ are displayed using infinite scrolling. The component also handles
 the potential for adding or removing friends, though these actions 
 are currently commented out. 
 */
-
 
 function ProfilePage() {
   const [isReady, setIsReady] = useState(false);
@@ -58,7 +56,7 @@ function ProfilePage() {
   return (
     <div className={styles.profileContainer}>
       {is_owner && <ProfileEditDropDown id={pageProfile?.id} />}
-      <Image src={pageProfile?.image} alt={`${pageProfile?.owner}'s profile`} className={styles.profileImage} />
+      <Image src={pageProfile?.image} alt={`${pageProfile?.owner}&apos;s profile`} className={styles.profileImage} />
       <div className={styles.profileInfo}>
         <h3>{pageProfile?.owner}</h3>
         <div>Snaps: {pageProfile?.snaps_count}</div>
@@ -76,7 +74,7 @@ function ProfilePage() {
         {pageProfile?.content && <div>{pageProfile.content}</div>}
       </div>
       <div className={styles.snapsContainer}>
-        <p className={styles.snapsTitle}>{pageProfile?.owner}'s snaps</p>
+        <p className={styles.snapsTitle}>{pageProfile?.owner}&apos;s snaps</p>
         {profileSnaps.results.length ? (
           <InfiniteScroll
             dataLength={profileSnaps.results.length}

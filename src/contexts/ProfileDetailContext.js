@@ -1,8 +1,9 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { axiosReq, axiosRes } from "../snapit_api/axiosDefaults";
 import { useCurrentUser } from "./CurrentUserContext";
 import { friendHelper, unfriendHelper } from "../utils/utils";
-import React from "react"
+import React from "react";
 /*
 The code establishes a context for managing detailed profile data 
 and interactions within a React application, providing hooks for 
@@ -89,6 +90,10 @@ const ProfileDetailProvider = ({ children }) => {
             </SetProfileDetailContext.Provider>
         </ProfileDetailContext.Provider>
     );
+};
+
+ProfileDetailProvider.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 export { useProfileDetail, useSetProfileDetail, ProfileDetailProvider };

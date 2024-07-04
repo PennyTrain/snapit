@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "../styles/ProfilePic.module.css";
 /*
 This React component, ProfilePic, 
@@ -24,6 +25,12 @@ const ProfilePic = ({ src, height = 45, text }) => {
       {text}
     </span>
   );
+};
+
+ProfilePic.propTypes = {
+  src: PropTypes.string.isRequired,
+  height: PropTypes.number,
+  text: PropTypes.string,
 };
 
 export default ProfilePic;

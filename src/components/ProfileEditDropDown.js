@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Dropdown from "react-bootstrap/Dropdown";
 import { useHistory, useParams } from "react-router-dom";
 
@@ -23,6 +24,10 @@ const ThreeDots = React.forwardRef(function ThreeDots({ onClick }, ref) {
     />
   );
 });
+
+ThreeDots.propTypes = {
+  onClick: PropTypes.func.isRequired,
+};
 
 function ProfileEditDropDown() {
   const history = useHistory();
