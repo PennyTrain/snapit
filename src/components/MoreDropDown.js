@@ -26,9 +26,9 @@ export const MoreDropDown = function MoreDropDown({ handleEdit, handleDelete }) 
   const handleDeleteWithMessage = async () => {
     try {
       await handleDelete();
-      addMessage({ type: 'success', text: 'Item deleted successfully!' });
+      addMessage({ type: 'success', text: 'Deleted successfully!' });
     } catch (error) {
-      addMessage({ type: 'danger', text: 'Failed to delete item.' });
+      addMessage({ type: 'danger', text: 'Failed to delete.' });
     }
   };
 

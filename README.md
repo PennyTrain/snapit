@@ -5,10 +5,27 @@ This project provides a Django Reszt Framework API for [Snap It app livelink](ht
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 ![Am I responsive? Screenshot](/src/assets/readme/amiresponsive.png)
 
-
+## Table of Contents
+1. [Introduction](#introduction)
+2. [Project Goals](#project-goals)
+3. [User Stories](#user-stories)
+4. [Prioritization and Milestones](#prioritization-and-milestones)
+5. [Wireframes](#wireframes)
+6. [Features](#features)
+7. [Agile Development Methodology](#agile-development-methodology)
+8. [Design: Colours and Font](#design-colours-and-font)
+9. [CRUD Functionality](#crud-functionality)
+10. [Future Improvements](#future-improvements)
+11. [Reusable Components](#reusable-components)
+12. [Custom Hooks](#custom-hooks)
+13. [Frameworks, Libraries, and Dependencies](#frameworks-libraries-and-dependencies)
+14. [Credits](#credits)
+15. [Acknowledgements](#acknowledgements)7
 
 ### [Click here to see resubmission details!](./RESUBMISSION.md)
 ### [Click here to see all the testing!](./TESTING.md)
+
+
 
 ### Project Goals
 
@@ -24,6 +41,9 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 
 - Here is a screenshot of them
 ![Screenshot of github user story board](/src/assets/readme/github-stories.png)
+
+- And heres an EPIC 
+![Screenshot of EPIC](/src/assets/readme/Epic.png)
 
 ### 1. Navigation
 
@@ -299,6 +319,21 @@ form with the fields already filled with previous data!
 - This is the view of when you want to edit your own profile
 - ![](/src/assets/readme/frame-m.png)
 --- 
+- Snap it view from a mobile device
+- ![](/src/assets/readme/frame-n.png)
+--- 
+- Snap it detail view from a mobile device
+- ![](/src/assets/readme/frame-o.png)
+--- 
+- Snap it create view from a mobile device
+- ![](/src/assets/readme/frame-p.png)
+---
+- Snap it profile view on mobile
+- ![](/src/assets/readme/frame-q.png)
+---
+- Snap it view from a mobile device, navbar drop down display.
+- ![](/src/assets/readme/frame-r.png)
+---
 
 
 
@@ -374,13 +409,14 @@ form with the fields already filled with previous data!
 ---
 
 #### Owner Filter
-![Owner filter screenshot](/src/assets/readme/owner-filter.png)
+![Owner filter screenshot](/src/assets/readme/owner-filte.png)
 - Filter snaps by their owner via the search bar.
 --- 
 #### Pet Filter
 ![Pet Filter Screenshot](/src/assets/readme/filter-pet.png)
 - Filter snaps by the type of pet via the search bar.
 ---
+
 
 ### Agile Development Methodology
 

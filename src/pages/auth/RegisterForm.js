@@ -45,7 +45,7 @@ const RegisterForm = () => {
             if (err.response?.data) {
                 setErrors(err.response.data);
             }
-            addMessage({ text: "Failed to register. Please try again later.", type: "danger" });
+            addMessage({ text: "Failed to register. Please try again.", type: "danger" });
         }
     };
 

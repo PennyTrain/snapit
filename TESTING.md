@@ -2,7 +2,6 @@
 
 - While testing snapit I used manual testing throughout the development!
 
-
 --- 
 
 | Feature | Category | Priority | User Story | Acceptance Criteria | Pass/Fail |
