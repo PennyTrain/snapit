@@ -6,7 +6,7 @@ import { Col, Row, Container, Button } from "react-bootstrap";
 import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentsContainer from "../../components/CommentsContainer";
-import styles from "../../styles/SnapFeed.module.css"
+import styles from "../../styles/SnapFeed.module.css";
 
 
 // The SnapFeed component fetches and displays details of a specific 

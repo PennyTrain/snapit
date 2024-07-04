@@ -63,7 +63,7 @@ function Snap(props) {
         results: prevSnaps.results.filter(snap => snap.id !== id)
       }));
       setDeleteMessage("Snap deleted successfully.");
-      history.goBack();
+      history.push("/");
     } catch (err) {
       console.error(err);
       setDeleteMessage("Failed to delete snap. Please try again later.");

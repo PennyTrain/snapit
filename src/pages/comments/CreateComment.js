@@ -9,8 +9,6 @@ import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import useImageUpload from "../../hooks/useImageUpload";
 import styles from "../../styles/CommentForm.module.css";
-import { useMessages } from "../../contexts/MessageContext";
-
 // The CreateComment component manages a form for users to submit comments 
 // associated with a specific snap. It handles form submission, validates 
 // input fields such as pet age to prevent negative values or excessive ages,
@@ -28,7 +26,8 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
   const [petType, setPetType] = useState("Other");
   const { image, imageInputRef, handleChangeImage, handleOpenFileDialog, resetImage } = useImageUpload();
   const [errors, setErrors] = useState({});
-  const { addMessage } = useMessages();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -46,12 +45,12 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
 
     try {
       const formData = new FormData();
-      formData.append("body", body);
+      formData.append("body", body.trim());
       formData.append("snap", snapId);
-      formData.append("pet_name", petName);
+      formData.append("pet_name", petName.trim());
       formData.append("pet_age", petAge);
-      formData.append("pet_breed", petBreed);
-      formData.append("pet_type", petType);
+      formData.append("pet_breed", petBreed.trim());
+      formData.append("pet_type", petType.trim());
       if (image) {
         formData.append("attachment", imageInputRef.current.files[0]);
       }
@@ -81,11 +80,24 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
       setPetType("Other");
       resetImage();
 
-      addMessage({ text: "Comment posted successfully!", type: "success" });
+      // Display success message
+      setSuccessMessage("Comment posted successfully!");
+      setErrorMessage("");
+
+      // Reload page after a short delay
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     } catch (err) {
       console.error("Error posting comment:", err);
+      setErrorMessage("Failed to post comment. Please try again later.");
+      setSuccessMessage("");
       setErrors(err.response?.data || {});
-      addMessage({ text: "Failed to post comment. Please try again later.", type: "danger" });
+
+      // Optionally reload page after a delay in case of error
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
     }
   };
 
@@ -94,6 +106,8 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
       {currentUser ? (
         <>
           <Form className={`mt-2 ${styles.formContainer}`} onSubmit={handleSubmit}>
+            {successMessage && <Alert variant="success" className={styles.alert}>{successMessage}</Alert>}
+            {errorMessage && <Alert variant="danger" className={styles.alert}>{errorMessage}</Alert>}
             <Form.Group>
               <InputGroup>
                 <Link to={`/profiles/${profile_id}`}>

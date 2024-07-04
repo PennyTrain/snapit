@@ -1,16 +1,17 @@
 .message-container {
     padding: 20px;
-    background-color: #A8D5BA; /* Match the body background color */
+    color: #fff; /* Match the body background color */
     border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
   }
   
   .alert {
-    background-color: #6BAF5E !important; /* Ensure background matches site's theme */
-    color: #d3d3d3 !important; /* Ensure text color matches site's theme */
-    border: 1px solid #d3d3d3 !important; /* Ensure border matches site's theme */
+    background-color: #6e9971 !important; /* Ensure background matches site's theme */
+    color: #fff !important; /* Ensure text color matches site's theme */
+    border: 2px solid black !important; /* Ensure border matches site's theme */
     border-radius: 10px;
     margin-bottom: 10px;
+    border: 2px solid #000000;
   }
   
   .alert-heading {

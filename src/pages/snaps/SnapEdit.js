@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
+// SnapEdit.js
+import React, { useEffect, useState } from 'react';
 import { useHistory, useParams } from 'react-router';
 import { axiosReq } from '../../snapit_api/axiosDefaults';
+import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
 import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
+import { useMessages } from '../../contexts/MessageContext';
 
 // The SnapEdit component facilitates editing of a snap's details, including title, 
 // body, pet information, and location. It uses useEffect to fetch the current snap 
@@ -16,14 +18,17 @@ import { useCurrentUser } from '../../contexts/CurrentUserContext';
 
 const SnapEdit = () => {
   const { id } = useParams();
-  const { image, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
+  const { image, setImage, imageInputRef, handleChangeImage, handleOpenFileDialog } = useImageUpload();
   const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
   const currentUser = useCurrentUser();
+  const { addMessage } = useMessages();
 
   const [snapData, setSnapData] = useState({
     title: "",
     body: "",
+    featured_image: "",
     pet_name: "",
     pet_age: "",
     pet_breed: "",
@@ -31,28 +36,22 @@ const SnapEdit = () => {
     location: "",
   });
 
+  const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
+
   useEffect(() => {
-    const fetchSnapData = async () => {
+    const fetchSnap = async () => {
       try {
-        const { data } = await axiosReq.get(`/snaps/${id}`);
-        setSnapData({
-          title: data.title,
-          body: data.body,
-          pet_name: data.pet_name,
-          pet_age: data.pet_age,
-          pet_breed: data.pet_breed,
-          pet_type: data.pet_type,
-          location: data.location,
-        });
-      } catch (error) {
-        console.error('Error fetching snap:', error);
+        const { data } = await axiosReq.get(`/snaps/${id}/`);
+        setSnapData(data);
+        setImage(data.featured_image);
+      } catch (err) {
+        console.log(err);
+        addMessage({ text: "Failed to load snap data.", type: "danger" });
       }
     };
 
-    fetchSnapData();
-  }, [id]);
-
-  const { title, body, pet_name, pet_age, pet_breed, pet_type, location } = snapData;
+    fetchSnap();
+  }, [id, setImage, addMessage]);
 
   const validateTitle = (title) => {
     return title.trim().length > 0;
@@ -82,9 +81,11 @@ const SnapEdit = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitting(true);
 
     if (!validateTitle(title)) {
       setErrors({ title: ["Title cannot be empty or just spaces"] });
+      setIsSubmitting(false);
       return;
     }
 
@@ -101,15 +102,16 @@ const SnapEdit = () => {
     }
 
     try {
-      const { data } = await axiosReq.put(`/snaps/${id}/`, formData);
-      setTimeout(() => {
-        history.push(`/snaps/${data.id}`);
-      }, 2000);
+      await axiosReq.put(`/snaps/${id}/`, formData);
+      addMessage({ text: "Snap updated successfully!", type: "success" });
+      history.push(`/snaps/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
+        setErrors(err.response?.data || {});
       }
+      addMessage({ text: "Failed to update snap.", type: "danger" });
+      setIsSubmitting(false);
     }
   };
 
@@ -265,10 +267,19 @@ const SnapEdit = () => {
         {snapFields}
 
         <div className={styles.buttonGroup}>
-          <Button variant="secondary" className={styles.cancelBtn} onClick={() => history.goBack()}>
+          <Button 
+            variant="secondary" 
+            className={styles.cancelBtn} 
+            onClick={() => history.goBack()}
+          >
             Cancel
           </Button>
-          <Button variant="success" className={styles.submitBtn} type="submit">
+          <Button 
+            variant="success" 
+            className={styles.submitBtn} 
+            type="submit" 
+            disabled={isSubmitting}
+          >
             Update
           </Button>
         </div>

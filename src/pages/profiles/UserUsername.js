@@ -8,7 +8,7 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
-import styles from "../../styles/UserChange.module.css"
+import styles from "../../styles/UserChange.module.css";
 
 /*
 The UserUsername component enables users to change their username. 

@@ -1,3 +1,4 @@
+// SnapCreate.js
 import React, { useState } from 'react';
 import { Form, Button, Alert, Image, Container } from 'react-bootstrap';
 import { useHistory } from 'react-router';
@@ -5,8 +6,7 @@ import { axiosReq } from '../../snapit_api/axiosDefaults';
 import styles from '../../styles/SnapForm.module.css';
 import useImageUpload from '../../hooks/useImageUpload';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
-
-
+import { useMessages } from '../../contexts/MessageContext';
 // The SnapCreate component enables users to create new posts (snaps) 
 // with fields for title, body, pet details, and location. It integrates 
 // image uploading functionality through a custom hook (useImageUpload) 
@@ -21,6 +21,7 @@ const SnapCreate = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const history = useHistory();
   const currentUser = useCurrentUser();
+  const { addMessage } = useMessages();
 
   const [snapData, setSnapData] = useState({
     title: "",
@@ -64,13 +65,13 @@ const SnapCreate = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     setIsSubmitting(true);
-  
+
     if (!validateTitle(title)) {
       setErrors({ title: ["Title cannot be empty or just spaces"] });
       setIsSubmitting(false);
       return;
     }
-  
+
     const formData = new FormData();
     formData.append('title', title);
     formData.append('body', body);
@@ -80,19 +81,21 @@ const SnapCreate = () => {
     formData.append('pet_type', pet_type);
     formData.append('location', location);
     formData.append('featured_image', imageInputRef.current.files[0]);
-  
+
     try {
       const { data } = await axiosReq.post("/snaps/", formData);
+      addMessage({ text: "Snap created successfully!", type: "success" });
       history.push(`/snaps/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data || {});
       }
+      addMessage({ text: "Failed to create snap.", type: "danger" });
       setIsSubmitting(false);
     }
   };
-  
+
   if (!currentUser) {
     history.push('/login');
     return null;
