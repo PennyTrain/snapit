@@ -10,20 +10,20 @@
 | Navigation | Navigation | 1 | As a user, I want to be able to easily navigate the page. | Navigation bar is present on all pages. Links are clearly labeled and functional. | Pass |
 | Navigation | Navigation | 1 | As a user, I want to be able to navigate throughout the site quickly. | Page load times are under 2 seconds. Navigation menu is accessible from any page. | Pass |
 | Navigation | Navigation | 1 | As a user, I want to be logged in until I decide to log out. | Sessions persist even after closing the browser. Manual logout button is available. | Pass |
-| Account Management | Profile Edit | 1 | As a user, I want to be able to update my profile. | Users can change their personal information (name, email, etc.). | Pass |
+| Account Management | Profile Edit | 1 | As a user, I want to be able to update my profile. | Users can change their personal information (name, password, etc.). | Pass |
 | Account Management | Profile Edit | 1 | As a user, I want to be able to change my profile picture. | Users can upload and save a new profile picture. | Pass |
 | Account Management | Profile Edit | 1 | As a user, I want to be able to change my username. | Users can update their username, given it’s unique. | Pass |
-| Account Management | Profile Edit | 1 | As a user, I want to be able to change my password. | Users can change their password after providing the current one. | Pass |
+| Account Management | Profile Edit | 1 | As a user, I want to be able to change my password. | Users can change their password. | Pass |
 | Account Management | Profile Edit | 1 | As a user, I want to be able to change my bio. | Users can add/edit a bio on their profile. | Pass     |
-| Account Registration | Registration | 1 | As a new user, I want to be able to register a new account. | Registration form includes fields for username, email, and password. | Pass |
-| Account Registration | Registration | 1 | As a new user, I want there to be apparent features I am gaining when creating an account. | Features of having an account are highlighted on the registration page. | Pass |
-| Account Sign-In | Sign-In | 1 | As a recurring user, I want an account unique to me. | Unique usernames and email addresses are enforced. | Pass |
-| Account Sign-In | Sign-In | 1 | As a user, I want it to be clear that I am signed in. | User’s name or profile picture is displayed when logged in. | Pass |
+| Account Registration | Registration | 1 | As a new user, I want to be able to register a new account. | Registration form includes fields for username and password. | Pass |
+| Account Registration | Registration | 1 | As a new user, I want there to be apparent features I am gaining when creating an account. | Features of having an account are highlighted. | Pass |
+| Account Sign-In | Sign-In | 1 | As a recurring user, I want an account unique to me. | Unique usernames are enforced. | Pass |
+| Account Sign-In | Sign-In | 1 | As a user, I want it to be clear that I am signed in. | Navbar displays more options when logged in. | Pass |
 | Account Sign-Out | Sign-Out | 1 | As a user, I want to be able to sign out of my account so that it is secure. | A clear sign-out button is available. Sessions are terminated after sign-out. | Pass |
 | Account Sign-Out | Sign-Out | 1 | As a user, I want it to be clear that I am signed out. | No information is displayed after sign-out. | Pass |
 | Snap Management | Create Snap | 1 | As a user, I want to be able to snap a photo of my pet and post it. | Users can take or upload a photo and post it as a snap. | Pass |
 | Snap Management | View Snap | 1 | As a user, I want to be able to view my snaps. | Users can see a gallery of their posted snaps. | Pass |
-| Snap Management | Edit Snap | 1 | As a user, I want to be able to edit my snap. | Users can edit captions or tags on their snaps. | Pass |
+| Snap Management | Edit Snap | 1 | As a user, I want to be able to edit my snap. | Users can edit captions on their snaps. | Pass |
 | Snap Management | Delete Snap | 1 | As a user, I want to be able to delete my snap. | Users can delete their snaps. | Pass |
 | Snap Management | Like Snap | 1 | As a user, I do not want to be able to dislike my own snap. | The dislike button is disabled for the user’s own snaps. | Pass |
 | Snap Management | Like Snap | 1 | As a user, I do not want to be able to like my own snap. | The like button is disabled for the user’s own snaps. | Pass |
@@ -69,7 +69,6 @@ The following CSS files were validated using the [W3C CSS Validator](https://jig
 
 All the listed CSS files have successfully passed the validation, indicating they conform to the CSS standards set by the W3C.
 
-
 # JS Validation Results
 
 - I installed js eslint to run through my project and make sure I have no errors... I had a couple pop up such as prop type erros.
@@ -79,6 +78,14 @@ All the listed CSS files have successfully passed the validation, indicating the
 [Screenshot of app.test.js eslint errors](./src/assets/readme/testjs-eslint.png)
 - Since this screenshot I have imported react so the only errors are the undefined ones.
 
+# Lighthouse testing
+![Screenshot of lighthouse report](/src/assets/readme/lighthouse-report.png)
+
+# Unresolved Bugs
+- The website will not let you log in when on a mobile device, like ios. After a lot of troubleshooting, which was difficult because there is no console on an iphone I contacted student support who said that there is a known bug and to change my settings. However it still did not work.
+ This is because the Django Rest Framework API and the React front-end are hosted on separate domains using Heroku, and cross-domain requests from the front-end to the API are blocked by these anti-tracking features. It appears there is no solution to this, other than to host the API and front-end on the same domain (reference - https://stackoverflow.com/questions/56972162/is-there-a-workaround-for-safari-ios-prevent-cross-site-tracking-option-when).
+
+![Student support screenshot](/src/assets/readme/iphone-issue.png)
 
 
 

@@ -3,10 +3,14 @@
 ## Introduction
 This project provides a Django Reszt Framework API for [Snap It app livelink](https://snapit-2fde1c079281.herokuapp.com/) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
+![Am I responsive? Screenshot](/src/assets/readme/amiresponsive.png)
 
-# [Click here to see resubmission details!](./RESUBMISSION.md)
 
-# Project Goals
+
+### [Click here to see resubmission details!](./RESUBMISSION.md)
+### [Click here to see all the testing!](./TESTING.md)
+
+### Project Goals
 
 1. Provide an intuitive and seamless user experience for navigating the site.
 2. Enable comprehensive account management features.
@@ -14,9 +18,14 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 4. Support robust commenting and interaction on snaps.
 5. Implement effective filtering and searching functionalities.
 
-# User Stories
+### User Stories
 
-## 1. Navigation
+- [Click here to view the user stories on github](https://github.com/users/PennyTrain/projects/11/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels)
+
+- Here is a screenshot of them
+![Screenshot of github user story board](/src/assets/readme/github-stories.png)
+
+### 1. Navigation
 
 ### Goal: Provide an intuitive and seamless user experience for navigating the site
 
@@ -35,13 +44,13 @@ Snap It is an innovative social media platform tailored specifically for pet lov
   - Sessions persist even after closing the browser.
   - Manual logout button is available.
 
-## 2. Account Management
+### 2. Account Management
 
 ### Goal: Enable comprehensive account management features
 
 **As a user, I want to be able to update my profile**
 - **Acceptance Criteria:**
-  - Users can change their personal information (name, email, etc.).
+  - Users can change their personal information (name, etc.).
 
 **As a user, I want to be able to change my profile picture**
 - **Acceptance Criteria:**
@@ -53,37 +62,37 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 
 **As a user, I want to be able to change my password**
 - **Acceptance Criteria:**
-  - Users can change their password after providing the current one.
+  - Users can change their password.
 
 **As a user, I want to be able to change my bio**
 - **Acceptance Criteria:**
   - Users can add/edit a bio on their profile.
 
-## 3. Account Registration
+### 3. Account Registration
 
 ### Goal: Facilitate easy and engaging account registration
 
 **As a new user, I want to be able to register a new account**
 - **Acceptance Criteria:**
-  - Registration form includes fields for username, email, and password.
+  - Registration form includes fields for username and password.
 
 **As a new user, I want there to be apparent features I am gaining when creating an account**
 - **Acceptance Criteria:**
   - Features of having an account are highlighted on the registration page.
 
-## 4. Account Sign-In
+### 4. Account Sign-In
 
 ### Goal: Support secure and unique user accounts
 
 **As a recurring user, I want an account unique to me**
 - **Acceptance Criteria:**
-  - Unique usernames and email addresses are enforced.
+  - Unique usernames and passwords are enforced.
 
 **As a user, I want it to be clear that I am signed in**
 - **Acceptance Criteria:**
   - User’s name or profile picture is displayed when logged in.
 
-## 5. Account Sign-Out
+### 5. Account Sign-Out
 
 ### Goal: Ensure user account security
 
@@ -96,16 +105,7 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 - **Acceptance Criteria:**
   - No personal information is displayed after sign-out.
 
-## 6. Account Deletion
-
-### Goal: Provide full control over user accounts
-
-**As a user, I want full control over my account allowing me to delete it if I wish**
-- **Acceptance Criteria:**
-  - Users can delete their account after confirmation.
-  - All personal data is removed upon deletion.
-
-## 7. Snap Management
+### 6. Snap Management
 
 ### Goal: Facilitate easy and engaging snap management
 
@@ -119,7 +119,7 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 
 **As a user, I want to be able to edit my snap**
 - **Acceptance Criteria:**
-  - Users can edit captions or tags on their snaps.
+  - Users can edit on their snaps.
 
 **As a user, I want to be able to delete my snap**
 - **Acceptance Criteria:**
@@ -149,7 +149,7 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 - **Acceptance Criteria:**
   - Users can view a feed or gallery of other users' snaps.
 
-## 8. Comment Management
+### 7. Comment Management
 
 ### Goal: Support robust commenting and interaction on snaps
 
@@ -181,7 +181,7 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 - **Acceptance Criteria:**
   - Users can see comments from others on snaps.
 
-## 9. Filtering and Searching
+### 8. Filtering and Searching
 
 ### Goal: Implement effective filtering and searching functionalities
 
@@ -213,35 +213,79 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 - **Acceptance Criteria:**
   - Users can search snaps by pet names.
 
-# Prioritization and Milestones
+## Prioritization and Milestones
 
-## Must Have
+### Must Have
 - Basic navigation
 - Account registration and sign-in
 - Basic snap management
 
-## Should Have
+### Should Have
 - Advanced account management (changing profile picture, username, etc.)
 - Comment management
 
-## Could Have
+### Could Have
 - Advanced filtering and searching
 
-
-## Won't Have
+### Won't Have
 - Popular users feature
 
-[User Stories Github](https://github.com/users/PennyTrain/projects/8/views/1)
-![Screenshot of github user stories](../snapit/src/assets/readme/github-userstories.png)
+--- 
+
+## Milestones
+#### Milestone 1: Basic Navigation and Account Management (MVP)
+
+* Implement basic navigation bar and session persistence (1.1, 1.2, 1.3).
+* Allow users to register, sign in, and sign out (3.1, 4.1, 4.2, 5.1, 5.2).
+* Enable users to update their profile (2.1, 2.2, 2.3, 2.5).
+
+#### Milestone 2: Core Snap and Comment Management (MVP)
+
+* Implement snap posting, viewing, liking, and disliking (6.1, 6.2, 6.5, 6.6, 6.8, 6.9, 6.10).
+* Allow users to comment on snaps and view comments (7.1, 7.5, 7.7).
+
+#### Milestone 3: Advanced Search and Filtering (MVP)
+
+* Implement basic search functionalities (8.3, 8.4, 8.5).
+
+#### Milestone 4: Enhancements and Additional Features
+
+* Enable profile picture updates and password changes (2.4).
+* Implement snap editing and deletion (6.3, 6.4, 6.7).
+* Enhance comment functionalities (7.2, 7.3, 7.4, 7.6).
+* Implement additional filtering and search features (8.1, 8.2, 8.6, 8.7).
+
 
 ### WireFrames
 
 - Since the wireframes were made the project has gone through some major changes! Along with that I changed the color scheme to green considering it looked too much like my last project with the blue! 
 
-* Home Page
----
-![](../readme/browser-home.png)
-![](../readme/phone-home.png)
+### Features
+
+#### Navbar
+
+#### Responsive Navbar
+
+#### Snap
+
+#### Create Snap
+
+#### Edit Snap
+
+#### Comment
+
+#### Create Comment
+
+#### Edit Comment
+
+#### Profile
+
+#### Profile Edit
+
+#### Username Change
+
+#### Password Change
+
 
 
 ### Agile Development Methodology
