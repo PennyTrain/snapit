@@ -4,6 +4,8 @@
 This project provides a Django Reszt Framework API for [Snap It app livelink](https://snapit-2fde1c079281.herokuapp.com/) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
 
+# [Click here to see resubmission details!](./RESUBMISSION.md)
+
 # Project Goals
 
 1. Provide an intuitive and seamless user experience for navigating the site.
@@ -56,18 +58,6 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 **As a user, I want to be able to change my bio**
 - **Acceptance Criteria:**
   - Users can add/edit a bio on their profile.
-
-**As a user, I want to be able to friend other users**
-- **Acceptance Criteria:**
-  - Users can send friend requests to other users.
-
-**As a user, I want to be able to unfriend other users**
-- **Acceptance Criteria:**
-  - Users can remove friends from their friends list.
-
-**As a user, I want to see the most popular users**
-- **Acceptance Criteria:**
-  - A section displays users with the most friends or snaps.
 
 ## 3. Account Registration
 
@@ -195,10 +185,6 @@ Snap It is an innovative social media platform tailored specifically for pet lov
 
 ### Goal: Implement effective filtering and searching functionalities
 
-**As a user, I want to be able to filter through my friends uploaded snaps**
-- **Acceptance Criteria:**
-  - Users can filter snaps to only show those posted by friends.
-
 **As a user, I want to be able to filter through my liked snaps**
 - **Acceptance Criteria:**
   - Users can filter snaps to only show those they have liked.
@@ -315,7 +301,7 @@ User Accounts: Users can delete their accounts, removing all their data from the
 <br />
 By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
 
-### Future Improvements and Features
+### Future Improvements
 
 * In the future, I would love to add:
 

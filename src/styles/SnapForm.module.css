@@ -41,8 +41,8 @@ label {
 }
 
 .cancelBtn {
-  background-color: #888;
-  color: #fff;
+  background-color: #D8E2D1;
+  color: #002366;
   border: none;
   padding: 10px 20px;
   cursor: pointer;
@@ -50,8 +50,8 @@ label {
 }
 
 .submitBtn {
-  background-color: #2e8b57; 
-  color: #fff;
+  background-color: #D8E2D1; 
+  color: #002366;
   border: none;
   padding: 10px 20px;
   cursor: pointer;

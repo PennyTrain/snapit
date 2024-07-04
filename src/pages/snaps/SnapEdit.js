@@ -251,7 +251,7 @@ const SnapEdit = () => {
               ref={imageInputRef}
               style={{ display: "none" }}
             />
-            <Button variant="primary" onClick={handleOpenFileDialog}>
+            <Button onClick={handleOpenFileDialog}>
               Choose Image
             </Button>
           </div>

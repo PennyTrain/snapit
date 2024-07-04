@@ -99,7 +99,7 @@ const RegisterForm = () => {
                     </Alert>
                 )}
                 <div className={styles.buttonGroup}>
-                    <Button variant="primary" type="submit" className={styles.submitBtn}>
+                    <Button type="submit" className={styles.submitBtn}>
                         Sign Up
                     </Button>
                     <Link to="/login">Already have an account? Log In</Link>

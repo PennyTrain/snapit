@@ -99,7 +99,7 @@ const LogInForm = () => {
                     </Alert>
                 )}
                 <div className={styles.buttonGroup}>
-                    <Button variant="primary" type="submit" className={styles.submitBtn}>
+                    <Button type="submit" className={styles.submitBtn}>
                         Log in
                     </Button>
                     <Link to="/register">Don&apos;t have an account? Sign Up</Link>
