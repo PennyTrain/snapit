@@ -286,6 +286,21 @@ I have also used this method to display a "You cannot like your own snaps" for w
 - This is the Snap It view of the comment form.
 - ![](/src/assets/readme/frame-i.png)
 ---
+- This is the Snap It view of the comment edit 
+form with the fields already filled with previous data!
+-![](/src/assets/readme/frame-j.png)
+---
+- This is the Snap It view of a users profile.
+- ![](/src/assets/readme/frame-k.png)
+---
+- This is the Snap It view of a users profile, when the user is the owner.
+- ![](/src/assets/readme/frame-l.png)
+---
+- This is the view of when you want to edit your own profile
+- ![](/src/assets/readme/frame-m.png)
+--- 
+
+
 
 ### Features
 
