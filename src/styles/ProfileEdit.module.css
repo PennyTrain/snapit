@@ -15,6 +15,24 @@
   width: 100%;
 }
 
+.btn,
+.btn:focus {
+  background-color: #D8E2D1; 
+  color: #002366; 
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px;
+  width: 100px;
+  text-align: center;
+  display: inline-block;
+}
+
+.btn:hover {
+  background-color: #b4c6b8
+}
+
 .imageUpload {
   margin-top: 15px;
   display: flex;
@@ -31,15 +49,15 @@
 .label {
   align-self: center; /* Center the label */
   cursor: pointer;
-  background-color: #6c63ff; /* Fun color */
-  color: white;
+  background-color: #d8e2d1; /* Fun color */
+  color: #002366;
   padding: 8px 12px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
 .label:hover {
-  background-color: #5753d9; /* Slightly darker on hover */
+  background-color: #d8e2d1; /* Slightly darker on hover */
 }
 
 .textFieldsContainer {
@@ -48,18 +66,18 @@
   justify-content: center;
 }
 
-.button {
+.btn {
   margin: 10px;
-  background-color: #6c63ff; /* Fun color */
+  background-color: #d8e2d1; /* Fun color */
   border: none;
-  color: white;
+  color: #002366;
   padding: 10px 20px;
   border-radius: 5px;
   transition: background-color 0.3s;
 }
 
-.button:hover {
-  background-color: #5753d9; /* Slightly darker on hover */
+.btn:hover {
+  background-color: #d8e2d1; /* Slightly darker on hover */
 }
 
 .figure {
@@ -72,7 +90,7 @@
     padding: 20px;
   }
 
-  .button {
+  .btn {
     padding: 8px 16px;
     margin: 5px;
   }

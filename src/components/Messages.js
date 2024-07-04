@@ -1,6 +1,8 @@
 import React from 'react';
 import { Alert } from 'react-bootstrap';
 import { useMessages } from '../contexts/MessageContext';
+import styles from "../styles/Messages.module.css";
+
 /*
 The Messages component displays a list of messages using Bootstrap's
  Alert component, allowing users to dismiss them. It retrieves the
@@ -11,13 +13,14 @@ const Messages = () => {
   const { messages, removeMessage } = useMessages();
 
   return (
-    <div className="message-container">
+    <div className={styles["message-container"]}>
       {messages.map((message, index) => (
         <Alert
           key={index}
           variant={message.type}
           onClose={() => removeMessage(index)}
           dismissible
+          className={styles.alert}
         >
           {message.text}
         </Alert>

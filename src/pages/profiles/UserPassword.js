@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 import { useHistory, useParams } from "react-router-dom";
 import { axiosRes } from "../../snapit_api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/UserChange.module.css";
 
 /*
 The UserPassword component allows users to change their password. 
@@ -100,10 +101,10 @@ const UserPassword = () => {
                     {message}
                 </Alert>
             ))}
-            <Button onClick={() => history.goBack()} variant="secondary">
+            <Button className={styles.btn} onClick={() => history.goBack()}>
                 Cancel
             </Button>
-            <Button type="submit">
+            <Button className={styles.btn} type="submit">
                 Save Password
             </Button>
         </Form>

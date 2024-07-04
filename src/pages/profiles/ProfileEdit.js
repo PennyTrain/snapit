@@ -105,10 +105,10 @@ const ProfileEdit = () => {
           {message}
         </Alert>
       ))}
-      <Button className={styles.button} onClick={() => history.goBack()}>
+      <Button className={styles.btn} onClick={() => history.goBack()}>
         Exit
       </Button>
-      <Button className={styles.button} type="submit">
+      <Button className={styles.btn} type="submit">
         Save
       </Button>
       <LogoutButton />

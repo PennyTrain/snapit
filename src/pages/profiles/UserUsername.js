@@ -8,6 +8,7 @@ import {
   useCurrentUser,
   useSetCurrentUser,
 } from "../../contexts/CurrentUserContext";
+import styles from "../../styles/UserChange.module.css"
 
 /*
 The UserUsername component enables users to change their username. 
@@ -73,10 +74,10 @@ const UserUsername = () => {
                     onChange={(event) => setUsername(event.target.value)}
                 />
             </Form.Group>
-            <Button onClick={() => history.goBack()} variant="secondary">
+            <Button onClick={() => history.goBack()} className={styles.btn}>
                 Cancel
             </Button>
-            <Button type="submit">
+            <Button type="submit" className={styles.btn}>
                 Save
             </Button>
         </Form>

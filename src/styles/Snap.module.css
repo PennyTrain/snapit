@@ -3,7 +3,7 @@
   min-width: 15rem;
   margin: 1rem auto;
   border: 2px solid black;
-  border-radius: 10px; /* Keep border-radius for top corners */
+  border-radius: 10px; 
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #4F6C50;
   overflow: hidden;
@@ -19,7 +19,7 @@
   border-bottom-left-radius: 10px; /* Straight bottom-left corner */
   border-bottom-right-radius: 10px; /* Straight bottom-right corner */
 }
-
+               
 .cardBody {
   padding: 1rem;
 }
