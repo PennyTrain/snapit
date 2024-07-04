@@ -6,7 +6,7 @@
   }
   
   .alert {
-    background-color: #6e9971 !important; /* Ensure background matches site's theme */
+    background-color: #425C42 !important; /* Ensure background matches site's theme */
     color: #fff !important; /* Ensure text color matches site's theme */
     border: 2px solid black !important; /* Ensure border matches site's theme */
     border-radius: 10px;

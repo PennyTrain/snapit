@@ -103,6 +103,7 @@ Additional Notes:
 #### 1.2 JSX code is used for creating a dynamic application but there are issues present with the data manipulation.
 - I went through and fixed the errors in the url paths creating the problems with the page not found! Along with the information displaying on the comments... Due to the lack of functionality when I initially submitted my project I was more concerned with it actually working opposed 
 to how it looked, therefore not all of the information was displayed on the comments, but I included the extra fields that are not required to submit the form as a quick fun way for users to share information with others! Opposed to making a whole snap and it displaying on their feed, something that they may not want to share with everyone and make an entire post about as it may relate to a niche interest or event!
+When comments are submitted their is now a brief pause for users to see a success message and thedn a page reload, and the comment is displayed.
 ![Profile edit screenshot](./src/assets/readme/profile-edit1.png)
 ![Username edit screenshot](./src/assets/readme/profile-edit2.png)
 ![Password edit screenshot](./src/assets/readme/profile-edit3.png)
