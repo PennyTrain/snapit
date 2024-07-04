@@ -149,7 +149,7 @@ function CreateComment({ snapId, setSnaps, setComments, profileImage, profile_id
             </Form.Group>
             <Form.Group className={styles.imageUpload}>
               <Form.Control type="file" ref={imageInputRef} style={{ display: "none" }} onChange={handleChangeImage} />
-              <Button onClick={handleOpenFileDialog}>Choose Image</Button>
+              <Button className={styles.btn} onClick={handleOpenFileDialog}>Choose Image</Button>
               {image && <img src={image} alt="Preview" className={styles.imagePreview} />}
             </Form.Group>
             <Button disabled={!body.trim()} type="submit" className={styles.btn}>

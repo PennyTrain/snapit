@@ -6,6 +6,7 @@ import { Col, Row, Container, Button } from "react-bootstrap";
 import CommentCreateForm from '../comments/CreateComment';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import CommentsContainer from "../../components/CommentsContainer";
+import styles from "../../styles/SnapFeed.module.css"
 
 
 // The SnapFeed component fetches and displays details of a specific 
@@ -46,7 +47,7 @@ function SnapFeed() {
 
   return (
     <Row>
-      <Col>
+      <Col className={styles.col}>
         {snap.results.length > 0 && (
           <>
             <Snap {...snap.results[0]} setSnaps={setSnap} />
@@ -60,7 +61,7 @@ function SnapFeed() {
             </Container>
             {currentUser && (
               <>
-                <Button onClick={handleShowCommentForm}>
+                <Button className={styles.commentbutton} onClick={handleShowCommentForm}>
                   {showCommentForm ? "Close Comment Form" : "Add Comment"}
                 </Button>
                 {showCommentForm && (

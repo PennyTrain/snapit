@@ -26,10 +26,10 @@
   margin-top: 10px;
 }
 
-.cancelBtn,
-.submitBtn {
-  background-color: #A8D5BA; 
-  color: #377D49; 
+.btn,
+.btn:focus {
+  background-color: #D8E2D1; 
+  color: #002366; 
   border: none;
   padding: 5px 10px;
   border-radius: 5px;
@@ -37,10 +37,11 @@
   margin: 5px;
   width: 100px;
   text-align: center;
+  display: inline-block;
 }
 
-.cancelBtn {
-  background-color: #9ACD97;
+.btn:hover {
+  background-color: #b4c6b8
 }
 
 button {

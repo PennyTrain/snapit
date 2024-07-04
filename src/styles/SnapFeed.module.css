@@ -1,0 +1,31 @@
+.commentbutton {
+    background-color: #6e9971; 
+    color: #fff; 
+    border: 2px solid #000000;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px;
+    width: 100px;
+    text-align: center;
+    display: inline-block;
+}
+
+.commentbutton:hover,
+.commentbutton:focus {
+    background-color: #6e9971; 
+    color: #ffff;
+    outline: black;
+    border: solid 2px black;
+}
+
+.col {
+    -ms-flex-preferred-size: 0;
+    flex-basis: 0;
+    -ms-flex-positive: 1;
+    flex-grow: 1;
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

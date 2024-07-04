@@ -231,7 +231,7 @@ const SnapCreate = () => {
               ref={imageInputRef}
               style={{ display: "none" }}
             />
-            <Button onClick={handleOpenFileDialog}>
+            <Button className={styles.submitBtn} onClick={handleOpenFileDialog}>
               Choose Image
             </Button>
           </div>

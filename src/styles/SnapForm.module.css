@@ -61,6 +61,8 @@ label {
 .submitBtn:hover,
 .cancelBtn:hover {
   opacity: 0.8;
+  background-color: #D8E2D1; 
+  color: #002366;
 }
 
 @media (max-width: 768px) {
