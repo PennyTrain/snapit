@@ -1,4 +1,4 @@
-# Testing Rubric for "Snap It"
+# Testing Snap It
 
 - While testing snapit I used manual testing throughout the development!
 
