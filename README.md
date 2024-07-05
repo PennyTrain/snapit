@@ -512,7 +512,14 @@ The NavBar component demonstrates reusability through its modular structure, inc
 - Profile Pic
 <br />
 The ProfilePic component is reusable because it is parameterized with props, allowing for customization of the image source, size, and accompanying text. It encapsulates styling using CSS modules, ensuring consistent and conflict-free presentation across different parts of the application. Its simplicity and focused functionality make it easy to integrate into various contexts like user profiles, comment sections, and navigation bars, promoting consistent user interface design.
+
 - Log out Button
+<br />
+The logout button is on the navbar and the profile edit form.
+
+- Messages
+<br />
+The Messages component is reusable because it dynamically displays messages based on the context-provided messages array, allowing it to be used across various parts of the application without modification. Additionally, its styling and behavior are controlled via props and context, making it flexible for different types of message.
 
 ### Custom Hooks
 
