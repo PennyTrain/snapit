@@ -20,9 +20,9 @@
 | Account Sign-In | Sign-In | 1 | As a user, I want it to be clear that I am signed in. | Navbar displays more options when logged in. | Pass |
 | Account Sign-Out | Sign-Out | 1 | As a user, I want to be able to sign out of my account so that it is secure. | A clear sign-out button is available. Sessions are terminated after sign-out. | Pass |
 | Account Sign-Out | Sign-Out | 1 | As a user, I want it to be clear that I am signed out. | No information is displayed after sign-out. | Pass |
-| Snap Management | Create Snap | 1 | As a user, I want to be able to snap a photo of my pet and post it. | Users can take or upload a photo and post it as a snap. | Pass |
-| Snap Management | View Snap | 1 | As a user, I want to be able to view my snaps. | Users can see a gallery of their posted snaps. | Pass |
-| Snap Management | Edit Snap | 1 | As a user, I want to be able to edit my snap. | Users can edit captions on their snaps. | Pass |
+| Snap Management | Create Snap | 1 | As a user, I want to be able to snap a photo of my pet and post it. | Users can upload a photo and post it as a snap. | Pass |
+| Snap Management | View Snap | 1 | As a user, I want to be able to view my snaps. | Users can see a gallery of their posted snaps when they click on thier own profile. | Pass |
+| Snap Management | Edit Snap | 1 | As a user, I want to be able to edit my snap. | Users can edit on their snaps. | Pass |
 | Snap Management | Delete Snap | 1 | As a user, I want to be able to delete my snap. | Users can delete their snaps. | Pass |
 | Snap Management | Like Snap | 1 | As a user, I do not want to be able to dislike my own snap. | The dislike button is disabled for the user’s own snaps. | Pass |
 | Snap Management | Like Snap | 1 | As a user, I do not want to be able to like my own snap. | The like button is disabled for the user’s own snaps. | Pass |
@@ -65,6 +65,7 @@ The following CSS files were validated using the [W3C CSS Validator](https://jig
 | Snap.module.css         | Passed            |
 | SnapForm.module.css     | Passed            |
 | SnapsFeed.module.css    | Passed            |
+| Messagges.module.css    | Passed            |
 
 All the listed CSS files have successfully passed the validation, indicating they conform to the CSS standards set by the W3C.
 
@@ -79,6 +80,7 @@ All the listed CSS files have successfully passed the validation, indicating the
 
 # Lighthouse testing
 ![Screenshot of lighthouse report](/src/assets/readme/lighthouse-report.png)
+- Performance: 75 Accessibility: 90 Best Practices: 96 SEO: 100
 
 # Wave Testing 
 ![Screenshot of wave report](/src/assets/readme/wave-report.png)

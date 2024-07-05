@@ -335,8 +335,6 @@ form with the fields already filled with previous data!
 - ![](/src/assets/readme/frame-r.png)
 ---
 
-
-
 ### Features
 
 #### Snap
@@ -401,11 +399,11 @@ form with the fields already filled with previous data!
 
 #### Dislike Filter
 ![Dislike filter screenshot](/src/assets/readme/dislike-filter.png)
-- Filter snaps by the number of dislikes via the search bar.
+- Filter snaps by the number of dislikes.
 --- 
 #### Like Filter
 ![Like filter screenshot](/src/assets/readme/like-filter.png)
-- Filter snaps by the number of likes via the search bar.
+- Filter snaps by the number of likes.
 ---
 
 #### Owner Filter
@@ -470,8 +468,6 @@ SnapIt provides users with control over their content by enabling them to delete
 Comments: Users can delete comments they have created, managing their interactions on the platform.
 <br />
 Snaps: Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
-<br />
-User Accounts: Users can delete their accounts, removing all their data from the platform.
 <br />
 By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
 

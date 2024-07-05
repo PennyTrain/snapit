@@ -2,6 +2,8 @@
 
 Snap It did not meet the standard I aspired to achieve due to a combination of time constraints and illness over Christmas I got galandular fever during my last project prior to this one and really struggled to get it out on time, at this point I did not realize I would struggle with it as long as I did, after my submission of my last project I felt fine and dandy! However while working on the this project it came back! I should have requested an extension and that is my own fault as I am a hard worker and really thought it would be done on time! But with galandular came extreme tiredness which made it difficult to focus, I pushed through however my retention of knowledge was not as good so I ultimately struggled with django a lot. Unfortunately, these factors impacted the development process, resulting in certain aspects of the application not meeting the desired level of quality. Time constraints limited the amount of attention and effort I could dedicate to the project, leading to compromises in various areas such as code organization, feature completeness, and user experience. Additionally, dealing with illness further disrupted the development schedule, reducing productivity and making it challenging to focus on implementing improvements and resolving issues effectively.
 
+- But it should all be good now !!! :D
+
 Here is the feedback I got back
 
 ## LO1 - Design an interactive Front-End web application using HTML, CSS and advanced JavaScript, based on component composition and separation of concerns
@@ -103,7 +105,7 @@ Additional Notes:
 #### 1.2 JSX code is used for creating a dynamic application but there are issues present with the data manipulation.
 - I went through and fixed the errors in the url paths creating the problems with the page not found! Along with the information displaying on the comments... Due to the lack of functionality when I initially submitted my project I was more concerned with it actually working opposed 
 to how it looked, therefore not all of the information was displayed on the comments, but I included the extra fields that are not required to submit the form as a quick fun way for users to share information with others! Opposed to making a whole snap and it displaying on their feed, something that they may not want to share with everyone and make an entire post about as it may relate to a niche interest or event!
-When comments are submitted their is now a brief pause for users to see a success message and thedn a page reload, and the comment is displayed.
+When comments are submitted their is now a brief pause for users to see a success message and then a page reload, and the comment is displayed.
 ![Profile edit screenshot](./src/assets/readme/profile-edit1.png)
 ![Username edit screenshot](./src/assets/readme/profile-edit2.png)
 ![Password edit screenshot](./src/assets/readme/profile-edit3.png)
@@ -114,6 +116,17 @@ When comments are submitted their is now a brief pause for users to see a succes
 
 ### LO2
 - Quite honestly I simply ran out of time for the readme towards the end, I had my wireframes done but they were all blue, and my website is green, I was aware that I was going to fail as aspects of it simply did not work. And turning it in on time and taking the fail gave me 2 resubmission attempts, however turning it in late only gave me one resubmission attempt and both are now capped at a pass, so I went for the better option just in case but I can assure what was missing is now present in the [README](./README.md)
+And here is the kanban github board where labels are now included :D 
+- [Click here to view the user stories on github](https://github.com/users/PennyTrain/projects/11/views/1?sortedBy%5Bdirection%5D=asc&sortedBy%5BcolumnId%5D=Labels)
+
+- Here is a screenshot of them
+![Screenshot of github user story board](/src/assets/readme/github-stories.png)
+
+- And heres an EPIC 
+![Screenshot of EPIC](/src/assets/readme/Epic.png)
+
+And no more contrast errors!
+![Screenshot of wave report](/src/assets/readme/wave-report.png)
 
 ### LO3 
 - The back-end was the first half of the project I tackled as when going through the walkthroughs that was the one I struggled with the most! I found the moments walkthrough relatively easy but when attempting it on my own, boy! Was I wrong! 
