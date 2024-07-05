@@ -71,11 +71,11 @@ All the listed CSS files have successfully passed the validation, indicating the
 
 # JS Validation Results
 
-- I installed js eslint to run through my project and make sure I have no errors... I had a couple pop up such as prop type erros.
-[Screenshot of prop error](./src/assets/readme/prop-eslint.png)
+- I installed js eslint to run through my project and make sure I have no errors... I had a couple pop up such as prop type errors.
+[Screenshot of prop error](/src/assets/readme/prop-eslint.png)
 - All eslint errors in files written by me have been corrected
 - However there are some errors in App.test.js but due to it being built into my project I assumed I did not have to worry about these and they are the only ones that flag up when npx eslint . is ran.
-[Screenshot of app.test.js eslint errors](./src/assets/readme/testjs-eslint.png)
+[Screenshot of app.test.js eslint errors](/src/assets/readme/testjs-eslint.png)
 - Since this screenshot I have imported react so the only errors are the undefined ones.
 
 # Lighthouse testing

@@ -97,7 +97,7 @@ const SnapCreate = () => {
   };
 
   if (!currentUser) {
-    history.push('/login');
+    history.push('/');
     return null;
   }
 

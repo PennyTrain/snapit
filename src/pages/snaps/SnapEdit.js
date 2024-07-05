@@ -116,7 +116,7 @@ const SnapEdit = () => {
   };
 
   if (!currentUser) {
-    history.push('/login');
+    history.push('/');
     return null;
   }
 
