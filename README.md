@@ -1,9 +1,9 @@
 # Snap It!
 
 ## Introduction
+![Am I responsive? Screenshot](/src/assets/readme/amiresponsive.png)
 This project provides a Django Reszt Framework API for [Snap It app livelink](https://snapit-2fde1c079281.herokuapp.com/) 
 Snap It is an innovative social media platform tailored specifically for pet lovers, enabling them to share, connect, and celebrate the joy that animals bring into their lives. Think of Snap It as a specialized version of Facebook, but with a dedicated focus on pets, offering a unique blend of features that cater to pet owners and animal enthusiasts alike.
-![Am I responsive? Screenshot](/src/assets/readme/amiresponsive.png)
 
 ## Table of Contents
 1. [Introduction](#introduction)
@@ -432,44 +432,46 @@ SnapIt offers complete Create, Read, Update, and Delete (CRUD) functionality thr
 
 #### Create
 Users can register a new account, allowing them to join the SnapIt community. Once registered, users can create various types of content:
-<br />
-Comments: 
-<br />
+
+- Comments: 
 Authenticated users can create comments on snaps with additional details such as pet name, age, breed, and type.
-<br />
-Snaps:
-<br />
+
+- Snaps:
 Users can create new snaps featuring their pets, including images and detailed descriptions.
 
-#### Read
-SnapIt ensures that authenticated users can easily access and view content:
-<br />
-Snaps:
+- SnapIt ensures that authenticated users can easily access and view content:
+
+- Snaps:
 Users can browse and view snaps posted by the community, enjoying a feed filled with pet photos and stories.
-<br />
-Comments:
+
+- Comments:
 Users can view comments on each snap, providing a space for interaction and engagement. 
-<br />
-User Profiles:
+
+- User Profiles:
 Users can view their profile image and display name, along with those of other community members.
 
 #### Update
-SnapIt allows users to update and manage their content seamlessly:
-<br />
-Profile Updates: Authenticated users can update their profile image, display name, and password to keep their account information current.
-<br />
-Comment Edits: Users can edit and save comments they have created, ensuring their interactions remain accurate and relevant.
-<br />
-- Snap Edits: Users can edit snaps they have posted, including updating images and descriptions to reflect any changes.
+- SnapIt allows users to update and manage their content seamlessly:
+
+- Profile Updates: 
+Authenticated users can update their profile image, display name, and password to keep their account information current.
+
+- Comment Edits: 
+Users can edit and save comments they have created, ensuring their interactions remain accurate and relevant.
+
+- Snap Edits: 
+Users can edit snaps they have posted, including updating images and descriptions to reflect any changes.
 
 #### Delete
-SnapIt provides users with control over their content by enabling them to delete various elements:
-<br />
-Comments: Users can delete comments they have created, managing their interactions on the platform.
-<br />
-Snaps: Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
-<br />
-By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
+- SnapIt provides users with control over their content by enabling them to delete various elements:
+
+- Comments: 
+Users can delete comments they have created, managing their interactions on the platform.
+
+- Snaps: 
+Users can delete snaps they have posted, allowing them to remove content that is no longer relevant or desired.
+
+- By offering these comprehensive CRUD functionalities, SnapIt ensures a dynamic, user-centric experience, empowering pet lovers to create, manage, and share content effortlessly.
 
 ### Future Improvements
 
@@ -528,13 +530,12 @@ Specifically, useImageUpload offers several functions: handleChangeImage reads t
 ### Frameworks, Libraries and Dependencys
 
 * React-Router-DOM
-<br />
-react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in Snap It, i.e. to implement the links on register, sign-in and sign-out links. And the navbar.
-* ReactDOM
+
+- react-router-dom - this library enables 'client side routing' for React web applications, and is used to implement basic routing in Snap It, i.e. to implement the links on register, sign-in and sign-out links. And the navbar.
 
 * Axios
-<br />
-Axios - the axios library was chosen to simplify making HTTP requests to the REST API (e.g. not having to manually configure HTTP headers), and because it enables simple implementation of 'interceptors' which are used to request a refresh token in the event of a HTTP 401 error. This enhances the user experience beacuse an authenticated user remains signed in for up to 24 hours, rather than having to sign in again after five minutes.
+
+- Axios - the axios library was chosen to simplify making HTTP requests to the REST API (e.g. not having to manually configure HTTP headers), and because it enables simple implementation of 'interceptors' which are used to request a refresh token in the event of a HTTP 401 error. This enhances the user experience beacuse an authenticated user remains signed in, rather than having to sign in again after five minutes.
 
 #### Installing requirements.txt
 Due to certian packages being required the system nneds to know which ones in order to runt his project as successfully as possible.
