@@ -80,6 +80,9 @@ All the listed CSS files have successfully passed the validation, indicating the
 # Lighthouse testing
 ![Screenshot of lighthouse report](/src/assets/readme/lighthouse-report.png)
 
+# Wave Testing 
+![Screenshot of wave report](/src/assets/readme/wave-report.png)
+
 # Unresolved Bugs
 - The website will not let you log in when on a mobile device, like ios. After a lot of troubleshooting, which was difficult because there is no console on an iphone I contacted student support who said that there is a known bug and to change my settings. However it still did not work.
  This is because the Django Rest Framework API and the React front-end are hosted on separate domains using Heroku, and cross-domain requests from the front-end to the API are blocked by these anti-tracking features. It appears there is no solution to this, other than to host the API and front-end on the same domain (reference - https://stackoverflow.com/questions/56972162/is-there-a-workaround-for-safari-ios-prevent-cross-site-tracking-option-when).

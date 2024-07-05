@@ -1,28 +1,42 @@
+/* Messages.module.css */
 .message-container {
-    padding: 20px;
-    color: #fff; /* Match the body background color */
-    border-radius: 10px;
+  padding: 20px;
+  border-radius: 10px;
+}
 
-  }
-  
-  .alert {
-    background-color: #425C42 !important; /* Ensure background matches site's theme */
-    color: #fff !important; /* Ensure text color matches site's theme */
-    border: 2px solid black !important; /* Ensure border matches site's theme */
-    border-radius: 10px;
-    margin-bottom: 10px;
-    border: 2px solid #000000;
-  }
-  
-  .alert-heading {
-    color: #fff !important; /* Ensure heading color matches site's theme */
-  }
-  
-  .alert-link {
-    color: #fff !important; /* Ensure link color matches site's theme */
-  }
-  
-  .alert-dismissible .close {
-    color: #fff !important; /* Ensure close button color matches site's theme */
-  }
-  
+.alert {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  font-weight: bold;
+  background-color: #ff0000 !important; /* Red background */
+  color: #fff !important; /* White text */
+  border: 2px solid #fff !important; /* White border */
+}
+
+/* Error message styles */
+.alert-error {
+  background-color: #ff0000 !important; /* Red background */
+  color: #fff !important; /* White text */
+  border: 2px solid #fff !important; /* White border */
+}
+
+/* Success message styles */
+.alert-success {
+  background-color: #425C42 !important; /* Green background */
+  color: #fff !important; /* White text */
+  border: 2px solid black !important; /* White border */
+}
+
+/* Other common styles */
+.alert-heading {
+  color: #fff !important;
+}
+
+.alert-link {
+  color: #fff !important;
+}
+
+.alert-dismissible .close {
+  color: #fff !important;
+}

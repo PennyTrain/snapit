@@ -17,10 +17,9 @@ const Messages = () => {
       {messages.map((message, index) => (
         <Alert
           key={index}
-          variant={message.type}
           onClose={() => removeMessage(index)}
           dismissible
-          className={styles.alert}
+          className={`${styles.alert} ${styles[`alert-${message.type}`]}`}
         >
           {message.text}
         </Alert>
